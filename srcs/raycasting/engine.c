@@ -67,9 +67,9 @@ void	starting_engine(t_game	*game)
 	sky_n_ground(game);
 	// cube_pixel(game, 100, 100);
 	// mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
-	ft_arrayprint(game->map);
+	// ft_arrayprint(game->map);
 	map_creation(game);
-	dprintf(2, "HELLO\n");
+	// dprintf(2, "HELLO\n");
 	// mlx_put_image_to_window(game->mlx, game->window, game->wall_mm, (25 * 1), (25 * 1));
 	// mlx_put_image_to_window(game->mlx, game->window, game->ground_mm, (25 * 0), (25 * 0));
 

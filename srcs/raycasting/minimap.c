@@ -25,8 +25,8 @@ void	map_creation(t_game *game)
 	int	x;
 	y = 0;
 	x = 0;
-	dprintf(2, "%d = width\n", game->map_x);
-	dprintf(2, "%d = height\n", game->map_y);
+	// dprintf(2, "%d = width\n", game->map_x);
+	// dprintf(2, "%d = height\n", game->map_y);
 	while (game->map[y] != NULL)
 	{
 		x = 0;
@@ -41,7 +41,7 @@ void	map_creation(t_game *game)
 		}
 		y++;
 	}
-	dprintf(2, "here\n");
+	// dprintf(2, "here\n");
 }
 
 
