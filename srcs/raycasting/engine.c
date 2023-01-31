@@ -54,7 +54,7 @@ void	init_assets(t_game	*game)
 	width = 100;
 	height = 100;
 	game->player_mm = mlx_xpm_file_to_image(game->mlx,
-			"../../textures/ylw_dot.xpm", &width, &height);
+			"textures/ylw_dot.xpm", &width, &height);
 	game->wall_mm = mlx_xpm_file_to_image(game->mlx,
 			"textures/2d_wall.xpm", &width, &height);
 	game->ground_mm = mlx_xpm_file_to_image(game->mlx,
@@ -69,12 +69,10 @@ void	starting_engine(t_game	*game)
 	// mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	// ft_arrayprint(game->map);
 	map_creation(game);
+	mlx_put_image_to_window(game->mlx, game->window, game->player_mm, (25 * game->player.position_y), (25 * game->player.position_x));
+	// mlx_put_image_to_window(game->mlx, game->window, game->player_mm, (25 * 4), (25 * 4));
 	// dprintf(2, "HELLO\n");
-	// mlx_put_image_to_window(game->mlx, game->window, game->wall_mm, (25 * 1), (25 * 1));
 	// mlx_put_image_to_window(game->mlx, game->window, game->ground_mm, (25 * 0), (25 * 0));
 
 	mlx_loop(game->mlx);
 }
-
-
-
