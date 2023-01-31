@@ -13,9 +13,8 @@ void	put_img(t_game *game, int x, int y)
 		mlx_put_image_to_window(mlx, window, game->ground_mm, (25 * x), (25 * y));
 	// else if (game->map[y][x] == '\n')
 	// 	dprintf(2, "%c\n", game->map[y][x]);
-	// if (game->map[y][x] == 'W')
-	// 	mlx_put_image_to_window(mlx, window, game->player_mm, (25 * x), (25 * y));
-	// else
+	mlx_put_image_to_window(game->mlx, game->window, game->player_mm, (25 * game->player.position_y), (25 * game->player.position_x));
+
 	// 	dprintf(2, "NOT SUPPOSED TO PRINT: %d\n", game->map[y][x]);
 }
 
