@@ -38,6 +38,7 @@ typedef struct s_game
 	void	*player_mm;
 	void	*wall_mm;
 	void	*ground_mm;
+	char	**textures_tab;
 // 
 
 	int		width;
@@ -89,11 +90,11 @@ void	init_value(t_game *game);
 void	check_few_arg(t_game *game);
 void	floodfill(int x, int y, t_game *game);
 
-// void	get_text_path_no(t_game *game, int i);
-// void	get_text_path_so(t_game *game, int i);
-// void	get_text_path_we(t_game *game, int i);
-// void	get_text_path_ea(t_game *game, int i);
-// void	init_texture_tab(t_game *game);
+int		parsing_path(t_game *game);
+void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n);
+void	get_floor_color(t_game *game, int i);
+void	get_roof_color(t_game *game, int i);
+void	init_texture_tab(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);

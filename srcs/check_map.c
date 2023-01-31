@@ -3,6 +3,12 @@
 void	check_map(t_game *game)
 {
 	check_symbol_and_doublon(game);
+	if (game->doublons == 0)
+	{
+		printf("No player on map\n");
+		game->checker = 1;
+		return ;
+	}
 	floodfill(game->player.position_x, game->player.position_y, game);
 }
 
@@ -74,11 +80,11 @@ void	floodfill(int x, int y, t_game *game)
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
 			game->player.NEWS = game->map[x][y];
-		game->map[x][y] = 'Q';
+		game->map[x][y] = '-';
 	}
 	else
 		return ;
-	// print_floodfill(game);
+	//print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
@@ -91,10 +97,11 @@ void	print_floodfill(t_game *game)
 
 	i = 0;
 	usleep(100000);
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
+	printf("\e[1;1H\e[2J");
 	while (game->map[i])
 	{
 		printf("%s\n", game->map[i]);

@@ -1,5 +1,16 @@
 #include "cub3d.h"
 
+void	print_tab_textures(t_game *game)
+{
+	int	i;
+
+	i = 0;
+	while (i <= 6)
+	{
+		printf("[%d]%s\n", i, game->textures_tab[i]);
+		i++;
+	}
+}
 
 void	print_tab_fd(t_game *tab)
 {
@@ -46,10 +57,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing(&game, fd, argv[1]) == 1)
 		return (1);
+	if (parsing_path(&game) == 1)
+		return (1);
 	// print_map(&game);
-	starting_engine(&game);
+	//starting_engine(&game);
 
-
+	print_tab_textures(&game);
 	//print_tab_fd(&game);
 	//print_player_pos(&game);
 	return (0);
