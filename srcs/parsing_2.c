@@ -68,14 +68,3 @@ void	check_comma(t_game *game)
 		comma = 0;
 	}
 }
-// void	check_6_first_line(t_game *game)
-// {
-// 	int	all;
-// 	int	i;
-
-// 	all = 0;
-// 	i = 0;
-// 	if (game->tab_fd[i])
-// 	if (all = 6)
-// 		return ;
-// }

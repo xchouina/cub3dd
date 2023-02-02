@@ -18,6 +18,12 @@ void	split_colors(t_game *game)
 	check_comma(game);
 	f = ft_split(game->textures_tab[4], ',');
 	g = ft_split(game->textures_tab[5], ',');
+	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \
+	|| (ft_atoi(g[0]) > 255) || (ft_atoi(g[1]) > 255) || (ft_atoi(g[2]) > 255))
+	{
+		dprintf(2, "rgb more than 255");
+		ft_quit(game);
+	}
 	game->textures.couleur_floor = rgb_to_int(f);
 	game->textures.couleur_ciel = rgb_to_int(g);
 	ft_free2d(f);

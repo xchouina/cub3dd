@@ -85,11 +85,11 @@ void	floodfill(int x, int y, t_game *game)
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
 			game->player.NEWS = game->map[x][y];
-		game->map[x][y] = '-';
+		game->map[x][y] = 'Q';
 	}
 	else
 		return ;
-	print_floodfill(game);
+	//print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
