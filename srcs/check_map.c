@@ -5,7 +5,7 @@ void	check_map(t_game *game)
 	check_symbol_and_doublon(game);
 	if (game->doublons == 0)
 	{
-		printf("No player on map\n");
+		dprintf(2, "No player on map\n");
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;
@@ -34,7 +34,7 @@ void	check_symbol_and_doublon(t_game *game)
 			else
 			{
 				// game->checker = 1;
-				printf("%c = symbol error\n", game->map[i][j]);
+				dprintf(2, "%c = symbol error\n", game->map[i][j]);
 				ft_quit(game);
 				// return ;
 			}
@@ -47,7 +47,7 @@ void	check_end_line(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '\n' && ft_strlen(game->map[i]) == 1)
 	{
-		printf("Backslash_n need to be at the end of line\n");
+		dprintf(2, "Backslash_n need to be at the end of line\n");
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;
@@ -59,7 +59,7 @@ void	check_end_line(t_game *game, int i, int j)
 		game->player.position_y = j;
 		if (game->doublons != 0)
 		{
-			printf("to mush player on map\n");
+			dprintf(2, "to mush player on map\n");
 			ft_quit(game);
 			// game->checker = 1;
 			// return ;
@@ -74,7 +74,7 @@ void	floodfill(int x, int y, t_game *game)
 {
 	if (game->map[x][y] < 37)
 	{
-		printf("map not close\n");
+		dprintf(2, "map not close\n");
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;
@@ -89,7 +89,7 @@ void	floodfill(int x, int y, t_game *game)
 	}
 	else
 		return ;
-	//print_floodfill(game);
+	print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);

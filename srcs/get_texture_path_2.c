@@ -15,6 +15,7 @@ void	split_colors(t_game *game)
 	char **f;
 	char **g;
 
+	check_comma(game);
 	f = ft_split(game->textures_tab[4], ',');
 	g = ft_split(game->textures_tab[5], ',');
 	game->textures.couleur_floor = rgb_to_int(f);
@@ -38,7 +39,7 @@ void	get_floor_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		printf("texture F erreur");
+		dprintf(2, "texture F erreur\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)
@@ -66,7 +67,7 @@ void	get_roof_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		printf("texture C erreur");
+		dprintf(2, "texture C erreur\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)

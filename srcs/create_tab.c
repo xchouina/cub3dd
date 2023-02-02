@@ -6,7 +6,7 @@ void	open_fd(char *argv, t_game *game)
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
 	{
-		printf("fd error");
+		dprintf(2, "fd error");
 		ft_quit(game);
 	}
 	if (!ft_strendcmp(argv, ".cub"))
