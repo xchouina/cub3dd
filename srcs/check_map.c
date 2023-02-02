@@ -70,6 +70,12 @@ void	check_end_line(t_game *game, int i, int j)
 
 }
 
+void	outside_map(t_game *game)
+{
+	dprintf(2, "you are outside of map");
+	ft_quit(game);
+}
+
 void	floodfill(int x, int y, t_game *game)
 {
 	if (game->map[x][y] < 37)
@@ -82,6 +88,8 @@ void	floodfill(int x, int y, t_game *game)
 	if (game->map[x][y] == '0' || game->map[x][y] == 'N' ||\
 	game->map[x][y] == 'E' || game->map[x][y] == 'W' || game->map[x][y] == 'S')
 	{
+		if (x <= 0 || y <= 0)
+			outside_map(game);
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
 			game->player.NEWS = game->map[x][y];
@@ -89,7 +97,7 @@ void	floodfill(int x, int y, t_game *game)
 	}
 	else
 		return ;
-	//print_floodfill(game);
+	print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
