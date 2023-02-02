@@ -1,65 +1,17 @@
 #include "cub3d.h"
 
-void	fd_create_tab_fd(t_game *game, int fd, char *argv)
+void	open_fd(char *argv, t_game *game)
 {
-	char	*str;
-	char	*tmp;
-	
-	game->height_fd = 1;
-	str = get_next_line(fd);
-	tmp = ft_strtrim(str, "\n");
-	free(str);
-	// game->width_fd = ft_strlen(tmp);
-	free(tmp);
-	str = "";
-	while (str)
-	{
-		str = get_next_line(fd);
-		if (!str)
-			break ;
-		game->height_fd++;
-		free(str);
-	}
-	close(fd);
-	fd = open_fd(argv);
-	fill_tab_fd(game, fd);
-}
 
-void	fill_tab_fd(t_game *game, int fd)
-{
-	int		i;
-
-	i = 0;
-	game->tab_fd = calloc(game->height_fd, sizeof(char *));
-	if (game->tab_fd == NULL)
-		ft_quit(fd);
-	game->tab_fd[i] = get_next_line(fd);
-	i++;
-	while (i < game->height_fd)
-	{
-		char *tmp = get_next_line(fd);
-		game->tab_fd[i] = ft_strdup(tmp);
-		if (!game->tab_fd[i])
-			break ;
-		free(tmp);
-		i++;
-	}
-	return ;
-}
-
-int	open_fd(char *argv)
-{
-	int fd;
-
-	fd = open(argv, O_RDONLY);
-	if (fd == -1)
+	game->fd = open(argv, O_RDONLY);
+	if (game->fd == -1)
 	{
 		printf("fd error");
-		return (1);
+		ft_quit(game);
 	}
 	if (!ft_strendcmp(argv, ".cub"))
-		ft_quit(fd);
-	return (fd);
+		ft_quit(game);
+	return ;
 }
 
 void	fd_create_tab_map(t_game *game)
@@ -91,7 +43,6 @@ void	fd_create_tab_map(t_game *game)
 		j = 0;
 		i++;
 	}
-	fill_map_tab(game);
 }
 
 //protege les calloc si ya de la marde
@@ -101,12 +52,60 @@ void	fill_map_tab(t_game *game)
 
 	i = 0;
 	game->map = ft_calloc(game->map_height, sizeof(char *));
-	//printf("map_start = %d\n", game->map_start);
 	while (i < game->map_height - 1)
 	{
 		game->map[i] = ft_strdup(game->tab_fd[game->map_start]);
-		//printf("game_map[%d] = %s\n", i, game->map[i]);
 		game->map_start++;
 		i++;
 	}
 }
+
+void	fill_tab_fd(t_game *game)
+{
+	int		i;
+
+	i = 0;
+	game->tab_fd = calloc(game->height_fd + 1, sizeof(char *));
+	if (game->tab_fd == NULL)
+		ft_quit(game);
+	game->tab_fd[i] = get_next_line(game->fd);
+	i++;
+	while (i < game->height_fd)
+	{
+		char *tmp = get_next_line(game->fd);
+		game->tab_fd[i] = ft_strdup(tmp);
+		if (!game->tab_fd[i])
+			break ;
+		free(tmp);
+		i++;
+	}
+	return ;
+}
+
+void	fd_create_tab_fd(t_game *game, char *argv)
+{
+	char	*str;
+	char	*tmp;
+	
+	game->height_fd = 1;
+	str = get_next_line(game->fd);
+	if (str == NULL)
+		fd_null(game);
+	tmp = ft_strtrim(str, "\n");
+	free(str);
+	free(tmp);
+	str = "";
+	while (str)
+	{
+		str = get_next_line(game->fd);
+		if (!str)
+			break ;
+		game->height_fd++;
+		free(str);
+	}
+	close(game->fd);
+	open_fd(argv, game);
+	fill_tab_fd(game);
+	return ;
+}
+

@@ -2,7 +2,26 @@
 
 void	init_texture_tab(t_game *game)
 {
-	game->textures_tab = ft_calloc(7, sizeof(char *));
+	game->textures_tab = ft_calloc(8, sizeof(char *));
+}
+
+int	rgb_to_int(char **rgb)
+{
+	return ((ft_atoi(rgb[0]) << 16) + (ft_atoi(rgb[1]) << 8) + (ft_atoi(rgb[2])));
+}
+
+void	split_colors(t_game *game)
+{
+	char **f;
+	char **g;
+
+	f = ft_split(game->textures_tab[4], ',');
+	g = ft_split(game->textures_tab[5], ',');
+	game->textures.couleur_floor = rgb_to_int(f);
+	game->textures.couleur_ciel = rgb_to_int(g);
+	ft_free2d(f);
+	ft_free2d(g);
+
 }
 
 void	get_floor_color(t_game *game, int i)
@@ -20,8 +39,7 @@ void	get_floor_color(t_game *game, int i)
 	else
 	{
 		printf("texture F erreur");
-		game->checker = 1;
-		return ;
+		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)
 		j++;
@@ -49,8 +67,7 @@ void	get_roof_color(t_game *game, int i)
 	else
 	{
 		printf("texture C erreur");
-		game->checker = 1;
-		return ;
+		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)
 		j++;

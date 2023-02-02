@@ -6,8 +6,9 @@ void	check_map(t_game *game)
 	if (game->doublons == 0)
 	{
 		printf("No player on map\n");
-		game->checker = 1;
-		return ;
+		ft_quit(game);
+		// game->checker = 1;
+		// return ;
 	}
 	floodfill(game->player.position_x, game->player.position_y, game);
 }
@@ -26,15 +27,16 @@ void	check_symbol_and_doublon(t_game *game)
 			if (ft_strchr("01 	NSEW\n", game->map[i][j]) != NULL)
 			{
 				check_end_line(game, i, j);
-				if (game->checker == 1)
-					return ;
+				// if (game->checker == 1)
+				// 	return ;
 				j++;
 			}
 			else
 			{
-				game->checker = 1;
+				// game->checker = 1;
 				printf("%c = symbol error\n", game->map[i][j]);
-				return ;
+				ft_quit(game);
+				// return ;
 			}
 		}
 		i++;
@@ -46,8 +48,9 @@ void	check_end_line(t_game *game, int i, int j)
 	if (game->map[i][j] == '\n' && ft_strlen(game->map[i]) == 1)
 	{
 		printf("Backslash_n need to be at the end of line\n");
-		game->checker = 1;
-		return ;
+		ft_quit(game);
+		// game->checker = 1;
+		// return ;
 	}
 	if (game->map[i][j] == 'W' || game->map[i][j] == 'E'\
 	 || game->map[i][j] == 'S' || game->map[i][j] == 'N')
@@ -57,8 +60,9 @@ void	check_end_line(t_game *game, int i, int j)
 		if (game->doublons != 0)
 		{
 			printf("to mush player on map\n");
-			game->checker = 1;
-			return ;
+			ft_quit(game);
+			// game->checker = 1;
+			// return ;
 		}
 		else
 			game->doublons = 1;
@@ -71,8 +75,9 @@ void	floodfill(int x, int y, t_game *game)
 	if (game->map[x][y] < 37)
 	{
 		printf("map not close\n");
-		game->checker = 1;
-		return ;
+		ft_quit(game);
+		// game->checker = 1;
+		// return ;
 	}
 	if (game->map[x][y] == '0' || game->map[x][y] == 'N' ||\
 	game->map[x][y] == 'E' || game->map[x][y] == 'W' || game->map[x][y] == 'S')
@@ -97,10 +102,6 @@ void	print_floodfill(t_game *game)
 
 	i = 0;
 	usleep(100000);
-	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
-	// printf("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n");
 	printf("\e[1;1H\e[2J");
 	while (game->map[i])
 	{

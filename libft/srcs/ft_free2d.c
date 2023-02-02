@@ -12,7 +12,7 @@
 
 #include "../include/libft.h"
 
-void	free2d(char **split)
+void	ft_free2d(char **split)
 {
 	int	i;
 

@@ -16,6 +16,9 @@ typedef struct s_textures
 	char	*so;
 	char	*we;
 	char	*ea;
+	int		couleur_floor;
+	int		couleur_ciel;
+
 }t_textures;
 
 typedef struct s_pos
@@ -51,8 +54,8 @@ typedef struct s_game
 	int		map_x;
 	int		map_y;
 	// int		len;
-
 	int		height_fd;
+	int		fd;
 	char	**map;
 	char	**tab_fd;
 	int		map_start;
@@ -70,11 +73,11 @@ typedef struct s_game
 	t_textures	textures;
 }t_game;
 
-void	ft_quit(int fd);
-void	fd_create_tab_fd(t_game *game, int fd, char *argv);
-void	fill_tab_fd(t_game *game, int fd);
-int		open_fd(char *argv);
-int		parsing(t_game *game, int fd, char *argv);
+void	ft_quit(t_game *game);
+void	fd_create_tab_fd(t_game *game, char *argv);
+void	fill_tab_fd(t_game *game);
+void	open_fd(char *argv, t_game *game);
+int		parsing(t_game *game, char *argv);
 void	fd_create_tab_map(t_game *game);
 void	fill_tab_map(t_game *game);
 void	incr_map_height(char *str, t_game *map);
@@ -95,6 +98,8 @@ void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n);
 void	get_floor_color(t_game *game, int i);
 void	get_roof_color(t_game *game, int i);
 void	init_texture_tab(t_game *game);
+void	split_colors(t_game *game);
+void	fd_null(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);

@@ -1,0 +1,12 @@
+
+ valgrind --leak-check=full --suppressions=supp.txt  --show-leak-kinds=reachable -- ./cub3d maps/test_simple.cub 
+
+==85370== 1 bytes in 1 blocks are still reachable in loss record 1 of 329
+==85370==    at 0x100148545: malloc (in /System/Volumes/Data/sgoinfre/Perso/tberube-/.brew/Cellar/valgrind/HEAD-6ff08b6/libexec/valgrind/vgpreload_memcheck-amd64-darwin.so)
+==85370==    by 0x100003ACB: ft_substr_gnl (get_next_line_utils.c:23)
+==85370==    by 0x1000036C8: end_line (get_next_line.c:20)
+==85370==    by 0x100003A37: get_next_line (get_next_line.c:100)
+==85370==    by 0x100004B3A: fill_tab_fd (create_tab.c:75)
+==85370==    by 0x100004C7A: fd_create_tab_fd (create_tab.c:108)
+==85370==    by 0x1000046A2: parsing (parsing.c:76)
+==85370==    by 0x10000408C: main (cub3d.c:62)

@@ -9,7 +9,7 @@
 			"request": "launch",
 			"name": "Debug",
 			"program": "${workspaceFolder}/./cub3d",
-			"args": ["maps/map_not_last.cub"],
+			"args": ["maps/test_simple.cub"],
 			"cwd": "${workspaceFolder}"
 		}
 	]

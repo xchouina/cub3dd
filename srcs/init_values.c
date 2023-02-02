@@ -11,4 +11,7 @@ void	init_value(t_game *game)
 	game->dir_C = 0;
 	game->doublons = 0;
 	game->direction_complete = 0;
+	game->tab_fd = NULL;
+	game->map = NULL;
+	game->textures_tab = NULL;
 }
