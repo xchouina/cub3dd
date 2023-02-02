@@ -72,7 +72,7 @@ void	check_end_line(t_game *game, int i, int j)
 
 void	outside_map(t_game *game)
 {
-	dprintf(2, "you are outside of map");
+	dprintf(2, "you are outside of map\n");
 	ft_quit(game);
 }
 
@@ -97,7 +97,7 @@ void	floodfill(int x, int y, t_game *game)
 	}
 	else
 		return ;
-	print_floodfill(game);
+	//print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
