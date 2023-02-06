@@ -100,6 +100,7 @@ void	get_roof_color(t_game *game, int i);
 void	init_texture_tab(t_game *game);
 void	split_colors(t_game *game);
 void	fd_null(t_game *game);
+void	check_comma(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);
