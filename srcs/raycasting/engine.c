@@ -18,7 +18,7 @@ void	sky_n_ground(t_game *game)
 	while (x < game->res_x)
 	{
 		while (++y < game->res_y)
-			my_mlx_pixel_put(game, x, y, 0x0099FF99);
+			my_mlx_pixel_put(game, x, y, game->textures.couleur_floor);
 		y = 0;
 		x++;
 	}
@@ -27,7 +27,7 @@ void	sky_n_ground(t_game *game)
 	while (x < (game->res_x))
 	{
 		while (++y < (game->res_y / 2))
-			my_mlx_pixel_put(game, x, y, 0x00CCFFFF);
+			my_mlx_pixel_put(game, x, y, game->textures.couleur_sky);
 		y = 0;
 		x++;
 	}

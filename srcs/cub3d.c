@@ -54,8 +54,7 @@ void	print_color(t_game *game)
 {
 	printf("			\e[1;34mcolor\e[0m							\n");
 	printf("colors floor = %d\n", game->textures.couleur_floor);
-	printf("color ciel = %d\n", game->textures.couleur_ciel);
-	printf("\n\n");
+	printf("color ciel = %d\n", game->textures.couleur_sky);
 }
 
 int	main(int argc, char **argv)
@@ -73,6 +72,9 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
+	// print_tab_textures(&game);
+	// print_map(&game);
+	starting_engine(&game);
 	//print_tab_fd(&game);
 	//print_map(&game);
 	starting_engine(&game);

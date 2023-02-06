@@ -25,7 +25,7 @@ typedef struct s_textures
 	char	*we;
 	char	*ea;
 	int		couleur_floor;
-	int		couleur_ciel;
+	int		couleur_sky;
 
 }t_textures;
 
