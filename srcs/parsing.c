@@ -38,7 +38,7 @@ void	check_if_map_last(t_game *game, int i)
 			j++;
 		if (game->tab_fd[i][j] == '1' || game->tab_fd[i][j] == '0')
 		{
-			printf("map_not_last or direction probleme\n");
+			dprintf(2, "map_not_last or direction probleme\n");
 			ft_quit(game);
 		}
 		j++;
