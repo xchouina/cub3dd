@@ -73,12 +73,13 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
-	print_tab_fd(&game);
-	print_map(&game);
-	//starting_engine(&game);
-	print_tab_textures(&game);
-	print_player_pos(&game);
-	print_color(&game);
+	//print_tab_fd(&game);
+	//print_map(&game);
+	starting_engine(&game);
+	mlx_close(&game);
+	//print_tab_textures(&game);
+	//print_player_pos(&game);
+	//print_color(&game);
 	ft_quit(&game);
 	return (0);
 }

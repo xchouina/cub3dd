@@ -10,6 +10,14 @@
 # include "../minilibx/mlx.h"
 # include "Get_next_line/get_next_line.h"
 
+typedef enum keypress
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+}	t_keypress;
+
 typedef struct s_textures
 {
 	char	*no;
@@ -101,6 +109,7 @@ void	init_texture_tab(t_game *game);
 void	split_colors(t_game *game);
 void	fd_null(t_game *game);
 void	check_comma(t_game *game);
+void	mlx_close(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);
