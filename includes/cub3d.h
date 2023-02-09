@@ -7,8 +7,25 @@
 # include <stdbool.h>
 # include <libft/include/libft.h>
 # include <math.h>
-# include "../minilibx/mlx.h"
+# include "MLX42/include/MLX42/MLX42.h"
 # include "Get_next_line/get_next_line.h"
+
+typedef enum keypress
+{
+	ON_KEYDOWN = 2,
+	ON_KEYUP = 3,
+	ON_EXPOSE = 12,
+	ON_DESTROY = 17
+}	t_keypress;
+
+typedef struct s_mlx_instance
+{
+	int32_t	x;
+	int32_t	y;
+	int	player_pos_y;
+	int	player_pos_x;
+	bool	enabled;
+}	t_mlx_instance;
 
 typedef struct s_textures
 {
@@ -30,23 +47,38 @@ typedef struct s_pos
 	char	NEWS;
 }t_pos;
 
+typedef struct s_player
+{
+	t_pos	player_mm;
+} t_player;
+
+typedef struct s_sprite
+{
+	xpm_t *xpm;
+	mlx_image_t *img;
+
+} t_sprite;
+
 typedef struct s_game
 {
-	void	*mlx;
+	mlx_t	*mlx;
 	void	*window;
 	int		res_x;
 	int		res_y;
 
 // ASSETS/TEXTURES
-	void	*player_mm;
-	void	*wall_mm;
-	void	*ground_mm;
+	t_player	player;
+	t_sprite	sprite_player;
+	t_sprite	wall;
+	t_sprite	ground;
+	xpm_t	*wall_mm;
+	xpm_t	*ground_mm;
 	char	**textures_tab;
 // 
-
+	t_mlx_instance *instance;
 	int		width;
 	int		height;
-	void	*img;
+	mlx_image_t	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -69,7 +101,7 @@ typedef struct s_game
 	int		dir_C;
 	int		direction_complete;
 	int		doublons;
-	t_pos	player;
+	t_pos	pos;
 	t_textures	textures;
 }t_game;
 
@@ -92,6 +124,7 @@ void	check_end_line(t_game *game, int i, int j);
 void	init_value(t_game *game);
 void	check_few_arg(t_game *game);
 void	floodfill(int x, int y, t_game *game);
+void	key_hook_move(void *param);
 
 int		parsing_path(t_game *game);
 void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n);
@@ -101,6 +134,11 @@ void	init_texture_tab(t_game *game);
 void	split_colors(t_game *game);
 void	fd_null(t_game *game);
 void	check_comma(t_game *game);
+void	mlx_press_key(t_game *game);
+
+// move_player
+void	top_move(t_game *game);
+void	down_move(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);
@@ -111,7 +149,7 @@ void	print_floodfill(t_game *game);
 
 
 // ENGINE
-void	starting_engine(t_game	*game);
+int	starting_engine(t_game	*game);
 void	init_assets(t_game	*game);
 void	map_creation(t_game *game);
 #endif
