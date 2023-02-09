@@ -38,7 +38,7 @@ typedef struct s_rc
 	float	px_init_px; //nbr de pixels pour calculer la position en 'x'.
 	float	px_init_py;
 	float	in_c_y;
-	float	init_angle;
+	float	angle;
 	float	tan_theta;
 }t_rc;
 
