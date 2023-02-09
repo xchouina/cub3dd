@@ -9,6 +9,7 @@ CFILES =	cub3d.c 				\
 			check_map.c				\
 			raycasting/engine.c		\
 			raycasting/minimap.c	\
+			raycasting/casting.c 	\
 			init_values.c			\
 			get_texture_path_1.c 	\
 			get_texture_path_2.c 	\

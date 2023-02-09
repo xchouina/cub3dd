@@ -30,48 +30,62 @@ typedef struct s_pos
 	char	NEWS;
 }t_pos;
 
+typedef struct s_rc
+{
+	float	out_c_x; //distance en cubes 
+	float	out_c_y;
+	float	in_c_x; //distance en pixel, intra cube.
+	float	px_init_px; //nbr de pixels pour calculer la position en 'x'.
+	float	px_init_py;
+	float	in_c_y;
+	float	init_angle;
+	float	tan_theta;
+}t_rc;
+
 typedef struct s_game
 {
-	void	*mlx;
-	void	*window;
-	int		res_x;
-	int		res_y;
+	void		*mlx;
+	void		*window;
+	int			res_x;
+	int			res_y;
 
 // ASSETS/TEXTURES
-	void	*player_mm;
-	void	*wall_mm;
-	void	*ground_mm;
-	char	**textures_tab;
+	void		*player_mm;
+	void		*wall_mm;
+	void		*ground_mm;
+	char		**textures_tab;
 // 
 
-	int		width;
-	int		height;
-	void	*img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
-	int		map_x;
-	int		map_y;
+	int			width;
+	int			height;
+	void		*img;
+	char		*addr;
+	int			bits_per_pixel;
+	int			line_length;
+	int			endian;
+	int			map_x;
+	int			map_y;
 	// int		len;
-	int		height_fd;
-	int		fd;
-	char	**map;
-	char	**tab_fd;
-	int		map_start;
-	int		map_height;
-	int		checker;
-	int		dir_NO;
-	int		dir_SO;
-	int		dir_WE;
-	int		dir_EA;
-	int		dir_F;
-	int		dir_C;
-	int		direction_complete;
-	int		doublons;
-	t_pos	player;
+	int			height_fd;
+	int			fd;
+	char		**map;
+	char		**tab_fd;
+	int			map_start;
+	int			map_height;
+	int			checker;
+	int			dir_NO;
+	int			dir_SO;
+	int			dir_WE;
+	int			dir_EA;
+	int			dir_F;
+	int			dir_C;
+	int			direction_complete;
+	int			doublons;
+	t_pos		player;
 	t_textures	textures;
+	t_rc		rc;
 }t_game;
+
 
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
@@ -114,4 +128,6 @@ void	print_floodfill(t_game *game);
 void	starting_engine(t_game	*game);
 void	init_assets(t_game	*game);
 void	map_creation(t_game *game);
+void	init_raycast_assets(t_game *game);
+
 #endif
