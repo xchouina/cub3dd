@@ -19,12 +19,13 @@ void	init_raycast_assets(t_game *game)
 void	check_one(t_game *game) //distance from dot to first edge_of_cube
 {
 	t_rc	rc;
-
-	rc->tan_theta + 
 }
 
 float	check_loop(t_game *game) //distance from first_cube to wall
 {
+
+	check_y - check_x;
+	// if + --> 
 
 }
 
@@ -45,3 +46,18 @@ float	degrees_to_radians(float degrees)
 {
     return (degrees * M_PI) / 180.0;
 }
+
+// FIRST CHECK EN 'Y'
+new_x = cur_x (+/-) (-dy / tanf(degrees_to_radians(angle)));
+new_y = cur_y (+/-) dy;
+
+if (game->map[new_y / 25][new_x / 25] == '1')
+	dprintf(2, "THerE a WalL hErE\n");
+
+
+// FIRST CHECK EN 'X'
+new_x = cur_x (+/-) (25 - dx);
+new_y = cur_y (+/-) ((25 - dx) * tanf(degrees_to_radians(angle)));
+
+if (game->map[new_y / 25][new_x / 25] == '1')
+	dprintf(2, "THerE a WalL hErE\n");
