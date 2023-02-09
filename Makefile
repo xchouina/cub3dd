@@ -32,8 +32,9 @@ GNL_HEADER = ./Get_next_line/get_next_line.h
 GNL_PATH = ./Get_next_line/
 GNL_SRCS = $(addprefix $(GNL_PATH), $(GET_NEXT_LINE))
 GNL_OBJS = ${GNL_SRCS:.c=.o}
-MLX                = MLX42/libmlx42.a 
-MLX_FLAG        = -lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/opt/glfw/lib
+MLX	= MLX42/libmlx42.a 
+MLX_FLAG = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
+# MLX_FLAG        = -lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/opt/glfw/lib
 
 all: $(NAME)
 
