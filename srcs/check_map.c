@@ -10,7 +10,7 @@ void	check_map(t_game *game)
 		// game->checker = 1;
 		// return ;
 	}
-	floodfill(game->player.position_x, game->player.position_y, game);
+	floodfill(game->player.player_mm.position_y, game->player.player_mm.position_x, game);
 }
 
 void	check_symbol_and_doublon(t_game *game)
@@ -55,8 +55,9 @@ void	check_end_line(t_game *game, int i, int j)
 	if (game->map[i][j] == 'W' || game->map[i][j] == 'E'\
 	 || game->map[i][j] == 'S' || game->map[i][j] == 'N')
 	{
-		game->player.position_x = i;
-		game->player.position_y = j;
+		game->player.player_mm.position_x = j;
+		game->player.player_mm.position_y = i;
+
 		if (game->doublons != 0)
 		{
 			dprintf(2, "to much player on map\n");
@@ -92,12 +93,12 @@ void	floodfill(int x, int y, t_game *game)
 			outside_map(game);
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
-			game->player.NEWS = game->map[x][y];
+			game->pos.NEWS = game->map[x][y];
 		game->map[x][y] = 'Q';
 	}
 	else
 		return ;
-	//print_floodfill(game);
+	// print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
