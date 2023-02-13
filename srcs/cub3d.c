@@ -66,7 +66,7 @@ int	main(int argc, char **argv)
 	// init_raycast_assets(&game);
 	// print_tab_textures(&game);
 	// print_map(&game);
-												// starting_engine(&game);
+												starting_engine(&game);
 	//print_tab_fd(&game);
 	//print_player_pos(&game);
 	//print_color(&game);

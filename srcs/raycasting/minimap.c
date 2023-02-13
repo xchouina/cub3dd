@@ -18,6 +18,11 @@ void	put_img(t_game *game, int x, int y)
 	// 	dprintf(2, "NOT SUPPOSED TO PRINT: %d\n", game->map[y][x]);
 }
 
+// void	put_cube(t_game *game, int x, int y, int color)
+// {
+
+// }
+
 void	map_creation(t_game *game)
 {
 	int	y;
