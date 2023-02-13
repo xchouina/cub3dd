@@ -10,7 +10,7 @@ void	check_map(t_game *game)
 		// game->checker = 1;
 		// return ;
 	}
-	floodfill(game->player.position_x, game->player.position_y, game);
+	floodfill(game->player.player_mm.position_y, game->player.player_mm.position_x, game);
 }
 
 void	check_symbol_and_doublon(t_game *game)
@@ -47,7 +47,7 @@ void	check_end_line(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '\n' && ft_strlen(game->map[i]) == 1)
 	{
-		dprintf(2, "Backslash_n need to be at the end of line\n");
+		dprintf(2, "Backslash_n needs to be at the end of the line\n");
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;
@@ -55,11 +55,12 @@ void	check_end_line(t_game *game, int i, int j)
 	if (game->map[i][j] == 'W' || game->map[i][j] == 'E'\
 	 || game->map[i][j] == 'S' || game->map[i][j] == 'N')
 	{
-		game->player.position_x = i;
-		game->player.position_y = j;
+		game->player.player_mm.position_x = j;
+		game->player.player_mm.position_y = i;
+
 		if (game->doublons != 0)
 		{
-			dprintf(2, "to mush player on map\n");
+			dprintf(2, "to much player on map\n");
 			ft_quit(game);
 			// game->checker = 1;
 			// return ;
@@ -72,7 +73,7 @@ void	check_end_line(t_game *game, int i, int j)
 
 void	outside_map(t_game *game)
 {
-	dprintf(2, "you are outside of map");
+	dprintf(2, "you are outside of the map\n");
 	ft_quit(game);
 }
 
@@ -80,7 +81,7 @@ void	floodfill(int x, int y, t_game *game)
 {
 	if (game->map[x][y] < 37)
 	{
-		dprintf(2, "map not close\n");
+		dprintf(2, "map not closed\n");
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;
@@ -92,7 +93,7 @@ void	floodfill(int x, int y, t_game *game)
 			outside_map(game);
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
-			game->player.NEWS = game->map[x][y];
+			game->pos.NEWS = game->map[x][y];
 		game->map[x][y] = 'Q';
 	}
 	else

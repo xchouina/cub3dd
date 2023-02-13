@@ -13,6 +13,8 @@ CFILES =	cub3d.c 				\
 			init_values.c			\
 			get_texture_path_1.c 	\
 			get_texture_path_2.c 	\
+			key_hook.c				\
+			raycasting/move_player.c			\
 
 SRCS = $(addprefix srcs/, $(CFILES))
 
@@ -31,6 +33,10 @@ GNL_HEADER = ./Get_next_line/get_next_line.h
 GNL_PATH = ./Get_next_line/
 GNL_SRCS = $(addprefix $(GNL_PATH), $(GET_NEXT_LINE))
 GNL_OBJS = ${GNL_SRCS:.c=.o}
+MLX                = MLX42/libmlx42.a 
+MLX_FLAG        = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
+# MLX_FLAG        = -lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/opt/glfw/lib
+
 all: $(NAME)
 
 .c.o :
@@ -38,7 +44,8 @@ all: $(NAME)
 
 $(NAME): $(OBJS) $(GNL_OBJS)
 	@$(MAKE) -C libft
-	@ $(CC) $(CFLAGS) $(GNL_OBJS) $(OBJS) $(LIBS) -lmlx -framework OpenGL -framework AppKit -o $(NAME)
+	@$(MAKE) -C MLX42
+	@ $(CC) $(CFLAGS) $(GNL_OBJS) $(OBJS) $(LIBS) ${MLX} ${MLX_FLAG} -framework OpenGL -framework AppKit -o $(NAME)
 	@echo "CUB3D	|	STATUS: \033[0;32mOK\033[0;00m"
 	@echo "---------------------------------------------"
 

@@ -14,24 +14,30 @@ void	sky_n_ground(t_game *game)
 	int	y;
 
 	x = 0;
-	y = 0;
+	y = -1;
 	while (x < game->res_x)
 	{
 		while (++y < game->res_y)
-			my_mlx_pixel_put(game, x, y, game->textures.couleur_floor);
-		y = 0;
+			mlx_put_pixel(game->img, x, y, game->textures.couleur_floor);
+		y = -1;
 		x++;
 	}
 	x = 0;
-	y = 0;
+	y = -1;
 	while (x < (game->res_x))
 	{
 		while (++y < (game->res_y / 2))
-			my_mlx_pixel_put(game, x, y, game->textures.couleur_sky);
-		y = 0;
+			mlx_put_pixel(game->img, x, y, game->textures.couleur_sky);
+		y = -1;
 		x++;
 	}
-	mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
+}
+
+void	load_xpm(t_sprite *sprite, char *path, mlx_t *mlx)
+{
+	sprite->xpm = mlx_load_xpm42(path);
+	sprite->img = mlx_texture_to_image(mlx, &sprite->xpm->texture);
 }
 
 void	init_assets(t_game	*game)
@@ -41,11 +47,12 @@ void	init_assets(t_game	*game)
 
 	game->res_x = 1920;
 	game->res_y = 1080;
-	game->mlx = mlx_init();	
-	game->window = mlx_new_window(game->mlx, game->res_x, game->res_y, "cub3d");
+	game->mlx = mlx_init(game->res_x, game->res_y, "Cub3d", true);
+	// game->window = (void *)mlx_new_window(game->mlx, game->res_x, game->res_y, "cub3d");
 	game->img = mlx_new_image(game->mlx, game->res_x, game->res_y);
-	game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length,
-								&game->endian);
+	//game->sprite_player.img = mlx_new_image(game->mlx, game->res_x, game->res_y);
+	// game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length,
+								// &game->endian);
 	game->map_x = (ft_strlen(game->map[0]) - 1);
 	// dprintf(2, "%d\n", game->map_x);
 	game->map_y = game->map_height - 1;
@@ -53,15 +60,14 @@ void	init_assets(t_game	*game)
 
 	width = 100;
 	height = 100;
-	game->player_mm = mlx_xpm_file_to_image(game->mlx,
-			"textures/ylw_dot.xpm", &width, &height);
-	game->wall_mm = mlx_xpm_file_to_image(game->mlx,
-			"textures/2d_wall.xpm", &width, &height);
-	game->ground_mm = mlx_xpm_file_to_image(game->mlx,
-			"textures/2d_ground.xpm", &width, &height);
+	load_xpm(&game->wall, "./textures/2d_wall.xpm42", game->mlx);
+	load_xpm(&game->ground, "./textures/2d_ground.xpm42", game->mlx);
+	//game->sprite_player.xpm = mlx_load_xpm42("./textures/ylw_dot.xpm42");
+	load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
+	//mlx_delete_xpm42(game->sprite_player.xpm);
 }
 
-void	starting_engine(t_game	*game)
+int	starting_engine(t_game	*game)
 {
 	init_assets(game);
 	sky_n_ground(game);
@@ -75,5 +81,6 @@ void	starting_engine(t_game	*game)
 
 	// mlx_hook(game->window, 2, 0, &events, &game);
 
-	mlx_loop(game->mlx);
+	
+	return (0);
 }
