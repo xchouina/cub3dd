@@ -50,7 +50,7 @@ void	init_assets(t_game	*game)
 	game->mlx = mlx_init(game->res_x, game->res_y, "Cub3d", true);
 	// game->window = (void *)mlx_new_window(game->mlx, game->res_x, game->res_y, "cub3d");
 	game->img = mlx_new_image(game->mlx, game->res_x, game->res_y);
-	game->sprite_player.img = mlx_new_image(game->mlx, game->res_x, game->res_y);
+	//game->sprite_player.img = mlx_new_image(game->mlx, game->res_x, game->res_y);
 	// game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length,
 								// &game->endian);
 	game->map_x = (ft_strlen(game->map[0]) - 1);
@@ -62,7 +62,9 @@ void	init_assets(t_game	*game)
 	height = 100;
 	load_xpm(&game->wall, "./textures/2d_wall.xpm42", game->mlx);
 	load_xpm(&game->ground, "./textures/2d_ground.xpm42", game->mlx);
+	//game->sprite_player.xpm = mlx_load_xpm42("./textures/ylw_dot.xpm42");
 	load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
+	//mlx_delete_xpm42(game->sprite_player.xpm);
 }
 
 int	starting_engine(t_game	*game)

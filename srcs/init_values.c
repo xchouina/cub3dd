@@ -14,4 +14,5 @@ void	init_value(t_game *game)
 	game->tab_fd = NULL;
 	game->map = NULL;
 	game->textures_tab = NULL;
+	game->image = 0;
 }

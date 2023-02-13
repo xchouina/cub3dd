@@ -14,6 +14,7 @@ void	key_hook_move(void *param)
 	t_game	*game;
 
 	game = param;
+	//mlx_delete_xpm42(game->sprite_player.xpm);
 	// printf("press\n");
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		win_close(game);
@@ -22,7 +23,8 @@ void	key_hook_move(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
 	{
 		printf("down\n");
-		game->sprite_player.img->instances[0].y += 10;
+		// mlx_delete_image()
+		game->sprite_player.img->instances[0].y += 5;
 	}
 		// down_move(game);
 	// if (keycode == 2)
@@ -30,10 +32,14 @@ void	key_hook_move(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
 		printf("up\n");
-		game->sprite_player.img->instances[0].y -= 10;	
+		game->sprite_player.img->instances[0].y -= 5;	
 	}
-	else
+	if (game->image == 0)
+	{
 		mlx_image_to_window(game->mlx, game->sprite_player.img, (25 * game->player.player_mm.position_x), (25 * game->player.player_mm.position_y));
+		game->image++;
+		//printf("image\n");
+	}
 		// top_move(game);
 	//mlx_image_to_window(game->mlx, game->player_mm, (25 * game->player.position_y), (25 * game->player.position_x));
 	//printf("y = %d\n x = %d \n", game->player.position_y, game->player.position_x);

@@ -101,6 +101,7 @@ typedef struct s_game
 	int		dir_C;
 	int		direction_complete;
 	int		doublons;
+	int		image;
 	t_pos	pos;
 	t_textures	textures;
 }t_game;
