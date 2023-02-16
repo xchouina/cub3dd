@@ -13,7 +13,8 @@ CFILES =	cub3d.c 				\
 			get_texture_path_1.c 	\
 			get_texture_path_2.c 	\
 			key_hook.c				\
-			raycasting/move_player.c			\
+			raycasting/move_player.c\
+			move_mini_player.c		\
 
 SRCS = $(addprefix srcs/, $(CFILES))
 

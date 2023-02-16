@@ -45,8 +45,8 @@ void	print_map(t_game *tab)
 void	print_player_pos(t_game *game)
 {
 	printf("			\033[1;34mplayer_position\033[0m							\n");
-	printf("player position X = %d\n", game->player.player_mm.position_x);
-	printf("player position Y = %d\n", game->player.player_mm.position_y);
+	printf("player position X = %f\n", game->player.player_mm.position_x);
+	printf("player position Y = %f\n", game->player.player_mm.position_y);
 	printf("\n\n");
 }
 
@@ -74,13 +74,16 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
+	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
 	// print_tab_fd(&game);
-	// print_map(&game);
+	//print_map(&game);
 	// print_player_pos(&game);
 	// print_tab_textures(&game);
 	// print_color(&game);
 	starting_engine(&game);
 	// // mlx_press_key(&game);
+	mlx_image_to_window(game.mlx, game.mini_map_img, 0, 0);
+	mlx_image_to_window(game.mlx, game.sprite_player.img, (25 * game.player.player_mm.position_x), (25 * game.player.player_mm.position_y));
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);
 	mlx_loop(game.mlx);
 	ft_quit(&game);

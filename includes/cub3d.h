@@ -40,10 +40,10 @@ typedef struct s_textures
 
 typedef struct s_pos
 {
-	int	position_x;
-	int	position_y;
-	int	x;
-	int	y;
+	float	position_x;
+	float	position_y;
+	float	x;
+	float	y;
 	char	NEWS;
 }t_pos;
 
@@ -79,6 +79,7 @@ typedef struct s_game
 	int		width;
 	int		height;
 	mlx_image_t	*img;
+	mlx_image_t	*mini_map_img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
@@ -102,7 +103,10 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
+	int		a_is_press;
+	int		d_is_press;
 	t_pos	pos;
+	t_pos	first_red_pixel;
 	t_textures	textures;
 }t_game;
 
@@ -136,10 +140,15 @@ void	split_colors(t_game *game);
 void	fd_null(t_game *game);
 void	check_comma(t_game *game);
 void	mlx_press_key(t_game *game);
+uint8_t	get_img_color(mlx_image_t *img, int x, int y, t_game *game);
 
 // move_player
 void	top_move(t_game *game);
 void	down_move(t_game *game);
+void	w_press(t_game *game);
+void	s_press(t_game *game);
+void	d_press(t_game *game);
+void	a_press(t_game *game);
 
 //print_test
 void	print_player_pos(t_game *game);
