@@ -83,16 +83,7 @@ int	starting_engine(t_game	*game)
 {
 	init_assets(game);
 	sky_n_ground(game);
-	// cube_pixel(game, 100, 100);
-	// mlx_put_image_to_window(game->mlx, game->window, game->img, 0, 0);
 	// ft_arrayprint(game->map);
 	map_creation(game);
-	// mlx_put_image_to_window(game->mlx, game->window, game->player_mm, (25 * 4), (25 * 4));
-	// dprintf(2, "HELLO\n");
-	// mlx_put_image_to_window(game->mlx, game->window, game->ground_mm, (25 * 0), (25 * 0));
-
-	// mlx_hook(game->window, 2, 0, &events, &game);
-
-	
 	return (0);
 }

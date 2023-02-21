@@ -22,12 +22,6 @@
 // 	check_loop(t_game *game);
 // }
 
-// // CONVERT DEGREE TO RADIANS
-// float	degrees_to_radians(float degrees) 
-// {
-//     return (degrees * M_PI) / 180.0;
-// }
-
 // // CHANGES +/- OF X/Y DEPENDING ON ANGLE
 // if (degrees_to_radians(angle) > 0 && degrees_to_radians(angle) < 90 ||
 // 	degrees_to_radians(angle) >= 90 && degrees_to_radians(angle) < 180)
@@ -50,3 +44,15 @@
 
 // if (game->map[new_y / 25][new_x / 25] == '1')
 // 	dprintf(2, "THerE a WalL hErE\n");
+
+
+
+
+// DONNEES INITIALES:
+
+// Angle == RN
+
+// POS_E_X = position->x;
+// POS_I_X = 
+
+// POS_E_Y = position->y;

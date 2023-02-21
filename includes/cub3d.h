@@ -9,7 +9,9 @@
 # include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "Get_next_line/get_next_line.h"
-# include "raycasting_cub3d.h"
+# include "rc_cub3d.h"
+
+# define CUBE 25
 
 typedef enum keypress
 {

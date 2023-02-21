@@ -14,13 +14,14 @@ typedef struct s_rc
 }t_rc;
 
 // MATHEMATIC VALUES ----------------
-
-# define	RE			(M_PI * 2)			// 0 or 360
-# define	RN			(M_PI / 2) 			// 90
-# define	RW			M_PI				// 180
-# define 	RS			((3 * M_PI) / 2)	// 270
-
-
+# define	RE			(M_PI * 2)			// RADIAN EAST	0 or 360
+# define	RN			(M_PI / 2) 			// RADIAN NORTH	90
+# define	RW			M_PI				// RADIAN WEST	180
+# define 	RS			((3 * M_PI) / 2)	// RADIAN SOUTH	270
 // ----------------------------------
+
+
+// TOOLBOX.C
+float	deg2rad(float degrees);
 
 # endif

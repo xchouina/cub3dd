@@ -42,39 +42,11 @@ void	put_mini_map_pixel(t_game *game, int x, int y)
 	i = 0;
 	window = game->window;
 	if (game->map[y][x] == '1')
-	{
-		mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture, x * 25, y * 25);
-		// while (i < (25 * 25))
-		// {
-		// 	//mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture, x * 25, y * 25);
-		// 	// color = get_img_color(game->wall.img, i % 25, i / 25, game);
-		// 	if (i % 25 == 0 || i / 25 == 0 || i % 25 == 24 || i / 25 == 24)
-		// 		mlx_put_pixel(game->mini_map_img, (x * 25) + i % 25, (y * 25) + i / 25, 0xFFFFFFFF);
-		// 	else
-		// 		mlx_put_pixel(game->mini_map_img, (x * 25) + i % 25, (y * 25) + i / 25, 0xFF00FFFF);
-		// 	i++;
-		// }
-	}
+		mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture,
+			x * CUBE, y * 25);
 	else if (game->map[y][x] == 'Q')
-	{
-		mlx_draw_texture(game->mini_map_img, &game->ground.xpm->texture, x * 25, y * 25);
-		// while (i < (25 * 25))
-		// {
-		// 	//color = get_img_color(game->ground.img, i % 25, i / 25, game);
-			
-		// 	mlx_put_pixel(game->mini_map_img, (x * 25) + i % 25, (y * 25) + i / 25, 0x000000FF);
-			
-		// 	//mlx_put_pixel(game->mini_map_img, (x * 25) + i % 25, (y * 25) + i / 25, 0x000000FF);
-		// 	i++;
-		// }
-	}
-	// else if (game->map[y][x] == '\n')
-	// 	dprintf(2, "%c\n", game->map[y][x]);
-	// game->instance->player_pos_y = game->pos.position_y;
-	// game->instance->player_pos_x = game->pos.position_x;
-	// (game->mlx, game->sprite_player.img, (25 * game->player.player_mm.position_x), (25 * game->player.player_mm.position_y));
-	//put_player_on_mini_map(game);
-	// 	dprintf(2, "NOT SUPPOSED TO PRINT: %d\n", game->map[y][x]);
+		mlx_draw_texture(game->mini_map_img, &game->ground.xpm->texture,
+			x * CUBE, y * 25);
 }
 
 void	map_creation(t_game *game)
@@ -83,8 +55,6 @@ void	map_creation(t_game *game)
 	int	x;
 	y = 0;
 	x = 0;
-	// dprintf(2, "%d = width\n", game->map_x);
-	// dprintf(2, "%d = height\n", game->map_y);
 	while (game->map[y] != NULL)
 	{
 		x = 0;

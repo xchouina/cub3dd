@@ -17,9 +17,9 @@ CFILES =	cub3d.c 					\
 			key_hook.c					\
 			move_mini_player.c			\
 
-SRCS = $(addprefix srcs/, $(CFILES))
-
 NAME = cub3d
+
+SRCS = $(addprefix srcs/, $(CFILES))
 
 OBJS = $(SRCS:.c=.o)
 
