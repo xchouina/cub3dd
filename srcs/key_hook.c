@@ -24,7 +24,7 @@ void	key_hook_move(void *param)
 	{
 		printf("down\n");
 		// mlx_delete_image()
-		game->sprite_player.img->instances[0].y += 5;
+		game->sprite_player.img->instances[0].y += 1;
 	}
 		// down_move(game);
 	// if (keycode == 2)
@@ -32,7 +32,7 @@ void	key_hook_move(void *param)
 	if (mlx_is_key_down(game->mlx, MLX_KEY_W))
 	{
 		printf("up\n");
-		game->sprite_player.img->instances[0].y -= 5;	
+		game->sprite_player.img->instances[0].y -= 1;	
 	}
 	if (game->image == 0)
 	{
