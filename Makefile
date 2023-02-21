@@ -1,20 +1,20 @@
 ###_*_*_*_*_*_*_*_*_*_*_*_*_Makefile_cub3d_*_*_*_*_*_*_*_*_*_*_*_*_###
 ###-------------------------# VARIABLES ##-------------------------###
 
-CFILES =	cub3d.c 				\
-			quit.c 					\
-			parsing.c				\
-			parsing_2.c				\
-			create_tab.c			\
-			check_map.c				\
-			raycasting/engine.c		\
-			raycasting/minimap.c	\
-			raycasting/casting.c 	\
-			init_values.c			\
-			get_texture_path_1.c 	\
-			get_texture_path_2.c 	\
-			key_hook.c				\
-			raycasting/move_player.c			\
+CFILES =	cub3d.c 					\
+			quit.c 						\
+			parsing.c					\
+			parsing_2.c					\
+			create_tab.c				\
+			check_map.c					\
+			raycasting/engine.c			\
+			raycasting/minimap.c		\
+			raycasting/casting.c 		\
+			init_values.c				\
+			get_texture_path_1.c 		\
+			get_texture_path_2.c 		\
+			key_hook.c					\
+			raycasting/move_player.c	\
 
 SRCS = $(addprefix srcs/, $(CFILES))
 

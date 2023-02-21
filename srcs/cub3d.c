@@ -74,6 +74,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
+	dprintf(2, "%f\n", RE);
 	// init_raycast_assets(&game);
 	// print_tab_fd(&game);
 	// print_map(&game);

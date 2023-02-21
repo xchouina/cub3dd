@@ -9,6 +9,7 @@
 # include <math.h>
 # include "MLX42/include/MLX42/MLX42.h"
 # include "Get_next_line/get_next_line.h"
+# include "raycasting_cub3d.h"
 
 typedef enum keypress
 {
@@ -47,17 +48,7 @@ typedef struct s_pos
 	char	NEWS;
 }t_pos;
 
-typedef struct s_rc
-{
-	float	out_c_x; //distance en cubes 
-	float	out_c_y;
-	float	in_c_x; //distance en pixel, intra cube.
-	float	px_init_px; //nbr de pixels pour calculer la position en 'x'.
-	float	px_init_py;
-	float	in_c_y;
-	float	angle;
-	float	tan_theta;
-}t_rc;
+
 
 typedef struct s_player
 {
@@ -115,11 +106,9 @@ typedef struct s_game
 	int		doublons;
 	int		image;
 	t_pos	pos;
-
 	t_textures	textures;
 	t_rc		rc;
 }t_game;
-
 
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
