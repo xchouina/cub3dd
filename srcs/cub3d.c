@@ -74,19 +74,14 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
-	dprintf(2, "%f\n", RE);
-	// init_raycast_assets(&game);
-	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
-	// print_tab_fd(&game);
-	//print_map(&game);
-	// print_player_pos(&game);
-	// print_tab_textures(&game);
-	// print_color(&game);
+	// -----------------
+	print_map(&game);
 	starting_engine(&game);
-	// // mlx_press_key(&game);
+	game.ray_angle = 90.0f;
 	mlx_image_to_window(game.mlx, game.mini_map_img, 0, 0);
 	mlx_image_to_window(game.mlx, game.sprite_player.img, (25 * game.player.player_mm.position_x), (25 * game.player.player_mm.position_y));
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);
+	// usleep (1);
 	mlx_loop(game.mlx);
 	ft_quit(&game);
 	return (0);

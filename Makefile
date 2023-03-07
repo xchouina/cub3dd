@@ -10,7 +10,7 @@ CFILES =	cub3d.c 					\
 			raycasting/engine.c			\
 			raycasting/minimap.c		\
 			raycasting/casting.c 		\
-			raycasting/move_player.c	\
+			raycasting/toolbox.c		\
 			init_values.c				\
 			get_texture_path_1.c 		\
 			get_texture_path_2.c 		\
@@ -36,7 +36,6 @@ GNL_SRCS = $(addprefix $(GNL_PATH), $(GET_NEXT_LINE))
 GNL_OBJS = ${GNL_SRCS:.c=.o}
 MLX                = MLX42/libmlx42.a 
 MLX_FLAG        = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
-# MLX_FLAG        = -lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/opt/glfw/lib
 
 all: $(NAME)
 

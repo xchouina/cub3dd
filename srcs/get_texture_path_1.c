@@ -14,7 +14,7 @@ void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n)
 		j = 3;
 	else
 	{
-		dprintf(2, "texture %serreur\n", str_space);
+		dprintf(2, "texture %serror\n", str_space);
 		ft_quit(game);
 		// game->checker = 1;
 		// return ;

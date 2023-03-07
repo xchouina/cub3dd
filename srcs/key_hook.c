@@ -15,7 +15,7 @@ void	key_hook_move(void *param)
 	int	i;
 
 	i = 0;
-	game = param;
+	game = (t_game*)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		win_close(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))
@@ -26,12 +26,5 @@ void	key_hook_move(void *param)
 		d_press(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		a_press(game);
-
+	drawRays2D(game);
 }
-
-// void	mlx_press_key(t_game *game)
-// {
-// 	// mlx_loop_hook(game->window, 2, 0, key_hook_move, game);
-// 	mlx_loop_hook(game->mlx, &key_hook_move, game);
-// 	// mlx_hook(game->window, 17, 0, win_close, game);
-// }

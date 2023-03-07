@@ -11,8 +11,10 @@
 # include "Get_next_line/get_next_line.h"
 # include "rc_cub3d.h"
 
-# define CUBE 25
-
+# define TILE_SIZE 25
+# define FOV_ANGLE 60 * (M_PI / 180) // Field of view angle in radians
+# define NUM_RAYS 120 // Number of rays to cast
+# define PSPEED		2
 typedef enum keypress
 {
 	ON_KEYDOWN = 2,
@@ -50,8 +52,6 @@ typedef struct s_pos
 	char	NEWS;
 }t_pos;
 
-
-
 typedef struct s_player
 {
 	t_pos	player_mm;
@@ -68,9 +68,7 @@ typedef struct s_game
 {
 	mlx_t	*mlx;
 	void	*window;
-	int		res_x;
-	int		res_y;
-
+	t_rc	*rc;
 // ASSETS/TEXTURES
 	t_player	player;
 	t_sprite	sprite_player;
@@ -85,13 +83,8 @@ typedef struct s_game
 	int		height;
 	mlx_image_t	*img;
 	mlx_image_t	*mini_map_img;
-	char	*addr;
-	int		bits_per_pixel;
-	int		line_length;
-	int		endian;
 	int		map_x;
 	int		map_y;
-	// int		len;
 	int		height_fd;
 	int		fd;
 	char	**map;
@@ -108,12 +101,12 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
-	int		a_is_press;
-	int		d_is_press;
+	float	ray_angle;
+	float	delta_x;
+	float	delta_y;
 	t_pos	pos;
 	t_pos	first_red_pixel;
 	t_textures	textures;
-	t_rc		rc;
 }t_game;
 
 void	ft_quit(t_game *game);
@@ -165,9 +158,16 @@ void	print_floodfill(t_game *game);
 
 
 // ENGINE
-int	starting_engine(t_game	*game);
-void	init_assets(t_game	*game);
+int		starting_engine(t_game	*game);
 void	map_creation(t_game *game);
 void	init_raycast_assets(t_game *game);
-
+void drawRays2D(t_game *game);
 #endif
+
+
+
+/*
+- besoin de rogner la map
+- connaitre le max x et max y de la map
+- connaitre le h&w du minimap_player
+*/
