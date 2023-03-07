@@ -82,6 +82,8 @@ int	parsing(t_game *game, char *argv)
 	check_direction(game);
 	fill_map_tab(game);
 	check_map(game);
+	game->map_height--;
+	square_map(game);
 	//parsing_orientation(game);
 	return (0);
 }

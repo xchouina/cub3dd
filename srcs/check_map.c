@@ -98,7 +98,7 @@ void	floodfill(int x, int y, t_game *game)
 	}
 	else
 		return ;
-	// print_floodfill(game);
+	//print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
