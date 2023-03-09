@@ -2,8 +2,8 @@
 
 void draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
 {
-	int player_width = 50;
-    int player_height = 50;
+	int player_width = 25;
+    int player_height = 25;
     int player_center_x = x1 - (player_width / 2);
     int player_center_y = y1 - (player_height / 2);
 
@@ -57,7 +57,7 @@ int		py;
  ra = FixAng(game->ray_angle + 30);//ray set back 30 degrees
  
  i = 0;
- while (i++ < 6)
+ while (i++ < 60)
  {
 	//---Vertical--- 
 	dof = 0;
@@ -161,11 +161,11 @@ int		py;
 	// glVertex2i(px,py);
 	// glVertex2i(rx,ry);
 	// glEnd();//draw 2D ray
-							// int ca = FixAng(game->ray_angle - ra);
-							// disH = disH * cos(deg2rad(ca)); //fix fisheye
-							// int lineH = 200; //(mapS * 320) / (disH);
-							// if (lineH > 320)
-							// 	lineH = 320;//line height and limit
+							int ca = FixAng(game->ray_angle - ra);
+							disH = disH * cos(deg2rad(ca)); //fix fisheye
+							int lineH = 200; //(mapS * 320) / (disH);
+							if (lineH > 320)
+								lineH = 320;//line height and limit
 	// int lineOff = 160 - (lineH>>1);//line offset
 	// glLineWidth(8);
 	// glBegin(GL_LINES);

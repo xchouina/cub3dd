@@ -167,7 +167,7 @@ void drawRays2D(t_game *game);
 
 
 /*
-- besoin de rogner la map
+- besoin de rogner la map\
 - connaitre le max x et max y de la map
 - connaitre le h&w du minimap_player
 */
