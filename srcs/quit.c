@@ -10,5 +10,7 @@ void	ft_quit(t_game *game)
 		ft_free2d(game->map);
 	if (game->textures_tab != NULL)
 		ft_free2d(game->textures_tab);
+	if (game->square_map != NULL)
+		ft_free2d(game->square_map);
 	exit(1);
 }

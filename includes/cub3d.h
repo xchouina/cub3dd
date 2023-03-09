@@ -88,9 +88,11 @@ typedef struct s_game
 	int		height_fd;
 	int		fd;
 	char	**map;
+	char	**square_map;
 	char	**tab_fd;
 	int		map_start;
 	int		map_height;
+	int		max_line;
 	int		checker;
 	int		dir_NO;
 	int		dir_SO;
@@ -140,6 +142,8 @@ void	fd_null(t_game *game);
 void	check_comma(t_game *game);
 void	mlx_press_key(t_game *game);
 uint8_t	get_img_color(mlx_image_t *img, int x, int y, t_game *game);
+void	square_map(t_game *game);
+void	fill_square_map(int i, int j, t_game *game);
 
 // move_player
 void	top_move(t_game *game);
@@ -163,11 +167,3 @@ void	map_creation(t_game *game);
 void	init_raycast_assets(t_game *game);
 void drawRays2D(t_game *game);
 #endif
-
-
-
-/*
-- besoin de rogner la map\
-- connaitre le max x et max y de la map
-- connaitre le h&w du minimap_player
-*/

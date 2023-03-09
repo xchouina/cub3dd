@@ -36,7 +36,7 @@ void	print_map(t_game *tab)
 	i = 0;
 	while (i < tab->map_height - 1)
 	{
-		printf("[%d]%s\n", i, tab->map[i]);
+		printf("[%d]%s\n", i, tab->square_map[i]);
 		i++;
 	}
 	printf("\n\n");
@@ -74,8 +74,12 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
-	// -----------------
-	print_map(&game);
+	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
+	//print_tab_fd(&game);
+	//print_map(&game);
+	//print_player_pos(&game);
+	//print_tab_textures(&game);
+	//print_color(&game);
 	starting_engine(&game);
 	game.ray_angle = 90.0f;
 	mlx_image_to_window(game.mlx, game.mini_map_img, 0, 0);
