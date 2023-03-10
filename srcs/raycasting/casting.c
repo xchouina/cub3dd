@@ -7,7 +7,7 @@ void	draw_vertical_line(mlx_image_t *img, int r, int lineOff, int lineH, int col
     int y2 = lineOff + lineH;
     // int i;
 	// i = y1;
-	printf("x=%d | y1=%d | y2=%d | lineH=%d\n", x, y1, y2, lineH);
+	// printf("x=%d | y1=%d | y2=%d | lineH=%d\n", x, y1, y2, lineH);
 	// int j;
 	// int thickness = 5;
 	// 	j = 0;
@@ -21,10 +21,8 @@ void	draw_vertical_line(mlx_image_t *img, int r, int lineOff, int lineH, int col
 
 void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
 {
-    int player_width = 25;
-    int player_height = 25;
-    int player_center_x = x1 + (player_width / 2);
-    int player_center_y = y1 + (player_height / 2);
+    int player_center_x = x1 + (25 / 2);
+    int player_center_y = y1 + (25 / 2);
 
     int dx = x2 - player_center_x;
     int dy = y2 - player_center_y;

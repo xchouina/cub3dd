@@ -26,8 +26,8 @@ void	key_hook_move(void *param)
 		d_press(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_A))
 		a_press(game);
-	dprintf(2, "%f\n", game->ray_angle);
-	// sky_n_ground(game);
+	// dprintf(2, "%f\n", game->ray_angle);
+	sky_n_ground(game);
 	map_creation(game);
 	drawRays2D(game);
 }
