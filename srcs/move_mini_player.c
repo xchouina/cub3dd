@@ -5,6 +5,7 @@ void	w_press(t_game *game)
 	game->sprite_player.img->instances[0].x += game->delta_x * 3;
 	game->sprite_player.img->instances[0].y += game->delta_y * 3;
 	// drawRays2D(game);
+	
 }
 
 void	s_press(t_game *game)
