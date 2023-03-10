@@ -1,25 +1,25 @@
 #include "../includes/cub3d.h"
 
-void draw_vertical_line(mlx_image_t *img, int r, int lineOff, int lineH, int color)
+void	draw_vertical_line(mlx_image_t *img, int r, int lineOff, int lineH, int color)
 {
     int x = r * 10 + 540;
     int y1 = lineOff;
     int y2 = lineOff + lineH;
-    int i;
-	i = y1;
-	printf("x=%d | y1=%d | y2=%d | lineH=%d\n", x, i, y2, lineH);
+    // int i;
+	// i = y1;
+	printf("x=%d | y1=%d | y2=%d | lineH=%d\n", x, y1, y2, lineH);
 	// int j;
 	// int thickness = 5;
 	// 	j = 0;
 	// while (j++ < thickness)
-		while (i++ < y2)
+		while (y1++ < y2)
 		{
-			mlx_put_pixel(img, x, i, color);
+			mlx_put_pixel(img, x, y1, color);
 			// printf("i=%d", i);
 		}
 }
 
-void draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
+void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
 {
     int player_width = 25;
     int player_height = 25;
@@ -45,10 +45,8 @@ void draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
 
 void drawRays2D(t_game *game)
 {
-	//  glColor3f(0,1,1); glBegin(GL_QUADS); glVertex2i(526,  0); glVertex2i(1006,  0); glVertex2i(1006,160); glVertex2i(526,160); glEnd();	
-	//  glColor3f(0,0,1); glBegin(GL_QUADS); glVertex2i(526,160); glVertex2i(1006,160); glVertex2i(1006,320); glVertex2i(526,320); glEnd();	 	
-	int	mapX = 28; //max value of x in the map
-	int	mapY = 6; //max value of Y in map
+	int	mapX = game->max_line + 2; //max value of x in the map
+	int	mapY = game->map_height; //max value of Y in map
 	int	i;
 	int	mx; // map y value
 	int	my; //map x value 
@@ -120,7 +118,7 @@ void drawRays2D(t_game *game)
 		}
 		vx = rx;
 		vy = ry;
-	//---Horizontal---
+		//---Horizontal---
 		dof = 0;
 		disH = 100000;
 		Tan = 1.0 / Tan;
@@ -162,7 +160,6 @@ void drawRays2D(t_game *game)
 			}//check next horizontal
 		}
 		int	wall_color = 0XFFFF00FF;
-		// glColor3f(0,0.8,0);
 		if (disV < disH)
 		{
 			rx = vx;
