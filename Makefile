@@ -1,24 +1,25 @@
 ###_*_*_*_*_*_*_*_*_*_*_*_*_Makefile_cub3d_*_*_*_*_*_*_*_*_*_*_*_*_###
 ###-------------------------# VARIABLES ##-------------------------###
 
-CFILES =	cub3d.c 				\
-			quit.c 					\
-			parsing.c				\
-			parsing_2.c				\
-			create_tab.c			\
-			check_map.c				\
-			raycasting/engine.c		\
-			raycasting/minimap.c	\
-			init_values.c			\
-			get_texture_path_1.c 	\
-			get_texture_path_2.c 	\
-			key_hook.c				\
-			raycasting/move_player.c\
-			move_mini_player.c		\
-
-SRCS = $(addprefix srcs/, $(CFILES))
+CFILES =	cub3d.c 					\
+			quit.c 						\
+			parsing.c					\
+			parsing_2.c					\
+			create_tab.c				\
+			check_map.c					\
+			raycasting/engine.c			\
+			raycasting/minimap.c		\
+			raycasting/casting.c 		\
+			raycasting/toolbox.c		\
+			init_values.c				\
+			get_texture_path_1.c 		\
+			get_texture_path_2.c 		\
+			key_hook.c					\
+			move_mini_player.c			\
 
 NAME = cub3d
+
+SRCS = $(addprefix srcs/, $(CFILES))
 
 OBJS = $(SRCS:.c=.o)
 
@@ -35,7 +36,6 @@ GNL_SRCS = $(addprefix $(GNL_PATH), $(GET_NEXT_LINE))
 GNL_OBJS = ${GNL_SRCS:.c=.o}
 MLX                = MLX42/libmlx42.a 
 MLX_FLAG        = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
-# MLX_FLAG        = -lglfw -L /Users/$(USER)/sgoinfre/Perso/$(USER)/.brew/opt/glfw/lib
 
 all: $(NAME)
 

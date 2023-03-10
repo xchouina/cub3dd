@@ -21,14 +21,13 @@ void	split_colors(t_game *game)
 	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \
 	|| (ft_atoi(g[0]) > 255) || (ft_atoi(g[1]) > 255) || (ft_atoi(g[2]) > 255))
 	{
-		dprintf(2, "rgb more than 255");
+		dprintf(2, "rgb more than 255\n");
 		ft_quit(game);
 	}
 	game->textures.couleur_floor = rgb_to_int(f);
 	game->textures.couleur_sky = rgb_to_int(g);
 	ft_free2d(f);
 	ft_free2d(g);
-
 }
 
 void	get_floor_color(t_game *game, int i)
@@ -45,7 +44,7 @@ void	get_floor_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		dprintf(2, "texture F erreur\n");
+		dprintf(2, "texture F error\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)
@@ -73,7 +72,7 @@ void	get_roof_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		dprintf(2, "texture C erreur\n");
+		dprintf(2, "texture C error\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)

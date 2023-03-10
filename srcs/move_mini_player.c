@@ -2,33 +2,32 @@
 
 void	w_press(t_game *game)
 {
-	int	i;
-
-	i = 0;
-	game->sprite_player.img->instances[0].y -= 1;
-	// while (i < 50 && ((25 * game->player.player_mm.position_y) + 12.5) - i >= 0)
-	// {
-	// 	printf("game_pos_x = %f\n", 25 * game->player.player_mm.position_x);
-	// 	printf("game_pos_y = %f\n", (game->player.player_mm.position_y));
-	// 	mlx_put_pixel(game->img, 25 * game->player.player_mm.position_x, ((25 * game->player.player_mm.position_y) + 12.5) - i, 0xFF0000);
-	// 	i++;
-	// }
-	//game->player.player_mm.position_y -= 1;
+	game->sprite_player.img->instances[0].x += game->delta_x * 3;
+	game->sprite_player.img->instances[0].y += game->delta_y * 3;
+	// drawRays2D(game);
 }
 
 void	s_press(t_game *game)
 {
-	game->sprite_player.img->instances[0].y += 1;
+	game->sprite_player.img->instances[0].x -= game->delta_x * 3;
+	game->sprite_player.img->instances[0].y -= game->delta_y * 3;
+	// drawRays2D(game);
 }
 
 void	d_press(t_game *game)
 {
-	(void)game;
+	game->ray_angle	-=	2;
+	game->ray_angle	=	FixAng(game->ray_angle);
+	game->delta_x	=	cos(deg2rad(game->ray_angle));
+	game->delta_y	=	-sin(deg2rad(game->ray_angle));
+	// drawRays2D(game);
 }
 
 void	a_press(t_game *game)
 {
-	(void)game;
+	game->ray_angle += 2; 
+	game->ray_angle = FixAng(game->ray_angle); 
+	game->delta_x = cos(deg2rad(game->ray_angle));
+	game->delta_y = -sin(deg2rad(game->ray_angle));
+	// drawRays2D(game);
 }
-
-// mlx_image_to_window(game->mlx, game->sprite_player.img, (25 * game->player.player_mm.position_x), (25 * game->player.player_mm.position_y));

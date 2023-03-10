@@ -81,10 +81,11 @@ int	main(int argc, char **argv)
 	//print_tab_textures(&game);
 	//print_color(&game);
 	starting_engine(&game);
-	// // mlx_press_key(&game);
+	game.ray_angle = 90.0f;
 	mlx_image_to_window(game.mlx, game.mini_map_img, 0, 0);
 	mlx_image_to_window(game.mlx, game.sprite_player.img, (25 * game.player.player_mm.position_x), (25 * game.player.player_mm.position_y));
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);
+	// usleep (1);
 	mlx_loop(game.mlx);
 	ft_quit(&game);
 	return (0);

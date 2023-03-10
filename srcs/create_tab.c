@@ -48,7 +48,7 @@ void	fd_create_tab_map(t_game *game)
 	}
 }
 
-//protege les calloc si ya de la marde
+//protege les calloc en cas de problemes
 void	fill_map_tab(t_game *game)
 {
 	int	i;
