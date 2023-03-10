@@ -107,6 +107,9 @@ typedef struct s_game
 	int		image;
 	int		a_is_press;
 	int		d_is_press;
+	int		height_Q;
+	int		check_last_Q;
+	int		check_first_Q;
 	t_pos	pos;
 	t_pos	first_red_pixel;
 	t_textures	textures;
