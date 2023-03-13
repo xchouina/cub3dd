@@ -148,7 +148,6 @@ void	check_comma(t_game *game);
 void	mlx_press_key(t_game *game);
 uint8_t	get_img_color(mlx_image_t *img, int x, int y, t_game *game);
 void	square_map(t_game *game);
-void	fill_square_map(int i, int j, t_game *game);
 
 // move_player
 void	top_move(t_game *game);
