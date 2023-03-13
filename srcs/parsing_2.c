@@ -6,14 +6,14 @@ void	check_few_arg(t_game *game)
 	 || game->dir_EA > 1 || game->dir_F > 1 || game->dir_C > 1)
 	{
 		game->checker = 1;
-		dprintf(2, "to many arguments\n");
+		dprintf(2, "too many arguments\n");
 		ft_quit(game);
 	}
 	if (game->dir_NO < 1 || game->dir_SO < 1 || game->dir_WE < 1\
 	 || game->dir_EA < 1 || game->dir_F < 1 || game->dir_C < 1)
 	{
 		game->checker = 1;
-		dprintf(2, "to few argument\n");
+		dprintf(2, "too few argument\n");
 		ft_quit(game);
 	}
 }

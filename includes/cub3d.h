@@ -68,7 +68,7 @@ typedef struct s_game
 {
 	mlx_t	*mlx;
 	void	*window;
-	t_rc	*rc;
+	t_rc	rc;
 // ASSETS/TEXTURES
 	t_player	player;
 	t_sprite	sprite_player;
@@ -160,8 +160,6 @@ void	print_player_pos(t_game *game);
 void	print_tab_fd(t_game *map);
 void	print_map(t_game *tab);
 void	print_floodfill(t_game *game);
-
-
 
 // ENGINE
 int		starting_engine(t_game	*game);

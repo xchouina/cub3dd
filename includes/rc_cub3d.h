@@ -3,30 +3,30 @@
 
 typedef struct s_rc
 {
-	// float	out_c_x; 		//distance en cubes 
-	// float	out_c_y;
-	// float	in_c_x; 		//distance en pixel, intra cube.
-	// float	px_init_px; 	//nbr de pixels pour calculer la position en 'x'.
-	// float	px_init_py;
-	// float	in_c_y;
-	// float	angle;
-	// float	tan_theta;
-
-
-	// ------------------------------- 
-	// float	ray_angle;
-	float	distance_to_wall;
-	float	x_intercept;
-	float	y_intercept;
-	float	slope;
-	int 	x_step;
-	int		y_step;
-	int		wall_hit_x;
-	int		wall_hit_y;
-	int		was_hit_vertical;
-	int		pox; //player position
-	int		poy;
-
+	int	mapX; //max value of x in the map
+	int	mapY; //max value of Y in map
+	int	i;
+	int	mx; // map y value
+	int	my; //map x value 
+	int	mp; // map position of 
+	int	dof; //depth of field
+	int	side; 
+	float	vx;
+	float	vy;
+	float	rx; //gridline x
+	float	ry; //gridline y
+	float	ra; // ray
+	float	xo; //offset x
+	float	yo; //offset y
+	float	disV; //distance vertical
+	float	disH; //distance horizontal
+	float	Tan; //negative tan
+	int		px; //player position x
+	int		py; //player position y
+	int	wall_color;
+	int ca;
+	int lineH;
+	int lineOff;
 
 }t_rc;
 

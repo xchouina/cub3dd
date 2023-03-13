@@ -60,7 +60,7 @@ void	check_end_line(t_game *game, int i, int j)
 
 		if (game->doublons != 0)
 		{
-			dprintf(2, "to much player on map\n");
+			dprintf(2, "too many players on map\n");
 			ft_quit(game);
 			// game->checker = 1;
 			// return ;

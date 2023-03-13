@@ -41,146 +41,134 @@ void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
     }
 }
 
+void	init_raycast_values(t_game *game, t_rc *rc)
+{
+	rc->mapX = game->max_line + 2;
+	rc->mapY = game->map_height;
+	rc->px = game->sprite_player.img->instances[0].x;
+	rc->py = game->sprite_player.img->instances[0].y;
+
+}
+
 void drawRays2D(t_game *game)
 {
-	int	mapX = game->max_line + 2; //max value of x in the map
-	int	mapY = game->map_height; //max value of Y in map
-	int	i;
-	int	mx; // map y value
-	int	my; //map x value 
-	int	mp; // map position of 
-	int	dof; //depth of field
-	int	side; 
-	float	vx;
-	float	vy;
-	float	rx; //gridline x
-	float	ry; //gridline y
-	float	ra; // ray
-	float	xo; //offset x
-	float	yo; //offset y
-	float	disV; //distance vertical
-	float	disH; //distance horizontal
-	float	Tan; //negative tan
-	int		px; //player position x
-	int		py; //player position y
+	t_rc *rc;
 
-	px = game->sprite_player.img->instances[0].x;
-	py = game->sprite_player.img->instances[0].y;
+	rc = &game->rc;
+	init_raycast_values(game, rc);
+	rc->ra = FixAng(game->ray_angle + 60);//ray set back 30 degrees
 
-	ra = FixAng(game->ray_angle + 60);//ray set back 30 degrees
-	
-	i = 0;
-	while (i++ < 120)
+	rc->i = 0;
+	while (rc->i++ < 120)
 	{
 		//---Vertical--- 
-		dof = 0;
-		side = 0;
-		disV = 100000;
-		Tan = tan(deg2rad(ra));
-		if (cos(deg2rad(ra)) > 0.001)
+		rc->dof = 0;
+		rc->side = 0;
+		rc->disV = 100000;
+		rc->Tan = tan(deg2rad(rc->ra));
+		if (cos(deg2rad(rc->ra)) > 0.001)
 		{
-			rx = (((int)px >> 6) << 6) + TILE_SIZE;
-			ry = (px - rx) * Tan + py;
-			xo = TILE_SIZE;
-			yo = -xo * Tan;
+			rc->rx = (((int)rc->px >> 6) << 6) + TILE_SIZE;
+			rc->ry = (rc->px - rc->rx) * rc->Tan + rc->py;
+			rc->xo = TILE_SIZE;
+			rc->yo = -rc->xo * rc->Tan;
 		}//looking left
-		else if (cos(deg2rad(ra)) < -0.001)
+		else if (cos(deg2rad(rc->ra)) < -0.001)
 		{
-			rx = (((int)px >> 6) << 6) - 0.0001;
-			ry = (px - rx) * Tan + py;
-			xo = -TILE_SIZE;
-			yo = -xo * Tan;
+			rc->rx = (((int)rc->px >> 6) << 6) - 0.0001;
+			rc->ry = (rc->px - rc->rx) * rc->Tan + rc->py;
+			rc->xo = -TILE_SIZE;
+			rc->yo = -rc->xo * rc->Tan;
 		}//looking right
 		else 
 		{
-			rx = px;
-			ry = py;
-			dof = 8;
+			rc->rx = rc->px;
+			rc->ry = rc->py;
+			rc->dof = 8;
 		}//looking up or down. no hit  
-		while (dof < 8) 
+		while (rc->dof < 8) 
 		{
-			mx = (int)(rx) >> 6;
-			my = (int)(ry) >> 6;
-			mp = my * mapX + mx;
-			if (mp > 0 && mp < mapX * mapY && game->map[1][mp] == '1')
+			rc->mx = (int)(rc->rx) >> 6;
+			rc->my = (int)(rc->ry) >> 6;
+			rc->mp = rc->my * rc->mapX + rc->mx;
+			if (rc->mp > 0 && rc->mp < rc->mapX * rc->mapY && game->map[1][rc->mp] == '1')
 			{
-				dof = 8;
-				disV = cos(deg2rad(ra)) * (rx-px) - sin(deg2rad(ra)) * (ry-py);
+				rc->dof = 8;
+				rc->disV = cos(deg2rad(rc->ra)) * (rc->rx - rc->px) - sin(deg2rad(rc->ra)) * ( rc->ry - rc->py);
 			}//hit
 			else
 			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
+				rc->rx += rc->xo;
+				rc->ry += rc->yo;
+				rc->dof += 1;
 			}//check next horizontal
 		}
-		vx = rx;
-		vy = ry;
+		rc->vx = rc->rx;
+		rc->vy = rc->ry;
 		//---Horizontal---
-		dof = 0;
-		disH = 100000;
-		Tan = 1.0 / Tan;
-		if (sin(deg2rad(ra)) > 0.001)
+		rc->dof = 0;
+		rc->disH = 100000;
+		rc->Tan = 1.0 / rc->Tan;
+		if (sin(deg2rad(rc->ra)) > 0.001)
 		{
-			ry = (((int)py >> 6) << 6) - 0.0001;
-			rx = (py - ry) * Tan + px;
-			yo = -TILE_SIZE;
-			xo = -yo * Tan;
+			rc->ry = (((int)rc->py >> 6) << 6) - 0.0001;
+			rc->rx = (rc->py - rc->ry) * rc->Tan + rc->px;
+			rc->yo = -TILE_SIZE;
+			rc->xo = -rc->yo * rc->Tan;
 		}//looking up 
-		else if (sin(deg2rad(ra)) < -0.001)
+		else if (sin(deg2rad(rc->ra)) < -0.001)
 		{
-			ry = (((int)py >> 6) << 6) + TILE_SIZE;
-			rx = (py - ry) * Tan + px;
-			yo = TILE_SIZE;
-			xo = -yo * Tan;
+			rc->ry = (((int)rc->py >> 6) << 6) + TILE_SIZE;
+			rc->rx = (rc->py - rc->ry) * rc->Tan + rc->px;
+			rc->yo = TILE_SIZE;
+			rc->xo = -rc->yo * rc->Tan;
 		}//looking down
 		else
 		{
-			rx = px;
-			ry = py;
-			dof = 8;
+			rc->rx = rc->px;
+			rc->ry = rc->py;
+			rc->dof = 8;
 		} //looking straight left or right
-		while (dof < 8)
+		while (rc->dof < 8)
 		{
-			mx = (int)(rx) >> 6;
-			my = (int)(ry) >> 6;
-			mp = my * mapX + mx;
-			if (mp > 0 && mp < mapX * mapY && game->map[1][mp] == '1')
+			rc->mx = (int)(rc->rx) >> 6;
+			rc->my = (int)(rc->ry) >> 6;
+			rc->mp = rc->my * rc->mapX + rc->mx;
+			if (rc->mp > 0 && rc->mp < rc->mapX * rc->mapY && game->map[1][rc->mp] == '1')
 			{
-				dof = 8;
-				disH = cos(deg2rad(ra)) * (rx - px) - sin(deg2rad(ra)) * (ry - py);
+				rc->dof = 8;
+				rc->disH = cos(deg2rad(rc->ra)) * (rc->rx - rc->px) -
+					sin(deg2rad(rc->ra)) * (rc->ry - rc->py);
 			}//hit
 			else
 			{
-				rx += xo;
-				ry += yo;
-				dof += 1;
+				rc->rx += rc->xo;
+				rc->ry += rc->yo;
+				rc->dof += 1;
 			}//check next horizontal
 		}
-		int	wall_color = 0XFFFF00FF;
-		if (disV < disH)
+		rc->wall_color = 0XFFFF00FF;
+		if (rc->disV < rc->disH)
 		{
-			rx = vx;
-			ry = vy;
-			disH = disV;
-			// wall_color = 0XFF00FF00;
+			rc->rx = rc->vx;
+			rc->ry = rc->vy;
+			rc->disH = rc->disV;
+			// wall_color = 0XFF00FF00; //Different color for W/E or N/S
 		}//horizontal hit first
 		// dprintf(2, "wall: %f | %f\nplayer: %d|%d\n", rx, ry, px, py);
-		// draw_ray(px, py, game->ray_angle);
-
 		// 320x160
 
 		// map_creation(game);
-		draw_line(px, py, rx, ry, game->mini_map_img);
+		draw_line(rc->px, rc->py, rc->rx, rc->ry, game->mini_map_img);
 
-		int ca = FixAng(game->ray_angle - ra);
-		disH = disH * cos(deg2rad(ca)); //fix fisheye
-		int lineH = (TILE_SIZE * 1980) / disH ; //200; //(mapS * 320) / (disH);
-		if (lineH > 1980)
-			lineH = 1980;//line height and limit
-		int lineOff = 1080 - (lineH >> 1);//line offset
-		draw_vertical_line(game->img, i, lineOff, lineH, wall_color);
+		rc->ca = FixAng(game->ray_angle - rc->ra);
+		rc->disH = rc->disH * cos(deg2rad(rc->ca)); //fix fisheye
+		rc->lineH = (TILE_SIZE * 1980) / rc->disH ; //200; //(mapS * 320) / (disH);
+		if (rc->lineH > 1980)
+			rc->lineH = 1980;//line height and limit
+		rc->lineOff = 1080 - (rc->lineH >> 1);//line offset
+		draw_vertical_line(game->img, rc->i, rc->lineOff, rc->lineH,rc->wall_color);
 
-		ra = FixAng(ra-1);//go to next ray
+		rc->ra = FixAng(rc->ra - 1);//go to next ray
 	}
 }

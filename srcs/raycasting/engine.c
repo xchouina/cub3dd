@@ -61,13 +61,10 @@ void	init_assets(t_game	*game)
 
 int	starting_engine(t_game	*game)
 {
-	t_rc rc;
-	game->rc = &rc;
-	
+
 	init_assets(game);
 	// init_raycast_assets(game);
 	sky_n_ground(game);
 	map_creation(game);
 	return (0);
-
 }
