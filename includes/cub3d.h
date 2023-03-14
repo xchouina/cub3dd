@@ -103,6 +103,7 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
+	int		first_Q_of_line;
 	int		a_is_press;
 	int		d_is_press;
 	int		height_Q;
@@ -130,6 +131,7 @@ void	check_direction_2(t_game *game, int i);
 void	check_direction_complete(t_game *game);
 void	check_if_map_last(t_game *game, int i);
 void	check_map(t_game *game);
+void	max_map(t_game *game);
 void	check_symbol_and_doublon(t_game *game);
 void	check_end_line(t_game *game, int i, int j);
 void	init_value(t_game *game);

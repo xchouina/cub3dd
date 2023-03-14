@@ -1,6 +1,24 @@
 
 #include "cub3d.h"
 
+void find_first_Q_of_line(int i, int j, t_game *game)
+{
+	game->first_Q_of_line = game->max_line;
+	i++;
+	while (i < game->max_line)
+	{
+		if (!ft_strchr(game->map[i], 'Q'))
+			break;
+		while (game->map[i][j] != 'Q')
+			j++;
+		if (game->first_Q_of_line > j)
+			game->first_Q_of_line = j;
+		j = 0;
+		i++;
+	}
+	game->first_Q_of_line--;
+}
+
 int find_max_line(int i, t_game *game)
 {
 	int j;
@@ -18,16 +36,6 @@ int find_max_line(int i, t_game *game)
 	return (i);
 }
 
-void	max_map(t_game *game)
-{
-	//printf("max height = %d", game->map_height);
-	if (game->height_Q + 1 > 20 || game->max_line > 30)
-	{
-		printf("map too big");
-		ft_quit(game);
-	}
-}
-
 int find_first_line(int i, t_game *game)
 {
 	int j;
@@ -35,22 +43,24 @@ int find_first_line(int i, t_game *game)
 	j = 0;
 	while (!ft_strchr(game->map[i], 'Q'))
 		i++;
+	game->player.player_mm.position_y = game->player.player_mm.position_y - (i - 1);
+	find_first_Q_of_line(i, j, game);
 	return (i - 1);
 }
 
 void	fill_square_map(int k, int i, int j, t_game *game)
 {
-	game->square_map[k] = ft_calloc(game->max_line, sizeof(char));
+	game->square_map[k] = ft_calloc(game->max_line - game->first_Q_of_line, sizeof(char));
 	while (j < (game->max_line - 1))
 	{
-		if (game->map[i][j] == ' ' || game->map[i][j] == '	' || game->map[i][j] == '0' \
-		|| game->map[i][j] == '\n' || game->map[i][j] == '1' || game->map[i][j] == '\0')
+		if (game->map[i][j + game->first_Q_of_line] == ' ' || game->map[i][j + game->first_Q_of_line] == '	' || game->map[i][j + game->first_Q_of_line] == '0' \
+		|| game->map[i][j + game->first_Q_of_line] == '\n' || game->map[i][j + game->first_Q_of_line] == '1' || game->map[i][j + game->first_Q_of_line] == '\0')
 			game->square_map[k][j] = '1';
-		else if (game->map[i][j] == 'Q')
+		else if (game->map[i][j + game->first_Q_of_line] == 'Q')
 			game->square_map[k][j] = 'Q';
 		else
 			game->square_map[k][j] = '1';
-		if(game->map[i][j] == '\n')
+		if(game->map[i][j + game->first_Q_of_line] == '\n')
 		{
 			while (j < (game->max_line - 1))
 			{
@@ -82,8 +92,6 @@ void	square_map(t_game *game)
 	game->height_Q = i + 1;
 	i = 0;
 	i = find_first_line(i, game);
-	// i = i - 1;
-	max_map(game);
 	game->max_line += 3;
 	game->square_map = ft_calloc(game->height_Q + 2, sizeof(char *));
 	while (i < game->height_Q)
@@ -91,4 +99,5 @@ void	square_map(t_game *game)
 		fill_square_map(++k, i, j, game);
 		i++;
 	}
+	max_map(game);
 }

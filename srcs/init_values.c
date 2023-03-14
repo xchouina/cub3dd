@@ -21,4 +21,5 @@ void	init_value(t_game *game)
 	game->max_line = 0;
 	game->check_last_Q = 0;
 	game->check_first_Q = 0;
+	game->first_Q_of_line = 0;
 }

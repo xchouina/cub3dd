@@ -9,7 +9,7 @@ void	put_mini_map_pixel(t_game *game, int x, int y)
 	i = 0;
 	if (game->square_map[y][x] == '1')
 		mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture, x * 25, y * 25);
-	else if (game->map[y][x] == 'Q')
+	else if (game->square_map[y][x] == 'Q')
 		mlx_draw_texture(game->mini_map_img, &game->ground.xpm->texture,
 			x * TILE_SIZE, y * 25);
 }

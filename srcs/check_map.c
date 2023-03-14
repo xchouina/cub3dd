@@ -24,7 +24,7 @@ void	check_symbol_and_doublon(t_game *game)
 		j = 0;
 		while (game->map[i][j] != '\0')
 		{
-			if (ft_strchr("01 	NSEW\n", game->map[i][j]) != NULL)
+			if (ft_strchr("01 NSEW\n", game->map[i][j]) != NULL)
 			{
 				check_end_line(game, i, j);
 				// if (game->checker == 1)
