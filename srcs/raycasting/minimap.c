@@ -22,7 +22,7 @@ void	map_creation(t_game *game)
 	x = 0;
 	// dprintf(2, "%d = width\n", game->map_x);
 	// dprintf(2, "%d = height\n", game->map_y);
-	while (game->square_map[y] != NULL)
+	while (y <= game->height_Q - 1)
 	{
 		x = 0;
 		while (game->square_map[y][x] != '\n')
