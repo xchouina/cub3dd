@@ -11,7 +11,9 @@ void	max_map(t_game *game)
 	while (i < game->height_Q)
 	{
 		j = 0;
-		while (game->square_map[i][j] != '\n' && game->square_map[i][j] != '\0')
+		if (game->square_map[i][j] != '\0')
+			break;
+		while (game->square_map[i][j] != '\n')
 		{
 			j++;
 			if (j > 30)
