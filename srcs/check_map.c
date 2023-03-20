@@ -68,7 +68,6 @@ void	check_end_line(t_game *game, int i, int j)
 		else
 			game->doublons = 1;
 	}
-
 }
 
 void	outside_map(t_game *game)
@@ -93,7 +92,7 @@ void	floodfill(int x, int y, t_game *game)
 			outside_map(game);
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')
-			game->pos.NEWS = game->map[x][y];
+			game->player.carddir = game->map[x][y];
 		game->map[x][y] = 'Q';
 	}
 	else

@@ -5,11 +5,6 @@ void	init_texture_tab(t_game *game)
 	game->textures_tab = ft_calloc(8, sizeof(char *));
 }
 
-int	rgb_to_int(char **rgb)
-{
-	return ((ft_atoi(rgb[0]) << 16) + (ft_atoi(rgb[1]) << 8) + (ft_atoi(rgb[2])));
-}
-
 void	split_colors(t_game *game)
 {
 	char **f;

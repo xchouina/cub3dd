@@ -10,6 +10,7 @@ CFILES =	cub3d.c 					\
 			raycasting/engine.c			\
 			raycasting/minimap.c		\
 			raycasting/casting.c 		\
+			raycasting/casting2.c 		\
 			raycasting/toolbox.c		\
 			init_values.c				\
 			get_texture_path_1.c 		\
@@ -59,4 +60,15 @@ fclean: clean
 	@rm -f $(NAME)
 
 flcean: fclean
+
 re: fclean all
+
+rew: 
+	@echo " "
+	@echo " "
+	@rm -rf $(NAME)
+	@rm -f *.o
+	@rm -rf $(OBJS_DIR)
+	@$(MAKE) -s $(NAME)
+	@./$(NAME)
+
