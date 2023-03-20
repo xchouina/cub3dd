@@ -17,6 +17,8 @@ CFILES =	cub3d.c 					\
 			get_texture_path_2.c 		\
 			key_hook.c					\
 			move_mini_player.c			\
+			square_map.c 				\
+			max_map.c					\
 
 NAME = cub3d
 

@@ -81,7 +81,6 @@ typedef struct s_game
 	xpm_t	*wall_mm;
 	xpm_t	*ground_mm;
 	char	**textures_tab;
-// 
 	t_mlx_instance *instance;
 	int		width;
 	int		height;
@@ -110,7 +109,13 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
-	// float	ray_angle;
+	int		first_Q_of_line;
+	int		a_is_press;
+	int		d_is_press;
+	int		height_Q;
+	int		check_last_Q;
+	int		check_first_Q;
+	float	ray_angle;
 	float	delta_x;
 	float	delta_y;
 	float	ang_incr;
@@ -134,6 +139,7 @@ void	check_direction_2(t_game *game, int i);
 void	check_direction_complete(t_game *game);
 void	check_if_map_last(t_game *game, int i);
 void	check_map(t_game *game);
+void	max_map(t_game *game);
 void	check_symbol_and_doublon(t_game *game);
 void	check_end_line(t_game *game, int i, int j);
 void	init_value(t_game *game);
@@ -152,7 +158,6 @@ void	check_comma(t_game *game);
 void	mlx_press_key(t_game *game);
 uint8_t	get_img_color(mlx_image_t *img, int x, int y, t_game *game);
 void	square_map(t_game *game);
-void	fill_square_map(int i, int j, t_game *game);
 
 void	sky_n_ground(t_game *game);
 void	print_minimap(t_game *game);

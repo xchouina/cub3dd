@@ -6,7 +6,6 @@
 # define TILE_SIZE	25
 # define FOV		120	// Field of view
 # define NUM_RAYS	240	// Number of rays to cast
-# define PSPEED		2
 
 typedef struct s_line //FOR DRAW_LINE FUNCTION
 {
@@ -35,13 +34,6 @@ typedef struct s_rays //DATA FOR EACH RAYS
 	int		h_wall_found;
 	int		v_wall_found;
 }	t_rays;
-
-// typedef struct s_rc
-// {
-// 	t_rays	*rays;
-
-// }t_rc;
-
 
 typedef struct s_rc
 {

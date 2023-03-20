@@ -6,6 +6,7 @@ void	put_cube(t_game *game, int x, int y, int color)
 	int	j;
 
 	i = 0;
+
 	while (i <= TILE_SIZE)
 	{
 		j = 0;
@@ -51,11 +52,11 @@ void	print_minimap(t_game *game)
 	while (x < game->map_height)
 	{
 		y = 0;
-		while (y < game->max_line)
+		while (y < game->map_height)
 		{
-			if (game->map[x][y] == '1')
+			if (game->square_map[x][y] == '1')
 				put_cube(game, x, y, rgb_to_int(100, 103, 100));
-			else if (game->map[x][y] == 'Q')
+			else if (game->square_map[x][y] == 'Q')
 				put_cube(game, x, y, rgb_to_int(195, 3, 250));
 			y++;
 		}

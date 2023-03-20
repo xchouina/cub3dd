@@ -84,6 +84,7 @@ int	parsing(t_game *game, char *argv)
 	check_map(game);
 	game->map_height--;
 	square_map(game);
+	game->player.player_mm.position_x = game->player.player_mm.position_x - (game->first_Q_of_line);
 	//parsing_orientation(game);
 	return (0);
 }
