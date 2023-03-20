@@ -61,7 +61,7 @@ int	main(int argc, char **argv)
 {
 	t_game			game;
 	t_pos			player;
-	t_textures 		textures;
+	t_textures		textures;
 	t_mlx_instance	instance;
 
 	(void)player;

@@ -18,6 +18,7 @@ void	map_creation(t_game *game)
 {
 	int	y;
 	int	x;
+
 	y = 0;
 	x = 0;
 	// dprintf(2, "%d = width\n", game->map_x);

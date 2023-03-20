@@ -103,12 +103,12 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
-	int		first_Q_of_line;
 	int		a_is_press;
 	int		d_is_press;
-	int		height_Q;
-	int		check_last_Q;
-	int		check_first_Q;
+	int		first_Q_of_line;	//
+	int		height_Q;			//trouver la hauteur de la mini map
+	int		check_last_Q; 		//trouver la dernier ligne de la mini map
+	int		check_first_Q; 		// trouver la premiere ligne de la mini map
 	float	ray_angle;
 	float	delta_x;
 	float	delta_y;
@@ -140,7 +140,7 @@ void	floodfill(int x, int y, t_game *game);
 void	key_hook_move(void *param);
 
 int		parsing_path(t_game *game);
-void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n);
+void	get_text_p(t_game *game, int i, char *str_space, char *str_tab, int n);
 void	get_floor_color(t_game *game, int i);
 void	get_roof_color(t_game *game, int i);
 void	init_texture_tab(t_game *game);
