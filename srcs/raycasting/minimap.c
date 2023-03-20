@@ -47,7 +47,6 @@ void	print_minimap(t_game *game)
 	int	x;
 	int	y;
 
-	// print_info(game);
 	x = 0;
 	while (x < game->map_height)
 	{
