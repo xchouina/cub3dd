@@ -54,9 +54,9 @@ void	print_minimap(t_game *game)
 		while (y < game->map_height)
 		{
 			if (game->square_map[x][y] == '1')
-				put_cube(game, x, y, rgb_to_int(100, 103, 100));
+				put_cube(game, y, x, rgb_to_int(100, 103, 100));
 			else if (game->square_map[x][y] == 'Q')
-				put_cube(game, x, y, rgb_to_int(195, 3, 250));
+				put_cube(game, y, x, rgb_to_int(195, 3, 250));
 			y++;
 		}
 		x++;
