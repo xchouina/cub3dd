@@ -44,7 +44,12 @@ void	draw_line(t_game *game, mlx_image_t *img)
 	}
 }
 
-int	rgb_to_int(char **rgb)
+int	rgbtab_to_int(char **rgb)
 {
 	return ((ft_atoi(rgb[0]) << 24) + (ft_atoi(rgb[1]) << 16) + (ft_atoi(rgb[2]) << 8) + 255);
+}
+
+int	rgb_to_int(int r, int g, int b)
+{
+	return ((r << 24) + (g << 16) + (b << 8) + 255);
 }

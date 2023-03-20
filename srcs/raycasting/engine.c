@@ -51,23 +51,28 @@ void	find_starting_angle(t_game *game)
 
 void	init_player_data(t_game *game)
 {
-	game->player.cx = game->sprite_player.img->instances[0].x;
-	game->player.cy = game->sprite_player.img->instances[0].y;
-	game->player.x = (int)game->player.cx / TILE_SIZE;
-	game->player.y = (int)game->player.cy / TILE_SIZE;
+	game->player.x = game->player.player_mm.position_x;
+	game->player.y = game->player.player_mm.position_y;
+	// game->player.x = (int)game->player.cx / TILE_SIZE;
+	// game->player.y = (int)game->player.cy / TILE_SIZE;
+	
+	game->player.cx = game->player.x * TILE_SIZE + (TILE_SIZE / 2);
+	game->player.cy = game->player.y * TILE_SIZE + (TILE_SIZE / 2);
+	// game->player.cx = game->sprite_player.img->instances[0].x;
+	// game->player.cy = game->sprite_player.img->instances[0].y;
 	game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
 	game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
 
-	printf("x: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\nrad: %f\n",
-	game->player.x,
-	game->player.y,
-	game->player.cx,
-	game->player.cy,
-	game->player.dx,
-	game->player.dy,
-	game->player.carddir,
-	game->player.degrees,
-	game->player.rad);
+	// printf("x: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\nrad: %f\n",
+	// game->player.x,
+	// game->player.y,
+	// game->player.cx,
+	// game->player.cy,
+	// game->player.dx,
+	// game->player.dy,
+	// game->player.carddir,
+	// game->player.degrees,
+	// game->player.rad);
 }
 
 void	init_assets(t_game	*game)
@@ -86,11 +91,10 @@ void	init_assets(t_game	*game)
 	game->delta_y = -sin(deg2rad(90));
 	find_starting_angle(game);
 	// init_player_data(game);
-	load_xpm(&game->wall, "./textures/2d_wall.xpm42", game->mlx);
-	load_xpm(&game->ground, "./textures/2d_ground.xpm42", game->mlx);
-	load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
+	// load_xpm(&game->wall, "./textures/2d_wall.xpm42", game->mlx);
+	// load_xpm(&game->ground, "./textures/2d_ground.xpm42", game->mlx);
+	// load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
 }
-
 
 int	starting_engine(t_game	*game)
 {
@@ -98,6 +102,7 @@ int	starting_engine(t_game	*game)
 	// game->map_str = ft_double_2_singlearray(game->map);
 	// printf("-->\n%s\n", game->map_str);
 	init_assets(game);
+	init_player_data(game);
 	render(game);
 	return (0);
 }

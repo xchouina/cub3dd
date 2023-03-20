@@ -4,8 +4,8 @@
 # define WIN_W		1980
 # define WIN_H		1080
 # define TILE_SIZE	25
-# define FOV		60	// Field of view
-# define NUM_RAYS	120	// Number of rays to cast
+# define FOV		120	// Field of view
+# define NUM_RAYS	240	// Number of rays to cast
 # define PSPEED		2
 
 typedef struct s_line //FOR DRAW_LINE FUNCTION
@@ -85,4 +85,6 @@ typedef struct s_rc
 
 
 char *ft_double_2_singlearray(char **da);
+
+int	rgb_to_int(int r, int g, int b);
 # endif

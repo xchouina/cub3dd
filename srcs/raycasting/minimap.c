@@ -1,40 +1,68 @@
 #include "cub3d.h"
 
-void	put_mini_map_pixel(t_game *game, int x, int y)
+void	put_cube(t_game *game, int x, int y, int color)
 {
-	void	*mlx;
-	int		i;
-	
-	mlx = game->mlx;
-	i = 0;
-	if (game->square_map[y][x] == '1')
-		mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture, x * 25, y * 25);
-	else if (game->map[y][x] == 'Q')
-		mlx_draw_texture(game->mini_map_img, &game->ground.xpm->texture,
-			x * TILE_SIZE, y * 25);
-}
+	int	i;
+	int	j;
 
-void	map_creation(t_game *game)
-{
-	int	y;
-	int	x;
-	
-	y = 0;
-	x = 0;
-	while (game->square_map[y] != NULL)
+	i = 0;
+	while (i <= TILE_SIZE)
 	{
-		x = 0;
-		while (game->square_map[y][x] != '\n')
+		j = 0;
+		while (j <= TILE_SIZE)
 		{
-			if (game->square_map[y][x] == '\0')
-				break ;
-			put_mini_map_pixel(game, x, y);
-			x++;
+			if (i % TILE_SIZE != 0 || j % TILE_SIZE != 0)
+				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), color);
+			if (i % TILE_SIZE == 0 || j % TILE_SIZE == 0)
+				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), 0xFFFFFF);
+			j++;
 		}
-		y++;
+		i++;
 	}
 }
 
+void	print_player(t_game *game, int cx, int cy)
+{
+	int	i;
+	int	j;
+	int	size;
+
+	size = 2;
+	i = cx - size;
+	while (i < cx + size)
+	{
+		j = cy - size;
+		while (j < cy + size)
+		{
+			mlx_put_pixel(game->img, i, j, 0x0000FF);
+			j++;
+		}
+		i++;
+	}
+}
+
+void	print_minimap(t_game *game)
+{
+	int	x;
+	int	y;
+
+	// print_info(game);
+	x = 0;
+	while (x < game->map_height)
+	{
+		y = 0;
+		while (y < game->max_line)
+		{
+			if (game->map[x][y] == '1')
+				put_cube(game, x, y, rgb_to_int(100, 103, 100));
+			else if (game->map[x][y] == 'Q')
+				put_cube(game, x, y, rgb_to_int(195, 3, 250));
+			y++;
+		}
+		x++;
+	}
+	print_player(game, game->player.cx, game->player.cy);
+}
 
 
 
@@ -49,69 +77,38 @@ void	map_creation(t_game *game)
 
 
 
-
-// void	put_cube(t_game *game, int x, int y, int color)
+// void	put_mini_map_pixel(t_game *game, int x, int y)
 // {
-// 	int	i;
-// 	int	j;
-
+// 	void	*mlx;
+// 	int		i;
+	
+// 	mlx = game->mlx;
 // 	i = 0;
-// 	while (i <= TILE_SIZE)
-// 	{
-// 		j = 0;
-// 		while (j <= TILE_SIZE)
-// 		{
-// 			if (i % TILE_SIZE != 0 || j % TILE_SIZE != 0)
-// 				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), color);
-// 			if (i % TILE_SIZE == 0 || j % TILE_SIZE == 0)
-// 				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), 0xFFFFFF);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
+// 	if (game->square_map[y][x] == '1')
+// 		mlx_draw_texture(game->mini_map_img, &game->wall.xpm->texture, x * 25, y * 25);
+// 	else if (game->map[y][x] == 'Q')
+// 		mlx_draw_texture(game->mini_map_img, &game->ground.xpm->texture,
+// 			x * TILE_SIZE, y * 25);
 // }
 
-// void	print_player(t_game *game, int cx, int cy)
+// void	map_creation(t_game *game)
 // {
-// 	int	i;
-// 	int	j;
-// 	int	size;
-
-// 	size = 2;
-// 	i = cx - size;
-// 	while (i < cx + size)
-// 	{
-// 		j = cy - size;
-// 		while (j < cy + size)
-// 		{
-// 			mlx_put_pixel(game->img, i, j, 0x0000FF);
-// 			// mlx_pixel_put(game->display.mlx, game->display.mlx_win, \
-// 			// i, j, 0x0000FF);
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// }
-
-// void	print_minimap(t_game *game)
-// {
-// 	int	x;
 // 	int	y;
-
-// 	// print_info(game);
+// 	int	x;
+	
+// 	y = 0;
 // 	x = 0;
-// 	while (x < game->map_height)
+// 	while (game->square_map[y] != NULL)
 // 	{
-// 		y = 0;
-// 		while (y < game->max_line)
+// 		x = 0;
+// 		while (game->square_map[y][x] != '\n')
 // 		{
-// 			if (game->map[x][y] == '1')
-// 				put_cube(game, x, y, 0);
-// 			else if (game->map[x][y] == 'Q')
-// 				put_cube(game, x, y, 0x0199120);
-// 			y++;
+// 			if (game->square_map[y][x] == '\0')
+// 				break ;
+// 			put_mini_map_pixel(game, x, y);
+// 			x++;
 // 		}
-// 		x++;
+// 		y++;
 // 	}
-// 	print_player(game, game->player.cx, game->player.cy);
 // }
+// ------------------

@@ -19,8 +19,8 @@ void	split_colors(t_game *game)
 		dprintf(2, "rgb more than 255\n");
 		ft_quit(game);
 	}
-	game->textures.couleur_floor = rgb_to_int(f);
-	game->textures.couleur_sky = rgb_to_int(g);
+	game->textures.couleur_floor = rgbtab_to_int(f);
+	game->textures.couleur_sky = rgbtab_to_int(g);
 	ft_free2d(f);
 	ft_free2d(g);
 }

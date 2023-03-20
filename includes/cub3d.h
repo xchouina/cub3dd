@@ -59,7 +59,6 @@ typedef struct s_player
 	float		dy;		//pos intracellulaire en pixel
 	char		carddir;	// N/S/E/W
 	float		degrees;		// 360
-	float		rad;
 } t_player;
 
 typedef struct s_sprite
@@ -119,7 +118,8 @@ typedef struct s_game
 	t_pos	first_red_pixel;
 	t_textures	textures;
 }t_game;
-int		rgb_to_int(char **rgb);
+
+int		rgbtab_to_int(char **rgb);
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
 void	fill_tab_fd(t_game *game);
