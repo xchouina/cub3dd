@@ -5,9 +5,9 @@
 
 void	render(t_game *game)
 {
-	// printf("------------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\n------------\n",
-	// 		game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
-	// 		game->player.dy, game->player.carddir, game->player.degrees);
+	printf("------------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\n------------\n",
+			game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
+			game->player.dy, game->player.carddir, game->player.degrees);
 	sky_n_ground(game);
 	// drawRays2D(game);
 	cast_rays(game);
