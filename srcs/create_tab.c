@@ -112,4 +112,3 @@ void	fd_create_tab_fd(t_game *game, char *argv)
 	fill_tab_fd(game);
 	return ;
 }
-

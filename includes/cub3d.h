@@ -11,10 +11,6 @@
 # include "Get_next_line/get_next_line.h"
 # include "rc_cub3d.h"
 
-# define TILE_SIZE 25
-# define FOV_ANGLE 60 * (M_PI / 180) // Field of view angle in radians
-# define NUM_RAYS 120 // Number of rays to cast
-# define PSPEED		2
 typedef enum keypress
 {
 	ON_KEYDOWN = 2,
@@ -49,12 +45,20 @@ typedef struct s_pos
 	float	position_y;
 	float	x;
 	float	y;
-	char	NEWS;
+	// char	NEWS;
 }t_pos;
 
 typedef struct s_player
 {
 	t_pos	player_mm;
+	int			x;		//pos x case
+	int			y;		//pos y case
+	float		cx;		//pos x tot. en pixel
+	float		cy;		//pos y tot. en pixel
+	float		dx;		//pos intracellulaire en pixel
+	float		dy;		//pos intracellulaire en pixel
+	char		carddir;	// N/S/E/W
+	float		degrees;		// 360
 } t_player;
 
 typedef struct s_sprite
@@ -68,7 +72,7 @@ typedef struct s_game
 {
 	mlx_t	*mlx;
 	void	*window;
-	t_rc	*rc;
+	t_rc	rc;
 // ASSETS/TEXTURES
 	t_player	player;
 	t_sprite	sprite_player;
@@ -77,7 +81,6 @@ typedef struct s_game
 	xpm_t	*wall_mm;
 	xpm_t	*ground_mm;
 	char	**textures_tab;
-// 
 	t_mlx_instance *instance;
 	int		width;
 	int		height;
@@ -88,16 +91,19 @@ typedef struct s_game
 	int		height_fd;
 	int		fd;
 	char	**map;
+	char	*map_str;
 	char	**square_map;
 	char	**tab_fd;
 	int		map_start;
 	int		map_height;
 	int		max_line;
 	int		checker;
+	t_rays	*rays;
+	t_line	*line;
 	int		dir_NO;
 	int		dir_SO;
-	int		dir_WE;
 	int		dir_EA;
+	int		dir_WE;
 	int		dir_F;
 	int		dir_C;
 	int		direction_complete;
@@ -112,11 +118,13 @@ typedef struct s_game
 	float	ray_angle;
 	float	delta_x;
 	float	delta_y;
+	float	ang_incr;
 	t_pos	pos;
 	t_pos	first_red_pixel;
 	t_textures	textures;
 }t_game;
 
+int		rgbtab_to_int(char **rgb);
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
 void	fill_tab_fd(t_game *game);
@@ -151,6 +159,9 @@ void	mlx_press_key(t_game *game);
 uint8_t	get_img_color(mlx_image_t *img, int x, int y, t_game *game);
 void	square_map(t_game *game);
 
+void	sky_n_ground(t_game *game);
+void	print_minimap(t_game *game);
+
 // move_player
 void	top_move(t_game *game);
 void	down_move(t_game *game);
@@ -165,11 +176,21 @@ void	print_tab_fd(t_game *map);
 void	print_map(t_game *tab);
 void	print_floodfill(t_game *game);
 
+// TOOLBOX.C
+float	deg2rad(float degrees);
+int		FixAng(int a);
+void	fix_fisheye(t_game *game, t_rays *ray);
 
 
 // ENGINE
 int		starting_engine(t_game	*game);
 void	map_creation(t_game *game);
 void	init_raycast_assets(t_game *game);
+void	init_player_data(t_game *game);
+void	render(t_game *game);
+void	draw_line(t_game *game, mlx_image_t *img);
+//void	draw_line(t_rc *rc, mlx_image_t *img);
 void drawRays2D(t_game *game);
+void	cast_rays(t_game *game);
+void	render(t_game *game);
 #endif

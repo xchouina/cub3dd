@@ -5,11 +5,6 @@ void	init_texture_tab(t_game *game)
 	game->textures_tab = ft_calloc(8, sizeof(char *));
 }
 
-int	rgb_to_int(char **rgb)
-{
-	return ((ft_atoi(rgb[0]) << 16) + (ft_atoi(rgb[1]) << 8) + (ft_atoi(rgb[2])));
-}
-
 void	split_colors(t_game *game)
 {
 	char **f;
@@ -24,8 +19,8 @@ void	split_colors(t_game *game)
 		dprintf(2, "rgb more than 255\n");
 		ft_quit(game);
 	}
-	game->textures.couleur_floor = rgb_to_int(f);
-	game->textures.couleur_sky = rgb_to_int(g);
+	game->textures.couleur_floor = rgbtab_to_int(f);
+	game->textures.couleur_sky = rgbtab_to_int(g);
 	ft_free2d(f);
 	ft_free2d(g);
 }
