@@ -51,7 +51,7 @@ void	print_minimap(t_game *game)
 	while (y <= game->height_Q)
 	{
 		x = 0;
-		while (x != '\n')
+		while (x < game->max_line)
 		{
 			if (game->square_map[y][x] == '1')
 				put_cube(game, x, y, rgb_to_int(100, 103, 100));
