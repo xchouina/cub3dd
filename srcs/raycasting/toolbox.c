@@ -17,7 +17,7 @@ int FixAng(int a)
 
 void	fix_fisheye(t_game *game, t_rays *ray)
 {
-	ray->dist = ray->dist * cosf(deg2rad(ray->angle - game->player.degrees));
+	ray->dist = roundf((ray->dist * cosf(deg2rad(ray->angle - game->player.degrees)) * 100000)) / 100000;
 	// dprintf(2, "distance finale = %f\n", ray->dist);
 }
 
