@@ -13,9 +13,9 @@ void	put_cube(t_game *game, int x, int y, int color)
 		while (j <= TILE_SIZE)
 		{
 			if (i % TILE_SIZE != 0 || j % TILE_SIZE != 0)
-				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), color);
+				mlx_put_pixel(game->img, ((x * TILE_SIZE) + j), ((y * TILE_SIZE) + i), color);
 			if (i % TILE_SIZE == 0 || j % TILE_SIZE == 0)
-				mlx_put_pixel(game->img, ((y * TILE_SIZE) + i), ((x * TILE_SIZE) + j), 0xFFFFFF);
+				mlx_put_pixel(game->img, ((x * TILE_SIZE) + j), ((y * TILE_SIZE) + i), 0xFFFFFF);
 			j++;
 		}
 		i++;
@@ -29,11 +29,11 @@ void	print_player(t_game *game, int cx, int cy)
 	int	size;
 
 	size = 2;
-	i = cx - size;
-	while (i < cx + size)
+	i = cy - size;
+	while (i < cy + size)
 	{
-		j = cy - size;
-		while (j < cy + size)
+		j = cx - size;
+		while (j < cx + size)
 		{
 			mlx_put_pixel(game->img, i, j, 0x0000FF);
 			j++;
@@ -47,19 +47,19 @@ void	print_minimap(t_game *game)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < game->map_height)
+	y = 0;
+	while (y <= game->height_Q)
 	{
-		y = 0;
-		while (y < game->map_height)
+		x = 0;
+		while (x != '\n')
 		{
-			if (game->square_map[x][y] == '1')
+			if (game->square_map[y][x] == '1')
 				put_cube(game, x, y, rgb_to_int(100, 103, 100));
-			else if (game->square_map[x][y] == 'Q')
+			else if (game->square_map[y][x] == 'Q')
 				put_cube(game, x, y, rgb_to_int(195, 3, 250));
-			y++;
+			x++;
 		}
-		x++;
+		y++;
 	}
 	print_player(game, game->player.cx, game->player.cy);
 }
