@@ -61,7 +61,7 @@ int	check(t_game *game, t_rays *ray, float x, float y)
 	ray->wall[0] = game->player.cx + x;
 	ray->wall[1] = game->player.cy + y;
 	// dprintf(2, "checking [%d][%d]\n", cx, cy);
-	if (game->map[cy][cx] == 1)
+	if (game->map[cy][cx] == '1')
 		return (1);
 	return (0);
 }
@@ -158,28 +158,28 @@ int	horiz_wall(t_game *game, t_rays *ray)
 //print_walls change color for texture
 void	print_wall(t_rays *ray, int color, mlx_image_t *img)
 {
-	int	wall_height;
-	int	wall_width;
-	int	i;
-	int	x;
+	float	wall_height;
+	float	wall_width;
+	float	i;
+	float	x;
 
 	if (ray->dist <= 0.0001)
 		ray->dist = 0.0001;
 
-	wall_height = (2 / ray->dist) * WIN_H;
-	if (wall_height > WIN_H - 100)
-		wall_height = WIN_H - 100;
+	wall_height = (5 / ray->dist) * WIN_H;
+	if (wall_height > WIN_H)
+		wall_height = WIN_H;
 	// if (wall_height >= 350)
 	// 	wall_height = 350;
 	// dprintf(2, "distance : %f WALL HEIGHT : %d\n", ray->dist, wall_height);
-	wall_width = WIN_W / NUM_RAYS;
+	wall_width = (float)WIN_W / (float)NUM_RAYS;
 	x = ray->id * wall_width;
-	while (x <= wall_width * (ray->id + 1))
+	while (x < wall_width * (ray->id + 1) && x <= (WIN_W + 1))
 	{
 		i = (WIN_H / 2) - (wall_height / 2);
 		while (i <= (WIN_H / 2) + (wall_height / 2))
 		{
-			mlx_put_pixel(img, x, i++, color);
+			mlx_put_pixel(img, x, i, color);
 			i++;
 		}
 		x++;
@@ -197,10 +197,10 @@ void	cast_rays(t_game *game)
 		check_horizontal(game, &game->rays[i]);
 		check_vertical(game, &game->rays[i]);
 		// distance horizontal vs vertical
-		if (game->rays[i].h_wall_found == 1)
-			dprintf(2, "horizontal wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].h_check[0], game->rays[i].h_check[1]);
-		if (game->rays[i].v_wall_found == 1)
-			dprintf(2, "vertical wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].v_check[0], game->rays[i].v_check[1]);
+		// if (game->rays[i].h_wall_found == 1)
+		// 	dprintf(2, "horizontal wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].h_check[0], game->rays[i].h_check[1]);
+		// if (game->rays[i].v_wall_found == 1)
+		// 	dprintf(2, "vertical wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].v_check[0], game->rays[i].v_check[1]);
 		// mlx_pixel_put(game->display.mlx, game->display.mlx_win, (int)game->rays[i].v_check[0], game->rays[i].v_check[1], 0xFF00FF);
 		
 		// draw_line(game, game->mini_map_img); //2D LINE ONE MINIMAP
@@ -212,7 +212,7 @@ void	cast_rays(t_game *game)
 			else
 				print_wall(&game->rays[i], rgb_to_int(150, 0, 195), game->img); //south purple
 		}
-		else
+		else if (horiz_wall(game, &game->rays[i]) && game->rays[i].v_wall_found)
 		{
 			fix_fisheye(game, &game->rays[i]);
 			if (game->rays[i].angle > 90 && game->rays[i].angle < 270)
