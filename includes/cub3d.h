@@ -188,7 +188,7 @@ void	map_creation(t_game *game);
 void	init_raycast_assets(t_game *game);
 void	init_player_data(t_game *game);
 void	render(t_game *game);
-void	draw_line(t_game *game, mlx_image_t *img);
+// void	draw_line(t_game *game, mlx_image_t *img);
 //void	draw_line(t_rc *rc, mlx_image_t *img);
 void drawRays2D(t_game *game);
 void	cast_rays(t_game *game);

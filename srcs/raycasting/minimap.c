@@ -35,7 +35,7 @@ void	print_player(t_game *game, int cx, int cy)
 		j = cx - size;
 		while (j < cx + size)
 		{
-			mlx_put_pixel(game->img, i, j, 0x0000FF);
+			mlx_put_pixel(game->img, j, i, 0x0000FF);
 			j++;
 		}
 		i++;

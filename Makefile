@@ -9,7 +9,6 @@ CFILES =	cub3d.c 					\
 			check_map.c					\
 			raycasting/engine.c			\
 			raycasting/minimap.c		\
-			raycasting/casting.c 		\
 			raycasting/casting2.c 		\
 			raycasting/toolbox.c		\
 			init_values.c				\

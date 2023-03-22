@@ -1,186 +1,223 @@
 // #include "../includes/cub3d.h"
 
-// void	draw_vertical_line(mlx_image_t *img, int r, int lineOff, int lineH, int color)
+// void	create_rays(t_game *game)
 // {
-//     int x = r * 10 + 540;
-//     int y1 = lineOff;
-//     int y2 = lineOff + lineH;
-//     // int i;
-// 	// i = y1;
-// 	// printf("x=%d | y1=%d | y2=%d | lineH=%d\n", x, y1, y2, lineH);
-// 	// int j;
-// 	// int thickness = 5;
-// 	// 	j = 0;
-// 	// while (j++ < thickness)
-// 		while (y1 < y2)
-// 		{
-// 			mlx_put_pixel(img, x, y1, color);
-// 			y1++;
-// 			// printf("i=%d", i);
-// 		}
-// }
+// 	int	i;
 
-// void	draw_line2(t_rc *rc, mlx_image_t *img)
-// {
-// 	t_line	line;
-
-// 	line.player_center_x = rc->px + (25 / 2);
-// 	line.player_center_y = rc->py + (25 / 2);
-// 	line.dx = rc->rx - line.player_center_x;
-// 	line.dy = rc->ry - line.player_center_y;
-// 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
-// 	line.xinc = (float) line.dx / (float) line.steps;
-// 	line.yinc = (float) line.dy / (float) line.steps;
-// 	line.x = line.player_center_x;
-// 	line.y = line.player_center_y;
-// 	line.i = 0;
-// 	while (line.i++ <= line.steps)
+// 	i = -1;
+// 	game->rays = malloc(sizeof(t_rays) * NUM_RAYS);
+// 	while (++i <= NUM_RAYS)
 // 	{
-// 		if (line.x >= 0 && line.x < img->width && line.y >= 0 && line.y < img->height) 
-// 		mlx_put_pixel(img, line.x, line.y, 0XFFFF00FF);
-// 		line.x += line.xinc;
-// 		line.y += line.yinc;
+// 		game->rays[i].angle = (game->player.degrees - (FOV/2)) + (i * (game->ang_incr));
+// 		if (game->rays[i].angle >= 360)
+// 			game->rays[i].angle -= 360;
+// 		if (game->rays[i].angle < 0)
+// 			game->rays[i].angle += 360;
+// 		game->rays[i].x = 0;
+// 		game->rays[i].y = 0;
+// 		game->rays[i].id = i;
+// 		game->rays[i].dist = i;
+// 		game->rays[i].h_wall_found = 0;
+// 		game->rays[i].v_wall_found = 0;
+// 		game->rays[i].wall[0] = 0;
+// 		game->rays[i].wall[1] = 0;
 // 	}
 // }
 
-// void	init_raycast_values(t_game *game, t_rc *rc)
+// void	fix_sign(t_rays *ray)
 // {
-// 	rc->mapX = game->max_line + 2;
-// 	rc->mapY = game->map_height;
-// 	rc->px = game->sprite_player.img->instances[0].x;
-// 	rc->py = game->sprite_player.img->instances[0].y;
-// 	rc->ra = FixAng(game->ray_angle + 30);//ray set back 60 degrees (half nbr of rays)
-// 	rc->i = -1;
+// 	if (ray->angle > 0 && ray->angle < 180)
+// 		ray->y = -ray->y;
+// 	if (ray->angle > 90 && ray->angle < 270)
+// 		ray->x = -ray->x;
+// 	if (ray->angle == 90 || ray->angle == 270)
+// 		ray->x = 0;
+// 	if (ray->angle == 0 || ray->angle == 180)
+// 		ray->y = 0;
 // }
 
-// void drawRays2D(t_game *game)
+// int	ret_zero(t_rays *ray)
 // {
-// 	t_rc *rc;
-// 	int y;
+// 	ray->wall[0] = 0;
+// 	ray->wall[1] = 0;
+// 	return (0);
+// }
 
-// 	rc = &game->rc;
-// 	init_raycast_values(game, rc);
-// 	while (++rc->i < 60)  //number value is nbr of rays
+// int	check(t_game *game, t_rays *ray, float x, float y)
+// {
+// 	int		cx;
+// 	int		cy;
+
+// 	cx = (game->player.cx + x) / TILE_SIZE;
+// 	cy = (game->player.cy + y) / TILE_SIZE;
+// 	if (ray->angle > 0 && ray->angle < 180)
+// 		cy -= 1;
+// 	if (ray->angle > 90 && ray->angle < 270)
+// 		cx -= 1;
+// 	if (cx < 0 || cx >= game->max_line)
+// 		return (ret_zero(ray));
+// 	if (cy < 0 || cy >= game->map_height)
+// 		return (ret_zero(ray));
+// 	ray->wall[0] = game->player.cx + x;
+// 	ray->wall[1] = game->player.cy + y;
+// 	// dprintf(2, "checking [%d][%d]\n", cx, cy);
+// 	if (game->map[cy][cx] == '1')
+// 		return (1);
+// 	return (0);
+// }
+
+// // void	loop_check_h(t_game *game, t_rays *ray, float theta)
+// // {
+// // 	while (!ray->h_wall_found)
+// // 	{
+
+// // 	}
+// // }
+
+// void	first_check_h(t_game *game, t_rays *ray, float theta)
+// {
+// 	if (ray->angle > 180 && ray->angle < 360)
+// 		ray->y = TILE_SIZE - game->player.dy;
+// 	else
+// 		ray->y = game->player.dy;
+// 	ray->x = ray->y / tanf(deg2rad(theta));
+// 	// dprintf(2, "first check horizontal %d: \nangle: %f\nx: %f\ny: %f\n\n", ray->id, ray->angle, ray->x, ray->y);
+// 	fix_sign(ray);
+// 	ray->h_wall_found = check(game, ray, ray->x, ray->y);
+// 	// printf("Here: h_wall_found = %d | x = %f | y = %f\n",ray->h_wall_found, ray->x, ray->y);
+// 	ray->h_check[0] = ray->wall[0];
+// 	ray->h_check[1] = ray->wall[1];
+// }
+
+// void	first_check_v(t_game *game, t_rays *ray, float theta)
+// {
+// 	if ((ray->angle >= 0 && ray->angle <= 90) || (ray->angle >= 270 && ray->angle < 360))
+// 		ray->x = TILE_SIZE - game->player.dx;
+// 	else
+// 		ray->x = game->player.dx;
+// 	ray->y = ray->x * tanf(deg2rad(theta));
+// 	// dprintf(2, "first check horizontal %d: \nangle: %f\nx: %f\ny: %f\n\n", ray->id, ray->angle, ray->x, ray->y);
+// 	fix_sign(ray);
+// 	ray->v_wall_found = check(game, ray, ray->x, ray->y);
+// 	ray->v_check[0] = ray->wall[0];
+// 	ray->v_check[1] = ray->wall[1];
+// }
+
+// void	check_horizontal(t_game *game, t_rays *ray)
+// {
+// 	float	theta;
+
+// 	theta = ray->angle;
+// 	if ((ray->angle > 90 && ray->angle < 180) || (ray->angle > 270 && ray->angle < 360))
+// 		theta = 360 - ray->angle;
+// 	first_check_h(game, ray, theta);
+// 	// if (!ray->h_wall_found)
+// 		// loop_check_h(game, ray, theta);
+// }
+
+// void	check_vertical(t_game *game, t_rays *ray)
+// {
+// 	float	theta;
+
+// 	theta = ray->angle;
+// 	if ((ray->angle > 90 && ray->angle < 180) || (ray->angle > 270 && ray->angle < 360))
+// 		theta = 360 - ray->angle;
+// 	first_check_v(game, ray, theta);
+// 	// if (!ray->v_wall_found)
+// 	// 	loop_check_v(game, ray, theta);
+// }
+
+// int	horiz_wall(t_game *game, t_rays *ray)
+// {
+// 	// if horiz < vert ret 1
+// 	float	h_dist;
+// 	float	v_dist;
+
+// 	h_dist = sqrtf(powf(ray->h_check[1] - game->player.cy, 2) + powf(ray->h_check[0] - game->player.cx, 2));
+// 	v_dist = sqrtf(powf(ray->v_check[1] - game->player.cy, 2) + powf(ray->v_check[0] - game->player.cx, 2));
+// 	if (!ray->v_wall_found || h_dist <= v_dist) //if == , corner??
 // 	{
-// 		//---Vertical--- 
-// 		rc->dof = 0;
-// 		rc->side = 0;
-// 		rc->disV = 100000;
-// 		rc->Tan = tan(deg2rad(rc->ra));
-// 		if (cos(deg2rad(rc->ra)) > 0.001)
+// 		ray->dist = h_dist;
+// 		ray->wall[0] = ray->h_check[0];
+// 		ray->wall[1] = ray->h_check[1];
+// 		return (1);
+// 	}
+// 	ray->dist = v_dist;
+// 	ray->wall[0] = ray->v_check[0];
+// 	ray->wall[1] = ray->v_check[1];
+// 	dprintf(2, "distance = %f\n", ray->dist);
+// 	dprintf(2, "wall values at %f: (%f, %f)\n", ray->angle, ray->v_check[0], ray->v_check[1]);
+// 	return (0);
+// }
+
+// // void	fix_fisheye(t_game *game, t_rays *ray)
+// // {
+// // 	ray->dist = roundf((ray->dist * cosf(deg2rad(ray->angle - game->player.degrees)) * 100000)) / 100000;
+// // }
+
+// //print_walls change color for texture
+// void	print_wall(t_rays *ray, int color, mlx_image_t *img)
+// {
+// 	float	wall_height;
+// 	float	wall_width;
+// 	float	i;
+// 	float	x;
+
+// 	if (ray->dist <= 0.0001)
+// 		ray->dist = 0.0001;
+
+// 	wall_height = (5 / ray->dist) * WIN_H;
+// 	if (wall_height > WIN_H)
+// 		wall_height = WIN_H;
+// 	// if (wall_height >= 350)
+// 	// 	wall_height = 350;
+// 	// dprintf(2, "distance : %f WALL HEIGHT : %d\n", ray->dist, wall_height);
+// 	wall_width = (float)WIN_W / (float)NUM_RAYS;
+// 	x = ray->id * wall_width;
+// 	while (x < wall_width * (ray->id + 1) && x <= (WIN_W + 1))
+// 	{
+// 		i = (WIN_H / 2) - (wall_height / 2);
+// 		while (i <= (WIN_H / 2) + (wall_height / 2))
 // 		{
-// 			rc->rx = (((int)rc->px / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-// 			rc->ry = (rc->px - rc->rx) * rc->Tan + rc->py;
-// 			rc->xo = TILE_SIZE;
-// 			rc->yo = -rc->xo * rc->Tan;
-// 		}//looking left
-// 		else if (cos(deg2rad(rc->ra)) < -0.001)
-// 		{
-// 			rc->rx = (((int)rc->px / TILE_SIZE) * TILE_SIZE) - 0.0001;
-// 			rc->ry = (rc->px - rc->rx) * rc->Tan + rc->py;
-// 			rc->xo = -TILE_SIZE;
-// 			rc->yo = -rc->xo * rc->Tan;
-// 		}//looking right
-// 		else 
-// 		{
-// 			rc->rx = rc->px;
-// 			rc->ry = rc->py;
-// 			rc->dof = 8;
-// 		}//looking up or down. no hit  
-// 		while (rc->dof < 8) 
-// 		{
-// 			rc->mx = (int)(rc->rx) / TILE_SIZE;
-// 			rc->my = (int)(rc->ry) / TILE_SIZE;
-// 			rc->mp = rc->my * rc->mapX + rc->mx;
-// 			y = -1;
-// 			// while (++y < rc->mapY)
-// 			// {
-// 				if (rc->mp > 0 && game->map[1][rc->mp] == '1')
-// 				{
-// 					rc->dof = 8;
-// 					rc->disV = cos(deg2rad(rc->ra)) * (rc->rx - rc->px) -
-// 									sin(deg2rad(rc->ra)) * ( rc->ry - rc->py);
-// 				}//hit
-// 				else
-// 				{
-// 					rc->rx += rc->xo;
-// 					rc->ry += rc->yo;
-// 					rc->dof += 1;
-// 				}//check next horizontal
-// 			// }
+// 			mlx_put_pixel(img, x, i, color);
+// 			i++;
 // 		}
-// 		rc->vx = rc->rx;
-// 		rc->vy = rc->ry;
-// 		//---Horizontal---
-// 		rc->dof = 0;
-// 		rc->disH = 100000;
-// 		rc->Tan = 1.0 / rc->Tan;
-// 		if (sin(deg2rad(rc->ra)) > 0.001)
-// 		{
-// 			rc->ry = (((int)rc->py / TILE_SIZE) * TILE_SIZE) - 0.0001;
-// 			rc->rx = (rc->py - rc->ry) * rc->Tan + rc->px;
-// 			rc->yo = -TILE_SIZE;
-// 			rc->xo = -rc->yo * rc->Tan;
-// 		}//looking up 
-// 		else if (sin(deg2rad(rc->ra)) < -0.001)
-// 		{
-// 			rc->ry = (((int)rc->py / TILE_SIZE) * TILE_SIZE) + TILE_SIZE;
-// 			rc->rx = (rc->py - rc->ry) * rc->Tan + rc->px;
-// 			rc->yo = TILE_SIZE;
-// 			rc->xo = -rc->yo * rc->Tan;
-// 		}//looking down
-// 		else
-// 		{
-// 			rc->rx = rc->px;
-// 			rc->ry = rc->py;
-// 			rc->dof = 8;
-// 		} //looking straight left or right
-// 		while (rc->dof < 8)
-// 		{
-// 			rc->mx = (int)(rc->rx) / TILE_SIZE;
-// 			rc->my = (int)(rc->ry) / TILE_SIZE;
-// 			rc->mp = rc->my * rc->mapX + rc->mx;
-// 			// y = -1;
-// 			// while (++y < rc->mapY)
-// 			// {
-// 				if (rc->mp > 0 && game->map[1][rc->mp] == '1')
-// 				{
-// 					rc->dof = 8;
-// 					rc->disH = cos(deg2rad(rc->ra)) * (rc->rx - rc->px) -
-// 								sin(deg2rad(rc->ra)) * (rc->ry - rc->py);
-// 				}//hit
-// 				else
-// 				{
-// 					rc->rx += rc->xo;
-// 					rc->ry += rc->yo;
-// 					rc->dof += 1;
-// 				}//check next horizontal
-// 			// }
-// 		}
-// 		rc->wall_color = 0XFFFF00FF;
-// 		if (rc->disV < rc->disH)
-// 		{
-// 			rc->rx = rc->vx;
-// 			rc->ry = rc->vy;
-// 			rc->disH = rc->disV;
-// 			// wall_color = 0XFF00FF00; //Different color for W/E or N/S
-// 		}//horizontal hit first
+// 		x++;
+// 	}
+// }
 
-// 		// dprintf(2, "wall: %f | %f\nplayer: %d|%d\n", rx, ry, px, py);
-// 		// 320x160
+// void	cast_rays(t_game *game)
+// {
+// 	int	i;
 
-// 		// map_creation(game);
-// 		draw_line2(rc, game->mini_map_img);
-
-// 		rc->ca = FixAng(game->ray_angle - rc->ra);
-// 		rc->disH = rc->disH * cos(deg2rad(rc->ca)); //fix fisheye
-// 		rc->lineH = (TILE_SIZE * 1980) / rc->disH ; //200; //(mapS * 320) / (disH);
-// 		if (rc->lineH > 1980)
-// 			rc->lineH = 1980;//line height and limit
-// 		rc->lineOff = 1080 - (rc->lineH >> 1);//line offset
+// 	i = -1;
+// 	create_rays(game);
+// 	while (++i <= NUM_RAYS)
+// 	{
+// 		check_horizontal(game, &game->rays[i]);
+// 		check_vertical(game, &game->rays[i]);
+// 		// distance horizontal vs vertical
+// 		// if (game->rays[i].h_wall_found == 1)
+// 		// 	dprintf(2, "horizontal wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].h_check[0], game->rays[i].h_check[1]);
+// 		// if (game->rays[i].v_wall_found == 1)
+// 		// 	dprintf(2, "vertical wall found for %f degrees: (%f, %f)\n", game->rays[i].angle, game->rays[i].v_check[0], game->rays[i].v_check[1]);
+// 		// mlx_pixel_put(game->display.mlx, game->display.mlx_win, (int)game->rays[i].v_check[0], game->rays[i].v_check[1], 0xFF00FF);
 		
-// 		// draw_vertical_line(game->img, rc->i, rc->lineOff, rc->lineH,rc->wall_color);
-
-// 		rc->ra = FixAng(rc->ra - 1);//go to next ray
+// 		if (horiz_wall(game, &game->rays[i]) && game->rays[i].h_wall_found)
+// 		{
+// 			fix_fisheye(game, &game->rays[i]);
+// 			if (game->rays[i].angle > 0 && game->rays[i].angle < 180)
+// 				print_wall(&game->rays[i], rgb_to_int(195, 0, 0), game->img); //north red
+// 			else
+// 				print_wall(&game->rays[i], rgb_to_int(150, 0, 195), game->img); //south purple
+// 		}
+// 		else if (game->rays[i].v_wall_found)
+// 		{
+// 			fix_fisheye(game, &game->rays[i]);
+// 			if (game->rays[i].angle > 90 && game->rays[i].angle < 270)
+// 				print_wall(&game->rays[i], rgb_to_int(255, 205, 51), game->img); //west yellow
+// 			else
+// 				print_wall(&game->rays[i], rgb_to_int(255, 126, 51), game->img); //east orange
+// 		}
 // 	}
 // }
