@@ -63,6 +63,8 @@ void	init_player_data(t_game *game)
 	game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
 	game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
 
+	game->delta_x = cos(deg2rad(game->player.degrees));
+	game->delta_y = -sin(deg2rad(game->player.degrees));
 	// printf("x: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\nrad: %f\n",
 	// game->player.x,
 	// game->player.y,
