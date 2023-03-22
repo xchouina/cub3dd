@@ -5,27 +5,20 @@
 
 void	render(t_game *game)
 {
-	printf("------------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\n------------\n",
-			game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
-			game->player.dy, game->player.carddir, game->player.degrees);
+	// printf("------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\ndelta_x: %f\ndelta_y: %f\n------------\n",
+	// 		game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
+	// 		game->player.dy, game->player.carddir, game->player.degrees, game->delta_x, game->delta_y);
 	sky_n_ground(game);
-	// drawRays2D(game);
 	cast_rays(game);
-	// map_creation(game);
 	print_minimap(game);
-	printf("Rendering...\n");
+	// printf("Rendering...\n");
 }
-
-// void	collision(t_game * game)
-// {
-
-// }
 
 void	w_press(t_game *game)
 {
-	if (game->square_map[(int)((game->player.cx + (game->delta_x * MOV_SP)) / TILE_SIZE)][(int)((game->player.cy + (game->delta_y * MOV_SP)) / TILE_SIZE)] != '1')
+	if (game->square_map[(int)((game->player.cy + (game->delta_y * MOV_SP)) / TILE_SIZE)]
+						[(int)((game->player.cx + (game->delta_x * MOV_SP)) / TILE_SIZE)] != '1')
 	{
-		printf("IN HERE\n");
 		game->player.cx += game->delta_x * MOV_SP;
 		game->player.cy += game->delta_y * MOV_SP;
 		game->player.x = (int)game->player.cx / TILE_SIZE;
@@ -38,14 +31,15 @@ void	w_press(t_game *game)
 
 void	s_press(t_game *game)
 {
-	if (game->square_map[(int)((game->player.cx - (game->delta_x * MOV_SP)) / TILE_SIZE)][(int)((game->player.cy - (game->delta_y * MOV_SP)) / TILE_SIZE)] != '1')
+	if (game->square_map[(int)((game->player.cy - (game->delta_y * MOV_SP)) / TILE_SIZE)]
+						[(int)((game->player.cx - (game->delta_x * MOV_SP)) / TILE_SIZE)] != '1')
 	{
 		game->player.cx -= game->delta_x * MOV_SP;
 		game->player.cy -= game->delta_y * MOV_SP;
-		game->player.dx = (int)game->player.cx % TILE_SIZE;
-		game->player.dy = (int)game->player.cy % TILE_SIZE;
 		game->player.x = (int)game->player.cx / TILE_SIZE;
 		game->player.y = (int)game->player.cy / TILE_SIZE;
+		game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
+		game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
 		render(game);
 	}
 }

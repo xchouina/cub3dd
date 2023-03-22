@@ -35,7 +35,7 @@ void	print_player(t_game *game, int cx, int cy)
 		j = cx - size;
 		while (j < cx + size)
 		{
-			mlx_put_pixel(game->img, i, j, 0x0000FF);
+			mlx_put_pixel(game->img, j, i, 0x0000FF);
 			j++;
 		}
 		i++;
@@ -51,7 +51,7 @@ void	print_minimap(t_game *game)
 	while (y <= game->height_Q)
 	{
 		x = 0;
-		while (x != '\n')
+		while (x < game->max_line)
 		{
 			if (game->square_map[y][x] == '1')
 				put_cube(game, x, y, rgb_to_int(100, 103, 100));

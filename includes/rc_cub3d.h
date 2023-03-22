@@ -5,7 +5,7 @@
 # define WIN_H		1080
 # define TILE_SIZE	25
 # define FOV		60	// Field of view
-# define NUM_RAYS	240	// Number of rays to cast
+# define NUM_RAYS	480	// Number of rays to cast
 
 typedef struct s_line //FOR DRAW_LINE FUNCTION
 {
