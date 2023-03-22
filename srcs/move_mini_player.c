@@ -5,13 +5,13 @@
 
 void	render(t_game *game)
 {
-	printf("------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\ndelta_x: %f\ndelta_y: %f\n------------\n",
-			game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
-			game->player.dy, game->player.carddir, game->player.degrees, game->delta_x, game->delta_y);
+	// printf("------------\nx: %d\ny: %d\ncx: %f\ncy: %f\ndx: %f\ndy: %f\ncarddir: %c\ndegrees: %f\ndelta_x: %f\ndelta_y: %f\n------------\n",
+	// 		game->player.x, game->player.y, game->player.cx, game->player.cy, game->player.dx, 
+	// 		game->player.dy, game->player.carddir, game->player.degrees, game->delta_x, game->delta_y);
 	sky_n_ground(game);
 	cast_rays(game);
 	print_minimap(game);
-	printf("Rendering...\n");
+	// printf("Rendering...\n");
 }
 
 void	w_press(t_game *game)
