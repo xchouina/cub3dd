@@ -86,9 +86,9 @@ void	init_assets(t_game	*game)
 	//game->sprite_player.img = mlx_new_image(game->mlx, game->res_x, game->res_y);
 	// game->addr = mlx_get_data_addr(game->img, &game->bits_per_pixel, &game->line_length,
 								// &game->endian);
-	game->map_x = (ft_strlen(game->square_map[0]) - 1);
+	game->map_x = game->max_line;
+	game->map_y = game->height_Q + 1;
 	// dprintf(2, "%d\n", game->map_x);
-	game->map_y = game->map_height - 1;
 	game->delta_x = cos(deg2rad(90));
 	game->delta_y = -sin(deg2rad(90));
 	find_starting_angle(game);

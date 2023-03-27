@@ -47,20 +47,20 @@ typedef struct s_pos
 	float	y;
 	// char	NEWS;
 }t_pos;
-
-typedef struct s_player
-{
-	t_pos	player_mm;
-	int			x;		//pos x case
-	int			y;		//pos y case
-	float		cx;		//pos x tot. en pixel
-	float		cy;		//pos y tot. en pixel
-	float		dx;		//pos intracellulaire en pixel
-	float		dy;		//pos intracellulaire en pixel
-	char		carddir;	// N/S/E/W
-	float		degrees;		// 360
-} t_player;
-
+//----------------------------------------------------------------
+typedef struct s_player											//
+{																//
+	t_pos	player_mm;											//
+	int			x;		//pos x case							//
+	int			y;		//pos y case							//
+	float		cx;		//pos x tot. en pixel					//
+	float		cy;		//pos y tot. en pixel					//
+	float		dx;		//pos intracellulaire en pixel			//
+	float		dy;		//pos intracellulaire en pixel			//
+	char		carddir;	// N/S/E/W							//
+	float		degrees;		// 360							//
+} t_player;														//
+//----------------------------------------------------------------
 typedef struct s_sprite
 {
 	xpm_t *xpm;
@@ -72,7 +72,6 @@ typedef struct s_game
 {
 	mlx_t	*mlx;
 	void	*window;
-	t_rc	rc;
 // ASSETS/TEXTURES
 	t_player	player;
 	t_sprite	sprite_player;
@@ -99,7 +98,6 @@ typedef struct s_game
 	int		max_line;
 	int		checker;
 	t_rays	*rays;
-	t_line	*line;
 	int		dir_NO;
 	int		dir_SO;
 	int		dir_EA;
@@ -188,9 +186,9 @@ void	map_creation(t_game *game);
 void	init_raycast_assets(t_game *game);
 void	init_player_data(t_game *game);
 void	render(t_game *game);
-// void	draw_line(t_game *game, mlx_image_t *img);
-//void	draw_line(t_rc *rc, mlx_image_t *img);
-void drawRays2D(t_game *game);
+void 	drawRays2D(t_game *game);
+void	print_wall(t_rays *ray, int color, mlx_image_t *img);
 void	cast_rays(t_game *game);
+void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img);
 void	render(t_game *game);
 #endif

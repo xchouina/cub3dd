@@ -21,28 +21,32 @@ int FixAng(int a)
 // 	// dprintf(2, "distance finale = %f\n", ray->dist);
 // }
 
-// void	draw_line(t_game *game, mlx_image_t *img)
-// {
-// 	t_line	line;
+void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
+{
+	float	delta_x;
+	float	delta_y;
+	float	step;
+	float	x;
+	float	y;
+	int		i;
 
-// 	line.player_center_x = game->player.x + (25 / 2);
-// 	line.player_center_y = game->player.y + (25 / 2);
-// 	line.dx = game->player.cx - line.player_center_x;
-// 	line.dy = game->player.cy - line.player_center_y;
-// 	line.steps = abs(line.dx) > abs(line.dy) ? abs(line.dx) : abs(line.dy);
-// 	line.xinc = (float) line.dx / (float) line.steps;
-// 	line.yinc = (float) line.dy / (float) line.steps;
-// 	line.x = line.player_center_x;
-// 	line.y = line.player_center_y;
-// 	line.i = 0;
-// 	while (line.i++ <= line.steps)
-// 	{
-// 		if (line.x >= 0 && line.x < img->width && line.y >= 0 && line.y < img->height) 
-// 		mlx_put_pixel(img, line.x, line.y, 0XFFFF00FF);
-// 		line.x += line.xinc;
-// 		line.y += line.yinc;
-// 	}
-// }
+	delta_x = x2 - x1;
+	delta_y = y2 - y1;
+	step = (fabs(delta_x) > fabs(delta_y)) ? fabs(delta_x) : fabs(delta_y);
+	delta_x /= step;
+	delta_y /= step;
+	x = x1;
+	y = y1;
+	i = 0;
+	while (i <= step)
+	{
+		mlx_put_pixel(img, x, y, 0XFFFF00FF);
+		x += delta_x;
+		y += delta_y;
+		i++;
+	}
+}
+
 
 int	rgbtab_to_int(char **rgb)
 {
