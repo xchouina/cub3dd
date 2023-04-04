@@ -226,6 +226,7 @@ void	print_wall(t_rays *ray, int color, mlx_image_t *img)
 		i = (WIN_H / 2) - (wall_height / 2);
 		while (i <= (WIN_H / 2) + (wall_height / 2))
 		{
+			// printf("wall_height = %d\n", ((int)wall_height / 25));
 			mlx_put_pixel(img, x, i, color);
 			i++;
 		}
@@ -261,13 +262,14 @@ void	cast_rays(t_game *game)
 				print_wall(&game->rays[i], 0XFF8C00FF, game->img); //east orange
 		}
 		// draw_line(game->player.cx, game->player.cy, game->rays[i].wall[0], game->rays[i].wall[1], game->img);
-		// printf("(%d ; %d) --> (%d ; %d)\n", (int)game->rays[i].wall[0], (int)game->rays[i].wall[1], ((int)game->rays[i].wall[0] - ((int)game->rays[i].wall[0] / TILE_SIZE) * TILE_SIZE), ((int)game->rays[i].wall[1] - ((int)game->rays[i].wall[1] / TILE_SIZE) * TILE_SIZE));
+		// printf("(%d ; %d) --> (%d ; %d)\n", (int)game->rays[i].wall[0], (int)game->rays[i].wall[1],
+		// ((int)game->rays[i].wall[0] - ((int)game->rays[i].wall[0] / TILE_SIZE) * TILE_SIZE),
+		// ((int)game->rays[i].wall[1] - ((int)game->rays[i].wall[1] / TILE_SIZE) * TILE_SIZE));
 		i++;
 	}
 	// printf("%d , %d\n", game->map_x, game->map_y);
 	free(game->rays);
 }
-
 
 // (int)game->rays[i].wall[0] - ((int)game->rays[i].wall[0] / TILE_SIZE) * TILE_SIZE
 
