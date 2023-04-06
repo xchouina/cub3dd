@@ -73,7 +73,7 @@ typedef	struct	s_text
 	xpm_t	*xpm;
 	char	*textures_path;
 	char 	**fill_tab;
-	int		**colors;
+	uint32_t		**colors;
 }	t_text;
 
 typedef struct s_game
@@ -135,7 +135,7 @@ typedef struct s_game
 }t_game;
 
 int		rgbtab_to_int(char **rgb);
-int		rgba_to_int(int r, int g, int b, int a);
+uint32_t		rgba_to_int(int r, int g, int b, int a);
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
 void	fill_tab_fd(t_game *game);

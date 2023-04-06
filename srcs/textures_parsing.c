@@ -153,14 +153,14 @@ void	fill_text_tab_colors(t_game *game, int i, uint32_t y, uint32_t x)
 	l = 0;
 	while (j < y)
 	{
-		game->text[i].colors[j] = ft_calloc(game->text[i].xpm->texture.width, sizeof(int));
+		game->text[i].colors[j] = ft_calloc(game->text[i].xpm->texture.width, sizeof(uint32_t));
 		while (k < x)
 		{
 			
 			game->text[i].colors[j][l] = rgba_to_int(game->text[i].xpm->texture.pixels[k], \
 			game->text[i].xpm->texture.pixels[k + 1], game->text[i].xpm->texture.pixels[k + 2], \
 			game->text[i].xpm->texture.pixels[k + 3]);
-			k += 4;
+			k  += 4;
 			l++;
 		}
 		k = 0;
@@ -184,7 +184,7 @@ void parsing_textures(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		game->text[i].colors = ft_calloc(game->text[i].xpm->texture.height, sizeof(int *));
+		game->text[i].colors = ft_calloc(game->text[i].xpm->texture.height, sizeof(uint32_t *));
 		fill_text_tab_colors(game, i, game->text[i].xpm->texture.height, game->text[i].xpm->texture.width);
 		i++;
 	}
