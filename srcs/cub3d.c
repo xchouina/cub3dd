@@ -1,18 +1,30 @@
 #include "cub3d.h"
 
-void	print_tab_textures(t_game *game)
-{
-	printf("			\033[1;34mtab_textures\033[0m							\n");
-	int	i;
+// void	print_tab_textures(t_game *game)
+// {
+// 	printf("			\033[1;34mtab_textures\033[0m							\n");
+// 	int	i;
 
-	i = 0;
-	while (i <= 6)
-	{
-		printf("[%d]%s\n", i, game->textures_tab[i]);
-		i++;
-	}
-	printf("\n\n");
-}
+// 	i = 0;
+// 	while (i <= 6)
+// 	{
+// 		printf("[%d]%s\n", i, game->text.textures_tab[i]);
+// 		i++;
+// 	}
+// 	printf("\n\n");
+// }
+
+// void print_tab_collors(t_game *game)
+// {
+// 	int i;
+
+// 	i = 0;
+// 	while (i < 256)
+// 	{
+// 		printf("text tab collors = %s\n", game->text.colors_ea[i]);
+// 		i++;
+// 	}
+// }
 
 void	print_tab_fd(t_game *tab)
 {
@@ -74,15 +86,18 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
-	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
-	//print_tab_fd(&game);
-	//print_map(&game);
-	//print_player_pos(&game);
-	//print_tab_textures(&game);
-	//print_color(&game);
+	parsing_textures(&game);
 	starting_engine(&game);
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);
 	mlx_loop(game.mlx);
 	ft_quit(&game);
 	return (0);
 }
+	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
+	// printf("game.mapheight = %d\n", game.height_Q);
+	//print_tab_fd(&game);
+	//print_map(&game);
+	//print_player_pos(&game);
+	//print_color(&game);
+	// print_tab_collors(&game);
+	// print_tab_textures(&game);

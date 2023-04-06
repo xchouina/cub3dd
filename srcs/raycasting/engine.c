@@ -95,7 +95,7 @@ void	init_assets(t_game	*game)
 	// init_player_data(game);
 	// load_xpm(&game->wall, "./textures/2d_wall.xpm42", game->mlx);
 	// load_xpm(&game->ground, "./textures/2d_ground.xpm42", game->mlx);
-	// load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
+	load_xpm(&game->sprite_player, "./textures/ylw_dot.xpm42", game->mlx);
 }
 
 int	starting_engine(t_game	*game)

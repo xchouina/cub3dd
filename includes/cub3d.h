@@ -23,10 +23,10 @@ typedef struct s_mlx_instance
 {
 	int32_t	x;
 	int32_t	y;
-	int	player_pos_y;
-	int	player_pos_x;
+	int		player_pos_y;
+	int		player_pos_x;
 	bool	enabled;
-}	t_mlx_instance;
+}t_mlx_instance;
 
 typedef struct s_textures
 {
@@ -59,14 +59,22 @@ typedef struct s_player
 	float		dy;		//pos intracellulaire en pixel
 	char		carddir;	// N/S/E/W
 	float		degrees;		// 360
-} t_player;
+}t_player;
 
 typedef struct s_sprite
 {
-	xpm_t *xpm;
-	mlx_image_t *img;
+	xpm_t		*xpm;
+	mlx_image_t	*img;
 
-} t_sprite;
+}	t_sprite;
+
+typedef	struct	s_text
+{
+	xpm_t	*xpm;
+	char	*textures_path;
+	char 	**fill_tab;
+	int		**colors;
+}	t_text;
 
 typedef struct s_game
 {
@@ -80,12 +88,14 @@ typedef struct s_game
 	t_sprite	ground;
 	xpm_t	*wall_mm;
 	xpm_t	*ground_mm;
-	char	**textures_tab;
+	t_text	text[4];
 	t_mlx_instance *instance;
 	int		width;
 	int		height;
 	mlx_image_t	*img;
 	mlx_image_t	*mini_map_img;
+	char	*ground_colors;
+	char	*ceiling_colors;
 	int		map_x;
 	int		map_y;
 	int		height_fd;
@@ -125,6 +135,7 @@ typedef struct s_game
 }t_game;
 
 int		rgbtab_to_int(char **rgb);
+int		rgba_to_int(int r, int g, int b, int a);
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
 void	fill_tab_fd(t_game *game);
@@ -146,9 +157,14 @@ void	init_value(t_game *game);
 void	check_few_arg(t_game *game);
 void	floodfill(int x, int y, t_game *game);
 void	key_hook_move(void *param);
+void	parsing_textures(t_game *game);
+void	parsing_colors_we(t_game *game);
+void	parsing_colors_no(t_game *game);
+void	parsing_colors_ea(t_game *game);
+void	parsing_colors_so(t_game *game);
 
 int		parsing_path(t_game *game);
-void	get_text_p(t_game *game, int i, char *str_space, char *str_tab, int n);
+void	get_text_p(t_game *game, int i, char *str_space, char *str_tab);
 void	get_floor_color(t_game *game, int i);
 void	get_roof_color(t_game *game, int i);
 void	init_texture_tab(t_game *game);
@@ -190,7 +206,7 @@ void	init_player_data(t_game *game);
 void	render(t_game *game);
 // void	draw_line(t_game *game, mlx_image_t *img);
 //void	draw_line(t_rc *rc, mlx_image_t *img);
-void drawRays2D(t_game *game);
+void 	drawRays2D(t_game *game);
 void	cast_rays(t_game *game);
 void	render(t_game *game);
 #endif

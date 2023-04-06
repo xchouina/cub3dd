@@ -61,10 +61,10 @@ int	check(t_game *game, t_rays *ray, float x, float y, int checking)
 		// dprintf(2, "here!\n");
 		return (ret_zero(ray));
 	}
-	if (cy < 0 || cy >= game->map_height || (game->player.cy + y) < 0)
+	if (cy < 0 || cy >= game->height_Q + 1 || (game->player.cy + y) < 0)
 	{
 		// dprintf(2, "cx = %d map width = %d\n", cx, game->max_line);
-		// dprintf(2, "cy = %d map height = %d\n", cy, game->map_height);
+		// dprintf(2, "cy = %d map height = %d\n", cy, game->height_Q + 1);
 		return (ret_zero(ray));
 	}
 	ray->wall[0] = game->player.cx + x;
@@ -80,7 +80,7 @@ int	check_l(t_game *game, t_rays *ray, float x, float y, int checking)
 	int	cx;
 	int	cy;
 
-	if (x <= 0 || (x / TILE_SIZE) >= game->max_line || y <= 0 || (y / TILE_SIZE) >= game->map_height)
+	if (x <= 0 || (x / TILE_SIZE) >= game->max_line || y <= 0 || (y / TILE_SIZE) >= game->height_Q + 1)
 		return (ret_zero(ray));
 	cx = x / TILE_SIZE;
 	cy = y / TILE_SIZE;
@@ -91,13 +91,13 @@ int	check_l(t_game *game, t_rays *ray, float x, float y, int checking)
 	if (cx < 0 || cx >= game->max_line)
 	{
 		// dprintf(2, "cx = %d map width = %d\n", cx, game->max_line);
-		// dprintf(2, "cy = %d map height = %d\n", cy, game->map_height);
+		// dprintf(2, "cy = %d map height = %d\n", cy, game->height_Q + 1);
 		return (ret_zero(ray));
 	}
-	if (cy < 0 || cy >= game->map_height)
+	if (cy < 0 || cy >= game->height_Q + 1)
 	{
 		// dprintf(2, "cx = %d map width = %d\n", cx, game->max_line);
-		// dprintf(2, "cy = %d map height = %d\n", cy, game->map_height);
+		// dprintf(2, "cy = %d map height = %d\n", cy, game->height_Q + 1);
 		return (ret_zero(ray));
 	}
 	ray->wall[0] = x;
@@ -264,31 +264,31 @@ void	print_wall(t_rays *ray, int color, mlx_image_t *img)
 	}
 }
 
-void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
-{
-	float	delta_x;
-	float	delta_y;
-	float	step;
-	float	x;
-	float	y;
-	int		i;
+// void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img)
+// {
+// 	float	delta_x;
+// 	float	delta_y;
+// 	float	step;
+// 	float	x;
+// 	float	y;
+// 	int		i;
 
-	delta_x = x2 - x1;
-	delta_y = y2 - y1;
-	step = (fabs(delta_x) > fabs(delta_y)) ? fabs(delta_x) : fabs(delta_y);
-	delta_x /= step;
-	delta_y /= step;
-	x = x1;
-	y = y1;
-	i = 0;
-	while (i <= step)
-	{
-		mlx_put_pixel(img, x, y, 0XFFFF00FF);
-		x += delta_x;
-		y += delta_y;
-		i++;
-	}
-}
+// 	delta_x = x2 - x1;
+// 	delta_y = y2 - y1;
+// 	step = (fabs(delta_x) > fabs(delta_y)) ? fabs(delta_x) : fabs(delta_y);
+// 	delta_x /= step;
+// 	delta_y /= step;
+// 	x = x1;
+// 	y = y1;
+// 	i = 0;
+// 	while (i <= step)
+// 	{
+// 		mlx_put_pixel(img, x, y, 0XFFFF00FF);
+// 		x += delta_x;
+// 		y += delta_y;
+// 		i++;
+// 	}
+// }
 
 //REMEMBER TO DESTROY IMAGES
 void	cast_rays(t_game *game)
@@ -320,7 +320,7 @@ void	cast_rays(t_game *game)
 			else
 				print_wall(&game->rays[i], rgb_to_int(255, 126, 51), game->img); //east orange
 		}
-		draw_line(game->player.cx, game->player.cy, game->rays[i].wall[0], game->rays[i].wall[1], game->img);
+		// draw_line(game->player.cx, game->player.cy, game->rays[i].wall[0], game->rays[i].wall[1], game->img);
 		i++;
 	}
 	// mlx_destroy_image(game->display.mlx, &game->img);

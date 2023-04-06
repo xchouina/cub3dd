@@ -2,7 +2,16 @@
 
 void	init_texture_tab(t_game *game)
 {
-	game->textures_tab = ft_calloc(8, sizeof(char *));
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		game->text[i].textures_path = ft_calloc(5, sizeof(char *));
+		game->text[i].textures_path = NULL;
+		i++;
+	}
+	game->text[i].textures_path = NULL;
 }
 
 void	split_colors(t_game *game)
@@ -11,8 +20,8 @@ void	split_colors(t_game *game)
 	char **g;
 
 	check_comma(game);
-	f = ft_split(game->textures_tab[4], ',');
-	g = ft_split(game->textures_tab[5], ',');
+	f = ft_split(game->ground_colors, ',');
+	g = ft_split(game->ceiling_colors, ',');
 	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \
 	|| (ft_atoi(g[0]) > 255) || (ft_atoi(g[1]) > 255) || (ft_atoi(g[2]) > 255))
 	{
@@ -50,7 +59,8 @@ void	get_floor_color(t_game *game, int i)
 		j++;
 		len++;
 	}
-	game->textures_tab[4] = ft_substr(game->tab_fd[i], start, len);
+	game->ground_colors = ft_substr(game->tab_fd[i], start, len);
+	printf("game.ground_color = %s\n", game->ground_colors);
 }
 
 void	get_roof_color(t_game *game, int i)
@@ -78,5 +88,6 @@ void	get_roof_color(t_game *game, int i)
 		j++;
 		len++;
 	}
-	game->textures_tab[5] = ft_substr(game->tab_fd[i], start, len);
+	game->ceiling_colors = ft_substr(game->tab_fd[i], start, len);
+	printf("game.ceiling_color = %s\n", game->ceiling_colors);
 }

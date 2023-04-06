@@ -6,6 +6,7 @@
 		"mlx42_int.h": "c",
 		"ios": "c",
 		"istream": "c",
-		"locale": "c"
+		"locale": "c",
+		"sstream": "c"
 	}
 }
