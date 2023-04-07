@@ -117,6 +117,7 @@ typedef struct s_game
 	float	delta_x;
 	float	delta_y;
 	float	ang_incr;
+	int		shader;
 	t_pos	pos;
 	t_pos	first_red_pixel;
 	t_textures	textures;

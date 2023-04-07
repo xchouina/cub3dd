@@ -207,32 +207,32 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 	// dprintf(2, "wall coordinates: (%f, %f)\n", ray->wall[0], ray->wall[1]);
 }
 // ===============================================================******
-void	print_wall(t_rays *ray, int color, mlx_image_t *img)
-{
-	float	wall_height;
-	float	wall_width;
-	float	i;
-	float	x;
+// void	print_wall(t_rays *ray, int color, mlx_image_t *img)
+// {
+// 	float	wall_height;
+// 	float	wall_width;
+// 	float	i;
+// 	float	x;
 
-	if (ray->dist <= 0.0001)
-		ray->dist = 0.0001;
-	wall_height = (5 / ray->dist) * WIN_H;
-	if (wall_height > WIN_H)
-		wall_height = WIN_H;
-	wall_width = (float)WIN_W / (float)NUM_RAYS;
-	x = ray->id * wall_width;
-	while (x < wall_width * (ray->id + 1))
-	{
-		i = (WIN_H / 2) - (wall_height / 2);
-		while (i <= (WIN_H / 2) + (wall_height / 2))
-		{
-			// printf("wall_height = %d\n", ((int)wall_height / 25));
-			mlx_put_pixel(img, x, i, color);
-			i++;
-		}
-		x++;
-	}
-}
+// 	if (ray->dist <= 0.0001)
+// 		ray->dist = 0.0001;
+// 	wall_height = (5 / ray->dist) * WIN_H;
+// 	if (wall_height > WIN_H)
+// 		wall_height = WIN_H;
+// 	wall_width = (float)WIN_W / (float)NUM_RAYS;
+// 	x = ray->id * wall_width;
+// 	while (x < wall_width * (ray->id + 1))
+// 	{
+// 		i = (WIN_H / 2) - (wall_height / 2);
+// 		while (i <= (WIN_H / 2) + (wall_height / 2))
+// 		{
+// 			// printf("wall_height = %d\n", ((int)wall_height / 25));
+// 			mlx_put_pixel(img, x, i, color);
+// 			i++;
+// 		}
+// 		x++;
+// 	}
+// }
 // ===============================================================******
 
 void	cast_rays(t_game *game)
