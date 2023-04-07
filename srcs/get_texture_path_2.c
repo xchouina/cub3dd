@@ -60,7 +60,7 @@ void	get_floor_color(t_game *game, int i)
 		len++;
 	}
 	game->ground_colors = ft_substr(game->tab_fd[i], start, len);
-	printf("game.ground_color = %s\n", game->ground_colors);
+	// printf("game.ground_color = %s\n", game->ground_colors);
 }
 
 void	get_roof_color(t_game *game, int i)
@@ -89,5 +89,5 @@ void	get_roof_color(t_game *game, int i)
 		len++;
 	}
 	game->ceiling_colors = ft_substr(game->tab_fd[i], start, len);
-	printf("game.ceiling_color = %s\n", game->ceiling_colors);
+	// printf("game.ceiling_color = %s\n", game->ceiling_colors);
 }

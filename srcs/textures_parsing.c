@@ -177,8 +177,8 @@ void parsing_textures(t_game *game)
 	while (i < 4)
 	{
 		game->text[i].xpm = mlx_load_xpm42(game->text[i].textures_path);
-		printf("texture_path[%d] = %s\n", i, game->text[i].textures_path);
-		printf("game->text[%d]->xpm->texture.width = %d\ngame->text[%d]->xpm->texture.height = %d\n", i, game->text[i].xpm->texture.width, i, game->text[i].xpm->texture.height);
+		// printf("texture_path[%d] = %s\n", i, game->text[i].textures_path);
+		// printf("game->text[%d]->xpm->texture.width = %d\ngame->text[%d]->xpm->texture.height = %d\n", i, game->text[i].xpm->texture.width, i, game->text[i].xpm->texture.height);
 		i++;
 	}
 	i = 0;
