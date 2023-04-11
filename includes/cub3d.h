@@ -23,10 +23,10 @@ typedef struct s_mlx_instance
 {
 	int32_t	x;
 	int32_t	y;
-	int	player_pos_y;
-	int	player_pos_x;
+	int		player_pos_y;
+	int		player_pos_x;
 	bool	enabled;
-}	t_mlx_instance;
+}t_mlx_instance;
 
 typedef struct s_textures
 {
@@ -63,10 +63,18 @@ typedef struct s_player											//
 //----------------------------------------------------------------
 typedef struct s_sprite
 {
-	xpm_t *xpm;
-	mlx_image_t *img;
+	xpm_t		*xpm;
+	mlx_image_t	*img;
 
-} t_sprite;
+}	t_sprite;
+
+typedef	struct	s_text
+{
+	xpm_t		*xpm;
+	uint32_t	**colors;
+	char		*textures_path;
+	char 		**fill_tab;
+}	t_text;
 
 typedef struct s_game
 {
@@ -74,17 +82,19 @@ typedef struct s_game
 	void	*window;
 // ASSETS/TEXTURES
 	t_player	player;
-	t_sprite	sprite_player;
-	t_sprite	wall;
-	t_sprite	ground;
+	// t_sprite	sprite_player;
+	// t_sprite	wall;
+	// t_sprite	ground;
 	xpm_t	*wall_mm;
 	xpm_t	*ground_mm;
-	char	**textures_tab;
+	t_text	text[4];
 	t_mlx_instance *instance;
 	int		width;
 	int		height;
 	mlx_image_t	*img;
 	mlx_image_t	*mini_map_img;
+	char	*ground_colors;
+	char	*ceiling_colors;
 	int		map_x;
 	int		map_y;
 	int		height_fd;
@@ -107,12 +117,12 @@ typedef struct s_game
 	int		direction_complete;
 	int		doublons;
 	int		image;
-	int		first_Q_of_line;
 	int		a_is_press;
 	int		d_is_press;
-	int		height_Q;
-	int		check_last_Q;
-	int		check_first_Q;
+	int		first_Q_of_line;	//
+	int		height_Q;			//trouver la hauteur de la mini map
+	int		check_last_Q; 		//trouver la dernier ligne de la mini map
+	int		check_first_Q; 		// trouver la premiere ligne de la mini map
 	float	ray_angle;
 	float	delta_x;
 	float	delta_y;
@@ -124,6 +134,7 @@ typedef struct s_game
 }t_game;
 
 int		rgbtab_to_int(char **rgb);
+uint32_t		rgba_to_int(int r, int g, int b, int a);
 void	ft_quit(t_game *game);
 void	fd_create_tab_fd(t_game *game, char *argv);
 void	fill_tab_fd(t_game *game);
@@ -145,9 +156,14 @@ void	init_value(t_game *game);
 void	check_few_arg(t_game *game);
 void	floodfill(int x, int y, t_game *game);
 void	key_hook_move(void *param);
+void	parsing_textures(t_game *game);
+void	parsing_colors_we(t_game *game);
+void	parsing_colors_no(t_game *game);
+void	parsing_colors_ea(t_game *game);
+void	parsing_colors_so(t_game *game);
 
 int		parsing_path(t_game *game);
-void	get_text_path(t_game *game, int i, char *str_space, char *str_tab, int n);
+void	get_text_p(t_game *game, int i, char *str_space, char *str_tab);
 void	get_floor_color(t_game *game, int i);
 void	get_roof_color(t_game *game, int i);
 void	init_texture_tab(t_game *game);
@@ -188,7 +204,8 @@ void	init_raycast_assets(t_game *game);
 void	init_player_data(t_game *game);
 void	render(t_game *game);
 void 	drawRays2D(t_game *game);
-void	print_wall(t_rays *ray, int color, mlx_image_t *img);
+void  print_wall(t_game *game, t_rays *ray, int i);
+// void	print_wall(t_rays *ray, int color, mlx_image_t *img);
 void	cast_rays(t_game *game);
 void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img);
 void	render(t_game *game);

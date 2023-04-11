@@ -25,6 +25,9 @@ void	w_press(t_game *game)
 		game->player.y = (int)game->player.cy / TILE_SIZE;
 		game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
 		game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
+		// mlx_delete_image(game->mlx, game->img);
+		// game->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+		// game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 		render(game);
 	}
 }
@@ -40,6 +43,9 @@ void	s_press(t_game *game)
 		game->player.y = (int)game->player.cy / TILE_SIZE;
 		game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
 		game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
+		// mlx_delete_image(game->mlx, game->img);
+		// game->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+		// game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 		render(game);
 	}
 }
@@ -50,6 +56,9 @@ void	d_press(t_game *game)
 	game->player.degrees = FixAng(game->player.degrees);
 	game->delta_x = cos(deg2rad(game->player.degrees));
 	game->delta_y = -sin(deg2rad(game->player.degrees));
+	// mlx_delete_image(game->mlx, game->img);
+	// game->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	// game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	render(game);
 }
 
@@ -59,5 +68,8 @@ void	a_press(t_game *game)
 	game->player.degrees = FixAng(game->player.degrees);
 	game->delta_x = cos(deg2rad(game->player.degrees));
 	game->delta_y = -sin(deg2rad(game->player.degrees));
+	// mlx_delete_image(game->mlx, game->img);
+	// game->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	// game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	render(game);
 }

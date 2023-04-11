@@ -12,10 +12,10 @@ int	win_close(t_game *game)
 void	key_hook_move(void *param)
 {
 	t_game	*game;
-	int	i;
+	int		i;
 
 	i = 0;
-	game = (t_game*)param;
+	game = (t_game *)param;
 	if (mlx_is_key_down(game->mlx, MLX_KEY_ESCAPE))
 		win_close(game);
 	if (mlx_is_key_down(game->mlx, MLX_KEY_S))

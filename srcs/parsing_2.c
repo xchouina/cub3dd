@@ -24,9 +24,9 @@ void	fd_null(t_game *game)
 	ft_quit(game);
 }
 
-void	check_after_comma(t_game *game, int i, int j)
+void	check_after_comma(t_game *game, int i)
 {
-	if (ft_isdigit(game->textures_tab[i][j + 1]) == 0)
+	if (ft_isdigit(game->ground_colors[i]) == 0)
 	{
 		dprintf(2, "rgb error\n");
 		ft_quit(game);
@@ -51,20 +51,30 @@ void	check_comma(t_game *game)
 	j = 0;
 	i = 4;
 	comma = 0;
-	while (i < 6)
+	while (game->ground_colors[j] != '\0')
 	{
-		while (game->textures_tab[i][j] != '\0')
+		if (game->ground_colors[j] == ',')
 		{
-			if (game->textures_tab[i][j] == ',')
-			{
-				check_after_comma(game, i, j);
-				comma++;
-			}
-			j++;
+			check_after_comma(game, i);
+			comma++;
 		}
-		comma_check(comma, game);
-		i++;
-		j= 0;
-		comma = 0;
+		j++;
 	}
+	comma_check(comma, game);
+	comma = 0;
+	j = 0;
+	while (game->ceiling_colors[j] != '\0')
+	{
+		if (game->ceiling_colors[j] == ',')
+		{
+			check_after_comma(game, i);
+			comma++;
+		}
+		j++;
+	}
+	comma_check(comma, game);
+		// i++;
+		// j = 0;
+		// comma = 0;
+	return ;
 }

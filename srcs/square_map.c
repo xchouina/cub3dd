@@ -86,7 +86,7 @@ void	square_map(t_game *game)
 	{
 		find_max_line(i, game);
 		if (!ft_strchr(game->map[i], 'Q') && game->check_first_Q == 1)
-			break;
+			break ;
 		i++;
 	}
 	game->height_Q = i + 1;

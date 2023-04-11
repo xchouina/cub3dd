@@ -5,8 +5,7 @@
 # define WIN_H		1080
 # define TILE_SIZE	25
 # define FOV		60		// Field of view
-# define NUM_RAYS	120	// Number of rays to cast
-
+# define NUM_RAYS	2400	// Number of rays to cast
 
 typedef struct s_rays //DATA FOR EACH RAYS
 {
@@ -21,10 +20,6 @@ typedef struct s_rays //DATA FOR EACH RAYS
 	int		h_wall_found;
 	int		v_wall_found;
 }	t_rays;
-
-
-
-
 
 // typedef struct s_line //FOR DRAW_LINE FUNCTION
 // {

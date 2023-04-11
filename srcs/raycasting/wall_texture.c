@@ -1,71 +1,5 @@
 #include "cub3d.h"
 
-// void	printing_texture(t_rays *ray, mlx_image_t *img)
-// {
-// 	// int		wx = (int)ray->wall[0] - ((int)ray->wall[0] / TILE_SIZE) * TILE_SIZE;
-// 	// int		wy = (int)ray->wall[1] - ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
-// 	// if (wy == 0)
-// 	// {
-// 	// 	apply_shaders++;
-// 	// 	int  starter_x = wx;
-// 	// }
-
-// 	// int	h_ratio = wall_height / texture_height;
-// 	// int	vy = 0;
-
-// 	int h_count = 0;
-// 	while (h_count < h_ratio)
-// 	{
-// 		mlx_put_pixel(img, x, y, game->tab[vy][starter_x]);
-// 		y++;
-// 		h_count++;
-// 	}
-// 	vy++;
-// }
-
-// void	print_wall(t_rays *ray, mlx_image_t *img)
-// {
-// 	float	wall_height;
-// 	float	wall_width;
-// 	float	y;
-// 	float	x;
-// // ----------------------------------------
-
-// 	int		wx = (int)ray->wall[0] - ((int)ray->wall[0] / TILE_SIZE) * TILE_SIZE;
-// 	int		wy = (int)ray->wall[1] - ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
-// 	int  starter_x;
-// 	if (wy == 0)
-// 		starter_x = wx;
-// 	int	h_ratio = wall_height / 25; //texture_height;
-// 	int	vy = 0;
-// 	int h_count = 0;
-// // ----------------------------------------
-
-// 	if (ray->dist <= 0.0001)
-// 		ray->dist = 0.0001;
-// 	wall_height = (5 / ray->dist) * WIN_H;
-// 	if (wall_height > WIN_H)
-// 		wall_height = WIN_H;
-// 	wall_width = (float)WIN_W / (float)NUM_RAYS;
-// 	x = ray->id * wall_width;
-// 	while (x < wall_width * (ray->id + 1))
-// 	{
-// 		y = (WIN_H / 2) - (wall_height / 2);
-// 		while (y <= (WIN_H / 2) + (wall_height / 2))
-// 		{
-// 			h_count = 0;
-// 			while (h_count < h_ratio)
-// 			{
-// 				mlx_put_pixel(img, x, y, game->tab[vy][starter_x]);
-// 				y++;
-// 				h_count++;
-// 			}
-// 			vy++;
-// 		}
-// 		x++;
-// 	}
-// }
-
 // black	= rgb_to_int(0, 0, 0)
 // red		= rgb_to_int(255, 0, 0)
 // green	= rgb_to_int(0, 255, 0);
@@ -159,3 +93,29 @@ void    print_wall(t_game *game, t_rays *ray, t_texture *texture, int i, mlx_ima
 		x++;
 	}
 }
+
+
+
+
+// game->text[0].colors[0][0], 
+// printf("%d--%d--%d--%d--%d--%d--%d--%d--%d--%d--\n%d--%d--%d--%d--%d--%d--%d--%d--%d--%d--\n", 
+// game->text[0].colors[0][0],
+// game->text[0].colors[0][1],
+// game->text[0].colors[0][2],
+// game->text[0].colors[0][3],
+// game->text[0].colors[0][4],
+// game->text[0].colors[0][5],
+// game->text[0].colors[0][6],
+// game->text[0].colors[0][7],
+// game->text[0].colors[0][8],
+// game->text[0].colors[0][9],
+// game->text[0].colors[1][0],
+// game->text[0].colors[1][1],
+// game->text[0].colors[1][2],
+// game->text[0].colors[1][3],
+// game->text[0].colors[1][4],
+// game->text[0].colors[1][5],
+// game->text[0].colors[1][6],
+// game->text[0].colors[1][7],
+// game->text[0].colors[1][8],
+// game->text[0].colors[1][9],);

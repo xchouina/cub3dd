@@ -66,6 +66,8 @@ void	check_direction(t_game *game)
 		if (game->direction_complete != 1)
 			check_if_map_last(game, i);
 		i++;
+		if (game->direction_complete == 1)
+			break ;
 	}
 }
 
@@ -77,7 +79,7 @@ int	parsing(t_game *game, char *argv)
 	//print_tab_fd(game);
 	//parsing a faire pour les point cardinaux et les couleur avant tab_map
 	// fd_create_tab_map(game, fd);
-	//check_6_first_line(game);
+	// check_6_first_line(game);
 	fd_create_tab_map(game);
 	check_direction(game);
 	fill_map_tab(game);

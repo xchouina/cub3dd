@@ -1,7 +1,7 @@
-SO		./path_to_the_south_texture
-WE		./path_to_the_west_texture
-NO		./path_to_the_north_texture
-EA 		./path_to_the_east_texture
+SO		textures/colored_wall.xpm42
+WE		textures/colored_wall.xpm42
+NO		textures/colored_wall.xpm42
+EA 		textures/colored_wall.xpm42
 
 F 0,100,0
 C 0,110,170

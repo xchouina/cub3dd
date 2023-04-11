@@ -7,10 +7,9 @@ void	check_map(t_game *game)
 	{
 		dprintf(2, "No player on map\n");
 		ft_quit(game);
-		// game->checker = 1;
-		// return ;
 	}
-	floodfill(game->player.player_mm.position_y, game->player.player_mm.position_x, game);
+	floodfill(game->player.player_mm.position_y, \
+	game->player.player_mm.position_x, game);
 }
 
 void	check_symbol_and_doublon(t_game *game)
@@ -27,16 +26,12 @@ void	check_symbol_and_doublon(t_game *game)
 			if (ft_strchr("01 NSEW\n", game->map[i][j]) != NULL)
 			{
 				check_end_line(game, i, j);
-				// if (game->checker == 1)
-				// 	return ;
 				j++;
 			}
 			else
 			{
-				// game->checker = 1;
 				dprintf(2, "%c = symbol error\n", game->map[i][j]);
 				ft_quit(game);
-				// return ;
 			}
 		}
 		i++;
@@ -49,21 +44,16 @@ void	check_end_line(t_game *game, int i, int j)
 	{
 		dprintf(2, "Backslash_n needs to be at the end of the line\n");
 		ft_quit(game);
-		// game->checker = 1;
-		// return ;
 	}
-	if (game->map[i][j] == 'W' || game->map[i][j] == 'E'\
-	 || game->map[i][j] == 'S' || game->map[i][j] == 'N')
+	if (game->map[i][j] == 'W' || game->map[i][j] == 'E' \
+	|| game->map[i][j] == 'S' || game->map[i][j] == 'N')
 	{
 		game->player.player_mm.position_x = j;
 		game->player.player_mm.position_y = i;
-
 		if (game->doublons != 0)
 		{
 			dprintf(2, "too many players on map\n");
 			ft_quit(game);
-			// game->checker = 1;
-			// return ;
 		}
 		else
 			game->doublons = 1;
@@ -82,10 +72,8 @@ void	floodfill(int x, int y, t_game *game)
 	{
 		dprintf(2, "map not closed\n");
 		ft_quit(game);
-		// game->checker = 1;
-		// return ;
 	}
-	if (game->map[x][y] == '0' || game->map[x][y] == 'N' ||\
+	if (game->map[x][y] == '0' || game->map[x][y] == 'N' || \
 	game->map[x][y] == 'E' || game->map[x][y] == 'W' || game->map[x][y] == 'S')
 	{
 		if (x <= 0 || y <= 0)

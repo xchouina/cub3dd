@@ -18,6 +18,8 @@ CFILES =	cub3d.c 					\
 			move_mini_player.c			\
 			square_map.c 				\
 			max_map.c					\
+			textures_parsing.c			\
+			colors_tab.c				\
 			# raycasting/wall_texture.c	\
 
 NAME = cub3d

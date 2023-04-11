@@ -206,6 +206,7 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 	// dprintf(2, "%f degrees : Wall distance = %f\n", ray->angle, ray->dist);
 	// dprintf(2, "wall coordinates: (%f, %f)\n", ray->wall[0], ray->wall[1]);
 }
+
 // ===============================================================******
 // void	print_wall(t_rays *ray, int color, mlx_image_t *img)
 // {
@@ -235,6 +236,79 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 // }
 // ===============================================================******
 
+
+int get_color(t_game *game, int i, int y, int x)
+{
+	// dprintf(2, "y%d, x%d", y, x);
+	// printf("  color --> %u\n", (game->text[i].colors[y][x]));
+	return((game->text[i].colors[y][x]));
+}
+
+void  print_wall(t_game *game, t_rays *ray, int i)
+{
+	float   wall_height;
+	float   wall_width;
+	float   y;
+	float   x;
+	int tx = (int)ray->wall[0] - ((int)ray->wall[0] / TILE_SIZE) * TILE_SIZE;
+	int ty = (int)ray->wall[1] - ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
+	// printf("ty: %d, tx : %d\n", ty, tx);
+	int starter = ty;
+	// int rat_x = TILE_SIZE / 25;
+	int rat_y;
+	int h = 0;
+	int rem_x = 0;
+	// int rem_y = 0;
+	int h_cnt;
+	int color;
+	int rc = 0;
+	// int rcy = 0;
+	if (ty == 0)
+		starter = tx;
+	if (ray->dist <= 0.0001)
+		ray->dist = 0.0001;
+	wall_height = (5 / ray->dist) * WIN_H;
+	if (wall_height > WIN_H)
+		wall_height = WIN_H;
+	rat_y = wall_height / 25;
+	wall_width = (float)WIN_W / (float)NUM_RAYS;
+	x = ray->id * wall_width;
+	if ((TILE_SIZE % 25) != 0)
+		rem_x = TILE_SIZE / (TILE_SIZE % 25);
+	else
+		rem_x = 0;
+	while (x < wall_width * (ray->id + 1) && x <= (WIN_W + 1)) // #1 : thickness of wall
+	{
+		y = (WIN_H / 2) - (wall_height / 2);
+		h_cnt = 0;
+		h = 0;
+		while (y <= (WIN_H / 2) + (wall_height / 2) && h < 25) // #2 : height of 1 line of TILE_SIZE
+		{
+			// printing_texture(game, ray, i, wall_height, y, x);
+			// dprintf(2, "%f: %d , %d\n", wall_height,  h_cnt, starter);
+			color = get_color(game, i, h, starter);
+			// printf("x = %f, i = %d\n", x, i);
+			mlx_put_pixel(game->img, x, y, color);
+			// my_mlx_pixel_put(&game->img, x, y, color);
+			h_cnt++;
+			y++;
+			while (h_cnt < rat_y) // #3 : height of same color_pixel
+			{
+				mlx_put_pixel(game->img, x, y, color);
+				h_cnt++;
+				y++;
+			}
+			h++;
+			h_cnt = 0;
+		}
+		starter++;
+		rc++;
+		if (starter >= 25)
+			starter = 0;
+		x++;
+	}
+}
+
 void	cast_rays(t_game *game)
 {
 	int	i;
@@ -243,37 +317,29 @@ void	cast_rays(t_game *game)
 	create_rays(game);
 	while (i < NUM_RAYS)
 	{
+		printf("%d, %d\n", game->text[2].xpm->texture.height, game->text[2].xpm->texture.width);
 		check_horizontal(game, &game->rays[i]);
 		check_vertical(game, &game->rays[i]);
 		if (horiz_wall(game, &game->rays[i]) && game->rays[i].h_wall_found)
 		{
 			fix_fisheye(game, &game->rays[i]);
 			if (game->rays[i].angle >= 0 && game->rays[i].angle <= 180)
-				print_wall(&game->rays[i], 0XA349A4AA, game->img); //north red
+			{
+				print_wall(game, &game->rays[i], 0); //north red
+			}
 			else
-				print_wall(&game->rays[i], 0X9370DBFF, game->img); //south purple
+				print_wall(game, &game->rays[i], 1); //south purple
 		}
 		else if (game->rays[i].v_wall_found == 1)
 		{
 			fix_fisheye(game, &game->rays[i]);
 			if (game->rays[i].angle >= 90 && game->rays[i].angle <= 270)
-				print_wall(&game->rays[i], 0XFFD700FF, game->img); //west yellow
+				print_wall(game, &game->rays[i], 2); //west yellow
 			else
-				print_wall(&game->rays[i], 0XFF8C00FF, game->img); //east orange
+				print_wall(game, &game->rays[i], 3); //east orange
 		}
-		// draw_line(game->player.cx, game->player.cy, game->rays[i].wall[0], game->rays[i].wall[1], game->img);
-		// printf("(%d ; %d) --> (%d ; %d)\n", (int)game->rays[i].wall[0], (int)game->rays[i].wall[1],
-		// ((int)game->rays[i].wall[0] - ((int)game->rays[i].wall[0] / TILE_SIZE) * TILE_SIZE),
-		// ((int)game->rays[i].wall[1] - ((int)game->rays[i].wall[1] / TILE_SIZE) * TILE_SIZE));
 		i++;
 	}
 	// printf("%d , %d\n", game->map_x, game->map_y);
 	free(game->rays);
 }
-
-// (int)game->rays[i].wall[0] - ((int)game->rays[i].wall[0] / TILE_SIZE) * TILE_SIZE
-
-// rgb_to_int(195, 0, 0)
-// rgb_to_int(150, 0, 195)
-// rgb_to_int(255, 205, 51)
-// rgb_to_int(255, 126, 51)
