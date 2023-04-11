@@ -244,7 +244,7 @@ int get_color(t_game *game, int i, int y, int x)
 	return((game->text[i].colors[y][x]));
 }
 
-void  print_wall(t_game *game, t_rays *ray, int i)
+void    print_wall(t_game *game, t_rays *ray, int i)
 {
 	float   wall_height;
 	float   wall_width;
@@ -317,7 +317,7 @@ void	cast_rays(t_game *game)
 	create_rays(game);
 	while (i < NUM_RAYS)
 	{
-		printf("%d, %d\n", game->text[2].xpm->texture.height, game->text[2].xpm->texture.width);
+		//printf("%d, %d\n", game->text[2].xpm->texture.height, game->text[2].xpm->texture.width);
 		check_horizontal(game, &game->rays[i]);
 		check_vertical(game, &game->rays[i]);
 		if (horiz_wall(game, &game->rays[i]) && game->rays[i].h_wall_found)

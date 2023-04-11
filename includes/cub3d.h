@@ -161,6 +161,8 @@ void	parsing_colors_we(t_game *game);
 void	parsing_colors_no(t_game *game);
 void	parsing_colors_ea(t_game *game);
 void	parsing_colors_so(t_game *game);
+void	print_colors_tab(t_game *game, int i);
+void	print_colors_mlx42(t_game *game, int i);
 
 int		parsing_path(t_game *game);
 void	get_text_p(t_game *game, int i, char *str_space, char *str_tab);
@@ -204,7 +206,7 @@ void	init_raycast_assets(t_game *game);
 void	init_player_data(t_game *game);
 void	render(t_game *game);
 void 	drawRays2D(t_game *game);
-void  print_wall(t_game *game, t_rays *ray, int i);
+void    print_wall(t_game *game, t_rays *ray, int i);
 // void	print_wall(t_rays *ray, int color, mlx_image_t *img);
 void	cast_rays(t_game *game);
 void	draw_line(float x1, float y1, float x2, float y2, mlx_image_t *img);
