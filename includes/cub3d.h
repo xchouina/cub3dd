@@ -161,6 +161,8 @@ void	parsing_colors_we(t_game *game);
 void	parsing_colors_no(t_game *game);
 void	parsing_colors_ea(t_game *game);
 void	parsing_colors_so(t_game *game);
+void	print_colors_tab(t_game *game, int i);
+void	print_colors_mlx42(t_game *game, int i);
 
 int		parsing_path(t_game *game);
 void	get_text_p(t_game *game, int i, char *str_space, char *str_tab);

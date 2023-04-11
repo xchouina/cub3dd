@@ -304,7 +304,7 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 int get_color(t_text *text, int y, int x, int i)
 {
     // dprintf(2, "%d, %d\n", y, x);
-   return(text[i].colors[y][x]);
+   return(text[i].colors[x][y]);
 }
 
 void    draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, int texture_offset)
@@ -315,12 +315,12 @@ void    draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, in
     int     cnt;
     y = y_start;
     k = 0;
-    while (y < y_end && k < 25)
+    while (y < y_end && k < IM_SZ)
     {
         cnt = 0;
-        while (cnt < (y_end - y_start) / 25)
+        while (cnt < (y_end - y_start) / IM_SZ)
         {
-            color = get_color(game->text, (texture_offset + x) % 25, k, i);
+            color = get_color(game->text, (texture_offset + x) % IM_SZ, k, i);
             mlx_put_pixel(game->img, x, y, color);
             y++;
             cnt++;

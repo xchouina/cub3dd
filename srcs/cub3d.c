@@ -8,7 +8,7 @@
 // 	i = 0;
 // 	while (i <= 6)
 // 	{
-// 		printf("[%d]%s\n", i, game->text.textures_tab[i]);
+// 		printf("[%d]%s\n", i, game->text[i].textures_tab[i]);
 // 		i++;
 // 	}
 // 	printf("\n\n");
@@ -25,6 +25,43 @@
 // 		i++;
 // 	}
 // }
+
+void	print_colors_mlx42(t_game *game, int i)
+{
+	uint32_t	y;
+	uint32_t	x;
+
+	y = 0;
+	x = 0;
+	printf("-----------------------------------------------------------------------------------\n");
+	while (x <= 25)
+	{
+		printf("(R)%u--(G)%u--(B)%u--(A)%u--", game->text[i].xpm->texture.pixels[x], game->text[i].xpm->texture.pixels[x + 1], game->text[i].xpm->texture.pixels[x + 2], game->text[i].xpm->texture.pixels[x + 3]);
+		x += 4;
+	}
+	printf("\n");
+}
+
+void	print_colors_tab(t_game *game, int i)
+{
+	uint32_t	y;
+	uint32_t	x;
+
+	y = 0;
+	x = 0;
+	printf("-----------------------------------------------------------------------------------\n");
+	while (y < game->text->xpm->texture.height)
+	{
+		while (x <= (game->text[i].xpm->texture.width / 4))
+		{
+			printf("%u", game->text[i].colors[y][x]);
+			x++;
+		}
+		printf("\n");
+		x = 0;
+		y++;
+	}
+}
 
 void	print_tab_fd(t_game *tab)
 {
@@ -93,6 +130,7 @@ int	main(int argc, char **argv)
 	ft_quit(&game);
 	return (0);
 }
+	// print_tab_textures(&game);
 	//printf("map_height = %d\nmap_start = %d\n", game.map_height, game.map_start);
 	// printf("game.mapheight = %d\n", game.height_Q);
 	//print_tab_fd(&game);
@@ -100,4 +138,3 @@ int	main(int argc, char **argv)
 	//print_player_pos(&game);
 	//print_color(&game);
 	// print_tab_collors(&game);
-	// print_tab_textures(&game);
