@@ -265,11 +265,11 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 // 	wall_height = (5 / ray->dist) * WIN_H;
 // 	if (wall_height > WIN_H)
 // 		wall_height = WIN_H;
-// 	rat_y = wall_height / 25;
+// 	rat_y = wall_height / (int)game->text[i].xpm->texture.height;
 // 	wall_width = (float)WIN_W / (float)NUM_RAYS;
 // 	x = ray->id * wall_width;
-// 	if ((TILE_SIZE % 25) != 0)
-// 		rem_x = TILE_SIZE / (TILE_SIZE % 25);
+// 	if ((TILE_SIZE % (int)game->text[i].xpm->texture.width) != 0)
+// 		rem_x = TILE_SIZE / (TILE_SIZE % (int)game->text[i].xpm->texture.width);
 // 	else
 // 		rem_x = 0;
 // 	while (x < wall_width * (ray->id + 1) && x <= (WIN_W + 1)) // #1 : thickness of wall
@@ -277,7 +277,7 @@ void	fix_fisheye(t_game *game, t_rays *ray)
 // 		y = (WIN_H / 2) - (wall_height / 2);
 // 		h_cnt = 0;
 // 		h = 0;
-// 		while (y <= (WIN_H / 2) + (wall_height / 2) && h < 25) // #2 : height of 1 line of TILE_SIZE
+// 		while (y <= (WIN_H / 2) + (wall_height / 2) && h < (int)game->text[i].xpm->texture.height) // #2 : height of 1 line of TILE_SIZE
 // 		{
 // 			color = get_color(game, i, h, starter);
 // 			mlx_put_pixel(game->img, x, y, color);
@@ -307,28 +307,60 @@ int get_color(t_text *text, int y, int x, int i)
    return(text[i].colors[x][y]);
 }
 
-void    draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, int texture_offset)
+void	draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, int texture_offset)
 {
-    int     color;
+	int     color;
     int     y;
     int     k;
-    int     cnt;
+	int	tex_height = game->text[i].xpm->texture.height;
+	// int	texel_w = game->text[i].xpm->texture.width;
+    float     cnt;
+	float	texel_y = (float)(y_end - y_start) / (float)tex_height;
+	float	remains = 0;
+	float	tti = texel_y;
+	// int		texel_iy = texel_y * 1000000;
+	// int		tex_cnt = 0;
     y = y_start;
     k = 0;
-    while (y < y_end && k < (int)game->text[i].xpm->texture.height)
+    while (y < y_end && k < tex_height) //2e 
     {
         cnt = 0;
-        while (cnt < (y_end - y_start) / (int)game->text[i].xpm->texture.height)
+		while (cnt < texel_y) // 3e
         {
-            color = get_color(game->text, (texture_offset + x) %
-				(int)game->text[i].xpm->texture.height, k, i);
-            mlx_put_pixel(game->img, x, y, color);
+			while (tti > 1)
+				tti -= 1;
+			// printf("tti = %f\n", tti);
+			remains += tti;
+            color = get_color(game->text, (texture_offset + x) % tex_height, k, i);
+			if (y > 0 && y < WIN_H)
+				mlx_put_pixel(game->img, x, y, color);
             y++;
             cnt++;
+			// while (remains >= 1)
+			// {
+			// 	mlx_put_pixel(game->img, x, y, color);
+			// 	y++;
+			// 	remains -= 1;
+			// }
+			// remains += (cnt + 1) - texel_y;
+			// printf("%f\n", remains);
+			// tex_cnt += texel_iy;
+			// while (tex_cnt >= 1000000)
+			// {
+			// 	mlx_put_pixel(game->img, x, y, color);
+			// 	tex_cnt -= 1000000;
+			// 	cnt++;
+			// 	y++;
+			// }
         }
         k++;
     }
 }
+
+// SO		textures2/red_brick.xpm42
+// WE		textures2/fence.xpm42
+// NO		textures2/gray_brick.xpm42
+// EA 		textures2/dark_wood.xpm42
 
 void	print_wall(t_game *game, t_rays *ray, int x, int texture_index)
 {
@@ -353,41 +385,16 @@ void	print_wall(t_game *game, t_rays *ray, int x, int texture_index)
     //  wall_height = HEIGHT;
     // calculate the top and bottom TILE_SIZE of the wall segment
     wall_top_pixel = (WIN_H - wall_height) / 2;
-    if (wall_top_pixel < 0)
-        wall_top_pixel = 0;
+    // if (wall_top_pixel < 0)
+    //     wall_top_pixel = 0;
     wall_bottom_pixel = wall_top_pixel + wall_height;
-    if (wall_bottom_pixel >= WIN_H)
-        wall_bottom_pixel = WIN_H;
+    // if (wall_bottom_pixel >= WIN_H)
+    //     wall_bottom_pixel = WIN_H;
     // calculate the texture offset based on which part of the tile the wall segment occupies
     // texture_offset = (int)(ray->wall[0] * TILE_SIZE) % TILE_SIZE;
     // draw the wall segment with the appropriate texture
     draw_wall_texture(game, x, wall_top_pixel, wall_bottom_pixel, texture_index, texture_offset);
 }
-
-// void draw_line(t_game *game, float x1, float y1, float x2, float y2)
-// {
-//  float   delta_x;
-//  float   delta_y;
-//  float   step;
-//  float   x;
-//  float   y;
-//  int     i;
-//  delta_x = x2 - x1;
-//  delta_y = y2 - y1;
-//  step = (fabs(delta_x) > fabs(delta_y)) ? fabs(delta_x) : fabs(delta_y);
-//  delta_x /= step;
-//  delta_y /= step;
-//  x = x1;
-//  y = y1;
-//  i = 0;
-//  while (i <= step)
-//  {
-//      my_mlx_pixel_put(&game->img, x, y, 0x00FFFF);
-//      x += delta_x;
-//      y += delta_y;
-//      i++;
-//  }
-// }
 
 void    cast_rays(t_game *game)
 {

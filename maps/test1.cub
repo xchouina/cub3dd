@@ -1,18 +1,14 @@
-SO		textures/colored_wall.xpm42
-WE		textures/colored_wall.xpm42
-NO		textures/colored_wall.xpm42
-EA 		textures/colored_wall.xpm42
-
+SO		textures/red_brick.xpm42
+WE		textures/fence.xpm42
+NO		textures/gray_brick.xpm42
+EA 		textures/dark_wood.xpm42
 F 0,100,0
 C 0,110,170
 
-11111
-10101
-10001
-10001
-10001
-10001
-10001
-10N01
-10001
-11111
+11111111111111111111
+1000000000W000000001
+10000000000000000011
+10000000000000000001
+11111111110111111111
+11111111111111111111
+
