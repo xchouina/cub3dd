@@ -315,12 +315,13 @@ void    draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, in
     int     cnt;
     y = y_start;
     k = 0;
-    while (y < y_end && k < IM_SZ)
+    while (y < y_end && k < (int)game->text[i].xpm->texture.height)
     {
         cnt = 0;
-        while (cnt < (y_end - y_start) / IM_SZ)
+        while (cnt < (y_end - y_start) / (int)game->text[i].xpm->texture.height)
         {
-            color = get_color(game->text, (texture_offset + x) % IM_SZ, k, i);
+            color = get_color(game->text, (texture_offset + x) %
+				(int)game->text[i].xpm->texture.height, k, i);
             mlx_put_pixel(game->img, x, y, color);
             y++;
             cnt++;
@@ -329,18 +330,16 @@ void    draw_wall_texture(t_game *game, int x, int y_start, int y_end, int i, in
     }
 }
 
-void    print_wall(t_game *game, t_rays *ray, int x, int texture_index)
+void	print_wall(t_game *game, t_rays *ray, int x, int texture_index)
 {
-    float   wall_height;
-    int     wall_top_pixel;
-    int     wall_bottom_pixel;
-    int     texture_offset = 0;
+    float	wall_height;
+    int		wall_top_pixel;
+    int		wall_bottom_pixel;
+    int		texture_offset = 0;
 	if (texture_index == 0 || texture_index == 1)
 		texture_offset = (int)ray->wall[0] - ((int)ray->wall[0] / TILE_SIZE) * TILE_SIZE;
 	else if (texture_index == 2 || texture_index == 3)
 		texture_offset = (int)ray->wall[1] - ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
-
-
     // int  wx = (int)ray->wall[0] - ((int)ray->wall[0] / TILE_SIZE) * TILE_SIZE;
     // int  wy = (int)ray->wall[1] - ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
     // texture_offset = wy;

@@ -6,7 +6,7 @@
 # define TILE_SIZE	25
 # define FOV		60		// Field of view
 # define NUM_RAYS	2400	// Number of rays to cast
-# define IM_SZ 		400
+
 typedef struct s_rays //DATA FOR EACH RAYS
 {
 	float	angle; //degree
