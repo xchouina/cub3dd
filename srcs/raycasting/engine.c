@@ -43,7 +43,6 @@ void	init_player_data(t_game *game)
 	game->player.cy = game->player.y * TILE_SIZE + (TILE_SIZE / 2);
 	game->player.dx = game->player.cx - (game->player.x * TILE_SIZE);
 	game->player.dy = game->player.cy - (game->player.y * TILE_SIZE);
-
 	game->delta_x = cos(deg2rad(game->player.degrees));
 	game->delta_y = -sin(deg2rad(game->player.degrees));
 }
@@ -63,22 +62,6 @@ void	init_assets(t_game	*game)
 
 int	starting_engine(t_game	*game)
 {
-// -------------------------TESTS IN PROGRESS---------------
-	// int	i;
-
-	// i = 0;
-	// int j;
-	// while (game->text[0].colors[i] != NULL)
-	// {
-	// 	j = 0;
-	// 	while (game->text[0].colors[i][j] != '\0')
-	// 	{
-	// 		printf("(%u)", game->text[0].colors[i][j++]);
-	// 	}
-	// 	printf("\n");
-	// 	i++;
-	// }
-// ---------------------------------------------------------
 	init_assets(game);
 	init_player_data(game);
 	render(game);

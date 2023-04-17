@@ -22,6 +22,7 @@ CFILES =	cub3d.c 					\
 			raycasting/checks_1.c		\
 			raycasting/checks_2.c		\
 			raycasting/casting.c 		\
+			raycasting/printing_walls.c	\
 
 NAME = cub3d
 

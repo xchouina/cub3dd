@@ -122,6 +122,10 @@ typedef struct s_game
 	int				max_line;
 	int				checker;
 	t_rays			*rays;
+	float			top_pixel;
+	float			bot_pixel;
+	float			tex_step;
+	int				checking;
 	int				dir_no;
 	int				dir_so;
 	int				dir_ea;
@@ -209,7 +213,7 @@ void		print_floodfill(t_game *game);
 
 // TOOLBOX.C
 float		deg2rad(float degrees);
-int			FixAng(int a);
+int			fixang(int a);
 void		fix_fisheye(t_game *game, t_rays *ray);
 
 // ENGINE
@@ -229,8 +233,8 @@ int			rgb_to_int(int r, int g, int b);
 
 
 // CHECKS.C
-int		check(t_game *game, t_rays *ray, float x, float y, int checking);
-int		check_l(t_game *game, t_rays *ray, float x, float y, int checking);
+int		check(t_game *game, t_rays *ray, float x, float y);
+int		check_l(t_game *game, t_rays *ray, float x, float y);
 void	loop_check_h(t_game *game, t_rays *ray, float theta);
 void	loop_check_v(t_game *game, t_rays *ray, float theta);
 
@@ -244,7 +248,8 @@ void	check_vertical(t_game *game, t_rays *ray);
 int		horiz_wall(t_game *game, t_rays *ray);
 void	fix_fisheye(t_game *game, t_rays *ray);
 int 	get_color(t_text *text, int y, int x);
-void    draw_wall_texture(t_game *game, int x, float y_start, float y_end, int i, float texture_offset, float tex_step);
+void	draw_wall_texture(t_game *game, int x, int i, float texture_offset);
+// void    draw_wall_texture(t_game *game, int x, float y_start, float y_end, int i, float texture_offset, float tex_step);
 void    print_wall(t_game *game, t_rays *ray, int x, int i);
 
 // CASTING.C
