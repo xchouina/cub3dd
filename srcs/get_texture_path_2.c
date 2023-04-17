@@ -7,7 +7,6 @@ void	init_texture_tab(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		game->text[i].textures_path = ft_calloc(5, sizeof(char *));
 		game->text[i].textures_path = NULL;
 		i++;
 	}

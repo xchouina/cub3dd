@@ -14,7 +14,6 @@ void	init_value(t_game *game)
 	game->square_map = NULL;
 	game->tab_fd = NULL;
 	game->map = NULL;
-	//game->text.textures_tab = NULL;
 	game->image = 0;
 	game->a_is_press = 0;
 	game->d_is_press = 0;

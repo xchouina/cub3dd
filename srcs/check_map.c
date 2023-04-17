@@ -68,15 +68,15 @@ void	outside_map(t_game *game)
 
 void	floodfill(int x, int y, t_game *game)
 {
-	if (game->map[x][y] < 37)
+	if (game->map[x] && game->map[x][y] < 37)
 	{
 		dprintf(2, "map not closed\n");
 		ft_quit(game);
 	}
-	if (game->map[x][y] == '0' || game->map[x][y] == 'N' || \
-	game->map[x][y] == 'E' || game->map[x][y] == 'W' || game->map[x][y] == 'S')
+	if (game->map[x] && (game->map[x][y] == '0' || game->map[x][y] == 'N' || \
+	game->map[x][y] == 'E' || game->map[x][y] == 'W' || game->map[x][y] == 'S'))
 	{
-		if (x <= 0 || y <= 0)
+		if (x <= 0 || y <= 0 || x >= game->map_height - 2)
 			outside_map(game);
 		if (game->map[x][y] == 'N' || game->map[x][y] == 'E' \
 		|| game->map[x][y] == 'W' || game->map[x][y] == 'S')

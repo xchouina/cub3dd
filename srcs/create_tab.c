@@ -54,7 +54,9 @@ void	fill_map_tab(t_game *game)
 	int	i;
 
 	i = 0;
+	printf("%d\n", game->map_height);
 	game->map = ft_calloc(game->map_height, sizeof(char *));
+	game->map[game->map_height] = NULL;
 	while (i < game->map_height - 1)
 	{
 		game->map[i] = ft_strdup(game->tab_fd[game->map_start]);

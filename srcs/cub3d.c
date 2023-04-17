@@ -26,42 +26,48 @@
 // 	}
 // }
 
-void	print_colors_mlx42(t_game *game, int i)
-{
-	uint32_t	y;
-	uint32_t	x;
+// void	print_colors_mlx42(t_game *game, int i)
+// {
+// 	uint32_t	y;
+// 	uint32_t	x;
 
-	y = 0;
-	x = 0;
-	printf("-----------------------------------------------------------------------------------\n");
-	while (x <= 25)
-	{
-		printf("(R)%u--(G)%u--(B)%u--(A)%u--", game->text[i].xpm->texture.pixels[x], game->text[i].xpm->texture.pixels[x + 1], game->text[i].xpm->texture.pixels[x + 2], game->text[i].xpm->texture.pixels[x + 3]);
-		x += 4;
-	}
-	printf("\n");
-}
+// 	y = 0;
+// 	x = 0;
+// 	printf("-----------------------------------------------------------------------------------\n");
+// 	while (x <= 100)
+// 	{
+// 		char R = (char)game->text[i].xpm->texture.pixels[x];
+// 		char G = (char)game->text[i].xpm->texture.pixels[x] + 1;
+// 		char B;
+// 		char A;
+		
+		
+// 		printf("(R)%d--(G)%d--(B)%d--(A)%d--", (char)game->text[i].xpm->texture.pixels[x], (char)game->text[i].xpm->texture.pixels[x + 1], (char)game->text[i].xpm->texture.pixels[x + 2], (char)game->text[i].xpm->texture.pixels[x + 3]);
+// 		x += 4;
+// 	}
+// 	printf("\n");
+// }
 
-void	print_colors_tab(t_game *game, int i)
-{
-	uint32_t	y;
-	uint32_t	x;
+// void	print_colors_tab(t_game *game, int i)
+// {
+// 	uint32_t	y;
+// 	uint32_t	x;
 
-	y = 0;
-	x = 0;
-	printf("-----------------------------------------------------------------------------------\n");
-	while (y < game->text->xpm->texture.height)
-	{
-		while (x <= (game->text[i].xpm->texture.width / 4))
-		{
-			printf("%u", game->text[i].colors[y][x]);
-			x++;
-		}
-		printf("\n");
-		x = 0;
-		y++;
-	}
-}
+// 	y = 0;
+// 	x = 0;
+// 	printf("-----------------------------------------------------------------------------------\n");
+// 	while (y < game->text->xpm->texture.height)
+// 	{
+// 		while (x <= (game->text[i].xpm->texture.width / 4))
+// 		{
+// 			printf("%u", game->text[i].colors[y][x]);
+// 			x++;
+// 		}
+// 		printf("\n");
+// 		x = 0;
+// 		y++;
+// 	}
+// }
 
 void	print_tab_fd(t_game *tab)
 {

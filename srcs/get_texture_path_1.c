@@ -1,15 +1,37 @@
 #include "cub3d.h"
 
+void	texture_error(char *path, t_game *game)
+{
+	dprintf(2, "texture %s error\n", path);
+	ft_quit(game);
+}
+
 void	fill_text_path_in_order(t_game *game, int start, int len, int i)
 {
 	if (ft_strncmp("NO", game->tab_fd[i], 2) == 0)
+	{
 		game->text[0].textures_path = ft_substr(game->tab_fd[i], start, len);		
+		if(open(game->text[0].textures_path, O_RDONLY) == -1)
+			texture_error("NO", game);
+	}
 	else if (ft_strncmp("SO", game->tab_fd[i], 2) == 0)
+	{
 		game->text[1].textures_path = ft_substr(game->tab_fd[i], start, len);
+		if(open(game->text[1].textures_path, O_RDONLY) == -1)
+			texture_error("SO", game);
+	}
 	else if (ft_strncmp("WE", game->tab_fd[i], 2) == 0)
+	{
 		game->text[2].textures_path = ft_substr(game->tab_fd[i], start, len);
+		if(open(game->text[2].textures_path, O_RDONLY) == -1)
+			texture_error("WE", game);
+	}
 	else if (ft_strncmp("EA", game->tab_fd[i], 2) == 0)
+	{
 		game->text[3].textures_path = ft_substr(game->tab_fd[i], start, len);
+		if(open(game->text[3].textures_path, O_RDONLY) == -1)
+			texture_error("EA", game);
+	}
 }
 
 void	get_text_p(t_game *game, int i, char *str_space, char *str_tab)

@@ -148,32 +148,25 @@ void	fill_text_tab_colors(t_game *game, int i, uint32_t y, uint32_t x)
 	uint32_t	k;
 	uint32_t	m;
 	int			l;
-	uint32_t			f;
+	uint32_t	f;
 
 	f = x * 4;
-
 	m = 0;
 	j = 0;
 	k = 0;
 	l = 0;
 	while (j <= y)
 	{
-		//printf("texture_width = %d\n", game->text[i].xpm->texture.width);
 		game->text[i].colors[j] = ft_calloc(game->text[i].xpm->texture.width, sizeof(uint32_t));
 		while (m < f)
 		{
-			// printf("%p--%p--%p--%p", game->text[i].xpm->texture.pixels[k], game->text[i].xpm->texture.pixels[k + 1], game->text[i].xpm->texture.pixels[k + 2], game->text[i].xpm->texture.pixels[k + 3]);
 			game->text[i].colors[j][l] = rgba_to_int(game->text[i].xpm->texture.pixels[k], \
 			game->text[i].xpm->texture.pixels[k + 1], game->text[i].xpm->texture.pixels[k + 2], \
 			game->text[i].xpm->texture.pixels[k + 3]);
-			//printf("%u\n", game->text[i].colors[j][l]);
 			k += 4;
 			m += 4;
 			l++;
 		}
-		printf("k = %d\n", k);
-		printf("x = %d\n", x);
-		printf("j = %d\n", j);
 		l = 0;
 		m = 0;
 		j++;
@@ -186,9 +179,7 @@ void parsing_textures(t_game *game)
 	i = 0;
 	while (i < 4)
 	{
-		printf("path = %s\n", game->text[i].textures_path);
 		game->text[i].xpm = mlx_load_xpm42(game->text[i].textures_path);
-		//print_colors_mlx42(game, i);
 		i++;
 	}
 	i = 0;
@@ -196,20 +187,6 @@ void parsing_textures(t_game *game)
 	{
 		game->text[i].colors = ft_calloc(game->text[i].xpm->texture.height, sizeof(uint32_t *));
 		fill_text_tab_colors(game, i, game->text[i].xpm->texture.height, game->text[i].xpm->texture.width);
-		printf("separeted\n");
-		//print_colors_tab(game, i);
 		i++;
 	}
-
-	// printf("");
-	// parsing_colors_no(game);
-	// parsing_colors_so(game);
-	// parsing_colors_we(game);
-	// parsing_colors_ea(game);
-	// parsing_textures_no(game);
-	// parsing_textures_so(game);
-	// parsing_textures_we(game);
-	// parsing_textures_ea(game);
-	// tab_colors_texture_no(game);
-	// ne pas hard coder faire un while pour crer les tab et prendre des image pas plus grosse que 100/100
 }

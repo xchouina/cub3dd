@@ -28,3 +28,21 @@
 	...
 	fun:objc_msgLookup_fpret
 }
+{
+	getClass_impl
+	Memcheck:Leak
+	...
+	fun:objc_msgLookup_fpret
+}
+{
+	-[__NSPlaceholderArray initWithObjects:count:]
+	Memcheck:Leak
+	...
+	fun:objc_msgLookup_fpret
+}
+{
+	_dispatch_calloc
+	Memcheck:Leak
+	...
+	fun:objc_msgLookup_fpret
+}
