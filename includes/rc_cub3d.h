@@ -1,25 +1,20 @@
-#ifndef RC_CUB3D_H
-# define RC_CUB3D_H
+// #ifndef RC_CUB3D_H
+// # define RC_CUB3D_H
 
-# define WIN_W		1980
-# define WIN_H		1080
-# define TILE_SIZE	25
-# define FOV		60		// Field of view
-# define NUM_RAYS	2400	// Number of rays to cast
 
-typedef struct s_rays //DATA FOR EACH RAYS
-{
-	float	angle; //degree
-	float	x;		//check
-	float	y;		//check
-	float	wall[2];	//wall[0] = coord x || wall[1] = coord y
-	float	h_check[2];
-	float	v_check[2];
-	float	dist;
-	int		id;
-	int		h_wall_found;
-	int		v_wall_found;
-}	t_rays;
+// typedef struct s_rays //DATA FOR EACH RAYS
+// {
+// 	float	angle; //degree
+// 	float	x;		//check
+// 	float	y;		//check
+// 	float	wall[2];	//wall[0] = coord x || wall[1] = coord y
+// 	float	h_check[2];
+// 	float	v_check[2];
+// 	float	dist;
+// 	int		id;
+// 	int		h_wall_found;
+// 	int		v_wall_found;
+// }	t_rays;
 
 // typedef struct s_line //FOR DRAW_LINE FUNCTION
 // {

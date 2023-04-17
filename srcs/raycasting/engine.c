@@ -55,7 +55,7 @@ void	init_assets(t_game	*game)
 	game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->ang_incr = (float)FOV / (float)NUM_RAYS;
 	game->map_x = game->max_line;
-	game->map_y = game->height_Q + 1;
+	game->map_y = game->height_q + 1;
 	game->delta_x = cos(deg2rad(90));
 	game->delta_y = -sin(deg2rad(90));
 	find_starting_angle(game);

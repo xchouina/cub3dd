@@ -1,4 +1,3 @@
-
 #include "cub3d.h"
 
 void	max_map(t_game *game)
@@ -8,7 +7,7 @@ void	max_map(t_game *game)
 
 	i = 0;
 	j = 0;
-	while (i < game->height_Q)
+	while (i < game->height_q)
 	{
 		j = 0;
 		if (game->square_map[i][j] != '\0')

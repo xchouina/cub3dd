@@ -48,7 +48,7 @@ void	print_minimap(t_game *game)
 	int	y;
 
 	y = 0;
-	while (y <= game->height_Q)
+	while (y <= game->height_q)
 	{
 		x = 0;
 		while (x < game->max_line)

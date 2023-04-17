@@ -199,6 +199,7 @@ void parsing_textures(t_game *game)
 		// printf("separeted\n");
 		//print_colors_tab(game, i);
 		i++;
+	// printf("HERE\n");
 	}
 
 	// printf("");

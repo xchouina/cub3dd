@@ -112,7 +112,6 @@ int	main(int argc, char **argv)
 	t_pos			player;
 	// t_textures 		textures;
 	// t_mlx_instance	instance;
-
 	(void)player;
 	// (void)textures;
 	// (void)instance;
@@ -123,6 +122,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (parsing_path(&game) == 1)
 		return (1);
+	// printf("HERE\n");
 	parsing_textures(&game);
 	starting_engine(&game);
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);
