@@ -1,17 +1,14 @@
-SO		textures/colored_wall.xpm42
-WE		textures/colored_wall.xpm42
-NO		textures/colored_wall.xpm42
-EA 		textures/colored_wall.xpm42
+NO		textures/red_wall.xpm42
+SO		textures/pink_wall.xpm42
+WE		textures/yellow_wall.xpm42
+EA 		textures/purple_wall.xpm42
 
-F 0,100,1
-C 0,1,156
+F 0,100,0
+C 0,110,170
 
-11111111
-101011
-100011
-100011
-1000111
-1000111
-100001
-10N01
-11111111
+11111111111
+10000000001
+111100N0001
+10000000001
+11111101111
+     1111
