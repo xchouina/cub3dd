@@ -1,5 +1,27 @@
 #include "cub3d.h"
 
+void	check_char(char **f)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	j = 0;
+	while (f[i])
+	{
+		while (f[i][j] != '\0')
+		{
+			if ((f[i][j] >= 33 && f[i][j] <= 47) || (f[i][j] >= 58 && f[i][j] <= 126))
+			{
+				printf("rgb not number\n");
+				exit(1);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 void	init_texture_tab(t_game *game)
 {
 	int	i;
@@ -18,13 +40,21 @@ void	split_colors(t_game *game)
 	char **f;
 	char **g;
 
-	check_comma(game);
 	f = ft_split(game->ground_colors, ',');
 	g = ft_split(game->ceiling_colors, ',');
+	check_comma(game);
+	check_char(f);
+	check_char(g);
 	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \
 	|| (ft_atoi(g[0]) > 255) || (ft_atoi(g[1]) > 255) || (ft_atoi(g[2]) > 255))
 	{
 		dprintf(2, "rgb more than 255\n");
+		ft_quit(game);
+	}
+	else if ((ft_atoi(f[0]) < 0) || (ft_atoi(f[1]) < 0) || (ft_atoi(f[2]) < 0) \
+	|| (ft_atoi(g[0]) < 0) || (ft_atoi(g[1]) < 0) || (ft_atoi(g[2]) < 0))
+	{
+		dprintf(2, "rgb less than 255\n");
 		ft_quit(game);
 	}
 	game->textures.couleur_floor = rgbtab_to_int(f);

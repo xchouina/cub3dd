@@ -5,13 +5,13 @@ void	open_fd(char *argv, t_game *game)
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
 	{
-		dprintf(2, "fd error");
-		ft_quit(game);
+		dprintf(2, "fd error\n");
+		exit(1);
 	}
 	if (!ft_strendcmp(argv, ".cub"))
 	{
-		dprintf(2, ".cub error");
-		ft_quit(game);
+		dprintf(2, ".cub error\n");
+		exit(1);
 	}
 	return ;
 }
@@ -50,7 +50,6 @@ void	fill_map_tab(t_game *game)
 	int	i;
 
 	i = 0;
-	printf("%d\n", game->map_height);
 	game->map = ft_calloc(game->map_height, sizeof(char *));
 	while (i < game->map_height - 1)
 	{

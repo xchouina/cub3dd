@@ -120,11 +120,11 @@ int	main(int argc, char **argv)
 	(void)player;
 	game.fd = 0;
 	if (argc != 2)
-		return (1);
+		exit(1);
 	if (parsing(&game, argv[1]) == 1)
 		return (1);
 	if (parsing_path(&game) == 1)
-		return (1);
+		exit(1);
 	parsing_textures(&game);
 	starting_engine(&game);
 	mlx_loop_hook(game.mlx, &key_hook_move, &game);

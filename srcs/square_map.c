@@ -17,13 +17,11 @@ void find_first_q_of_line(int i, int j, t_game *game)
 	game->first_q_of_line--;
 }
 
-int find_max_line(int i, t_game *game)
+int	find_max_line(int i, t_game *game)
 {
-	int j;
+	int	j;
 
 	j = 0;
-	printf("i = %d\n", i);
-	printf("game.map[i] = %s\n", game->map[i + 1]);
 	while (game->map[i][j] != '\0')
 	{
 		if (game->map[i][j] == 'Q')
