@@ -7,10 +7,6 @@ CFILES =	cub3d.c 					\
 			parsing_2.c					\
 			create_tab.c				\
 			check_map.c					\
-			raycasting/engine.c			\
-			raycasting/minimap.c		\
-			raycasting/casting2.c 		\
-			raycasting/toolbox.c		\
 			init_values.c				\
 			get_texture_path_1.c 		\
 			get_texture_path_2.c 		\
@@ -19,8 +15,13 @@ CFILES =	cub3d.c 					\
 			square_map.c 				\
 			max_map.c					\
 			textures_parsing.c			\
-			colors_tab.c				\
-			# raycasting/wall_texture.c	\
+			raycasting/engine.c			\
+			raycasting/minimap.c		\
+			raycasting/toolbox.c		\
+			raycasting/checks_1.c		\
+			raycasting/checks_2.c		\
+			raycasting/casting.c 		\
+			raycasting/printing_walls.c	\
 
 NAME = cub3d
 

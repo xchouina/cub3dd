@@ -3,20 +3,20 @@
 void	check_direction_2(t_game *game, int i)
 {
 	if (ft_strncmp("WE", game->tab_fd[i], 2) == 0)
-		game->dir_WE++;
+		game->dir_we++;
 	if (ft_strncmp("EA", game->tab_fd[i], 2) == 0)
-		game->dir_EA++;
+		game->dir_ea++;
 	if (ft_strncmp("F", game->tab_fd[i], 1) == 0)
-		game->dir_F++;
+		game->dir_f++;
 	if (ft_strncmp("C", game->tab_fd[i], 1) == 0)
-		game->dir_C++;
+		game->dir_c++;
 	check_direction_complete(game);
 }
 
 void	check_direction_complete(t_game *game)
 {
-	if (game->dir_NO == 1 && game->dir_SO == 1 && game->dir_WE == 1 \
-	&& game->dir_EA == 1 && game->dir_F == 1 && game->dir_C == 1)
+	if (game->dir_no == 1 && game->dir_so == 1 && game->dir_we == 1 \
+	&& game->dir_ea == 1 && game->dir_f == 1 && game->dir_c == 1)
 		game->direction_complete = 1;
 }
 
@@ -59,9 +59,9 @@ void	check_direction(t_game *game)
 			return ;
 		}
 		if (ft_strncmp(game->tab_fd[i], "NO", 2) == 0)
-			game->dir_NO++;
+			game->dir_no++;
 		if (ft_strncmp("SO", game->tab_fd[i], 2) == 0)
-			game->dir_SO++;
+			game->dir_so++;
 		check_direction_2(game, i);
 		if (game->direction_complete != 1)
 			check_if_map_last(game, i);
@@ -80,13 +80,15 @@ int	parsing(t_game *game, char *argv)
 	//parsing a faire pour les point cardinaux et les couleur avant tab_map
 	// fd_create_tab_map(game, fd);
 	// check_6_first_line(game);
+	game->map_height = 1;
+	game->map_start = 0;
 	fd_create_tab_map(game);
 	check_direction(game);
 	fill_map_tab(game);
 	check_map(game);
 	game->map_height--;
 	square_map(game);
-	game->player.player_mm.position_x = game->player.player_mm.position_x - (game->first_Q_of_line);
+	game->player.player_mm.position_x = game->player.player_mm.position_x - (game->first_q_of_line);
 	//parsing_orientation(game);
 	return (0);
 }

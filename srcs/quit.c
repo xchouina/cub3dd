@@ -10,7 +10,6 @@ void	ft_quit_2(t_game *game)
 		if (game->text[i].textures_path != NULL)
 		{
 			free(game->text[i].textures_path);
-			//free(&game->text[i]);
 		}
 		i++;
 	}

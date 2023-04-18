@@ -1,10 +1,10 @@
 /* XPM */
-static char *_2457_f20f6c00d13fd1467f195e5427faa1e0bcdd25ec50826e627f93d0275cd4aaf2[] = {
+static char *_4583_bedeef7a7fad72dbf764ffad2b24d43c06abcfad6697a6f9c4d2094cec11c315[] = {
 /* columns rows colors chars-per-pixel */
 "25 25 3 1 ",
 "  c black",
-". c gray63",
-"X c #C3C3C3",
+". c #FF4081",
+"X c #FF80AB",
 /* pixels */
 "                         ",
 " XXXXXXXXXXX XXXXXXXXXXX ",

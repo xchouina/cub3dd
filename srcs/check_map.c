@@ -92,16 +92,16 @@ void	floodfill(int x, int y, t_game *game)
 	floodfill(x, y - 1, game);
 }
 
-void	print_floodfill(t_game *game)
-{
-	int	i;
+// void	print_floodfill(t_game *game)
+// {
+// 	int	i;
 
-	i = 0;
-	usleep(100000);
-	printf("\e[1;1H\e[2J");
-	while (game->map[i])
-	{
-		printf("%s\n", game->map[i]);
-		i++;
-	}
-}
+// 	i = 0;
+// 	usleep(100000);
+// 	printf("\e[1;1H\e[2J");
+// 	while (game->map[i])
+// 	{
+// 		printf("%s\n", game->map[i]);
+// 		i++;
+// 	}
+// }

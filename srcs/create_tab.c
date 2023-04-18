@@ -2,7 +2,6 @@
 
 void	open_fd(char *argv, t_game *game)
 {
-
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
 	{
@@ -20,12 +19,10 @@ void	open_fd(char *argv, t_game *game)
 void	fd_create_tab_map(t_game *game)
 {
 	int	i;
-	int j;
+	int	j;
 
 	i = 0;
 	j = 0;
-	game->map_height = 1;
-	game->map_start = 0;
 	while (i < game->height_fd)
 	{
 		while (game->tab_fd[i][j] != '\0')
@@ -48,7 +45,6 @@ void	fd_create_tab_map(t_game *game)
 	}
 }
 
-//protege les calloc en cas de problemes
 void	fill_map_tab(t_game *game)
 {
 	int	i;
@@ -56,7 +52,6 @@ void	fill_map_tab(t_game *game)
 	i = 0;
 	printf("%d\n", game->map_height);
 	game->map = ft_calloc(game->map_height, sizeof(char *));
-	game->map[game->map_height] = NULL;
 	while (i < game->map_height - 1)
 	{
 		game->map[i] = ft_strdup(game->tab_fd[game->map_start]);
