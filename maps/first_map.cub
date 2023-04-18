@@ -3,12 +3,9 @@ SO		textures/pink_wall.xpm42
 WE		textures/yellow_wall.xpm42
 EA 		textures/purple_wall.xpm42
 
-F 0,100,0
-C 0,110,170
+F 80,80,80
+C 255,110,170
 
-11111111111
-10000000001
-111100N0001
-10000000001
-11111101111
-     1111
+111
+1W1
+111

@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   square_map.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:38:44 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 13:38:45 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
-void find_first_q_of_line(int i, int j, t_game *game)
+void	find_first_q_of_line(int i, int j, t_game *game)
 {
 	game->first_q_of_line = game->max_line;
 	while (i < game->max_line)
 	{
 		if (!ft_strchr(game->map[i], 'Q'))
-			break;
+			break ;
 		while (game->map[i][j] != 'Q')
 			j++;
 		if (game->first_q_of_line > j)
@@ -17,9 +29,9 @@ void find_first_q_of_line(int i, int j, t_game *game)
 	game->first_q_of_line--;
 }
 
-int find_max_line(int i, t_game *game)
+int	find_max_line(int i, t_game *game)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (game->map[i][j] != '\0')
@@ -34,14 +46,15 @@ int find_max_line(int i, t_game *game)
 	return (i);
 }
 
-int find_first_line(int i, t_game *game)
+int	find_first_line(int i, t_game *game)
 {
-	int j;
+	int	j;
 
 	j = 0;
 	while (!ft_strchr(game->map[i], 'Q'))
 		i++;
-	game->player.player_mm.position_y = game->player.player_mm.position_y - (i - 1);
+	game->player.player_mm.position_y
+		= game->player.player_mm.position_y - (i - 1);
 	game->height_q = game->height_q - i;
 	find_first_q_of_line(i, j, game);
 	return (i - 1);
@@ -49,17 +62,22 @@ int find_first_line(int i, t_game *game)
 
 void	fill_square_map(int k, int i, int j, t_game *game)
 {
-	game->square_map[k] = ft_calloc(game->max_line - game->first_q_of_line, sizeof(char));
-	while (j < (game->max_line - game->first_q_of_line) - 1)
+	game->square_map[k]
+		= ft_calloc(game->max_line - game->first_q_of_line, sizeof(char));
+	while (++j < (game->max_line - game->first_q_of_line) - 1)
 	{
-		if (game->map[i][j + game->first_q_of_line] == ' ' || game->map[i][j + game->first_q_of_line] == '	' || game->map[i][j + game->first_q_of_line] == '0' \
-		|| game->map[i][j + game->first_q_of_line] == '\n' || game->map[i][j + game->first_q_of_line] == '1' || game->map[i][j + game->first_q_of_line] == '\0')
+		if (game->map[i][j + game->first_q_of_line] == ' '
+			|| game->map[i][j + game->first_q_of_line] == '	'
+			|| game->map[i][j + game->first_q_of_line] == '0'
+			|| game->map[i][j + game->first_q_of_line] == '\n'
+			|| game->map[i][j + game->first_q_of_line] == '1'
+			|| game->map[i][j + game->first_q_of_line] == '\0')
 			game->square_map[k][j] = '1';
 		else if (game->map[i][j + game->first_q_of_line] == 'Q')
 			game->square_map[k][j] = 'Q';
 		else
 			game->square_map[k][j] = '1';
-		if(game->map[i][j + game->first_q_of_line] == '\n')
+		if (game->map[i][j + game->first_q_of_line] == '\n')
 		{
 			while (j < (game->max_line - game->first_q_of_line) - 1)
 			{
@@ -67,19 +85,18 @@ void	fill_square_map(int k, int i, int j, t_game *game)
 				j++;
 			}
 		}
-		j++;
 	}
 	game->square_map[k][j] = '\n';
 }
 
 void	square_map(t_game *game)
 {
-	int i;
-	int j;
+	int	i;
+	int	j;
 	int	k;
 
 	i = 0;
-	j = 0;
+	j = -1;
 	k = -1;
 	while (i < game->map_height)
 	{

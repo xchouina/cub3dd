@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_texture_path_2.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:02:05 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 13:02:06 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	init_texture_tab(t_game *game)
@@ -16,8 +28,8 @@ void	init_texture_tab(t_game *game)
 
 void	split_colors(t_game *game)
 {
-	char **f;
-	char **g;
+	char	**f;
+	char	**g;
 
 	check_comma(game);
 	f = ft_split(game->ground_colors, ',');
@@ -60,7 +72,6 @@ void	get_floor_color(t_game *game, int i)
 		len++;
 	}
 	game->ground_colors = ft_substr(game->tab_fd[i], start, len);
-	// printf("game.ground_color = %s\n", game->ground_colors);
 }
 
 void	get_roof_color(t_game *game, int i)
@@ -89,5 +100,4 @@ void	get_roof_color(t_game *game, int i)
 		len++;
 	}
 	game->ceiling_colors = ft_substr(game->tab_fd[i], start, len);
-	// printf("game.ceiling_color = %s\n", game->ceiling_colors);
 }

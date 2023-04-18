@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parsing.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:07:39 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 13:07:40 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	check_direction_2(t_game *game, int i)
@@ -25,16 +37,19 @@ void	check_if_map_last(t_game *game, int i)
 	int	j;
 
 	j = 0;
-	if (ft_strncmp("NO", game->tab_fd[i], 2) == 0 || \
-	ft_strncmp("SO", game->tab_fd[i], 2) == 0 || ft_strncmp("WE", game->tab_fd[i], 2) == 0 || \
-	ft_strncmp("EA", game->tab_fd[i], 2) == 0 || ft_strncmp("F", game->tab_fd[i], 1) == 0 || \
-	ft_strncmp("C", game->tab_fd[i], 1) == 0)
+	if (ft_strncmp("NO", game->tab_fd[i], 2) == 0
+		|| ft_strncmp("SO", game->tab_fd[i], 2) == 0
+		|| ft_strncmp("WE", game->tab_fd[i], 2) == 0
+		|| ft_strncmp("EA", game->tab_fd[i], 2) == 0
+		|| ft_strncmp("F", game->tab_fd[i], 1) == 0
+		|| ft_strncmp("C", game->tab_fd[i], 1) == 0)
 		return ;
 	while (game->tab_fd[i][j] != '\0')
 	{
 		if (game->direction_complete == 1)
 			return ;
-		while (ft_iswhitespace(game->tab_fd[i][j]) == true && game->tab_fd[i][j] != '\n')
+		while (ft_iswhitespace(game->tab_fd[i][j]) == true
+			&& game->tab_fd[i][j] != '\n')
 			j++;
 		if (game->tab_fd[i][j] == '1' || game->tab_fd[i][j] == '0')
 		{
@@ -76,17 +91,13 @@ int	parsing(t_game *game, char *argv)
 	init_value(game);
 	open_fd(argv, game);
 	fd_create_tab_fd(game, argv);
-	//print_tab_fd(game);
-	//parsing a faire pour les point cardinaux et les couleur avant tab_map
-	// fd_create_tab_map(game, fd);
-	// check_6_first_line(game);
 	fd_create_tab_map(game);
 	check_direction(game);
 	fill_map_tab(game);
 	check_map(game);
 	game->map_height--;
 	square_map(game);
-	game->player.player_mm.position_x = game->player.player_mm.position_x - (game->first_q_of_line);
-	//parsing_orientation(game);
+	game->player.player_mm.position_x
+		= game->player.player_mm.position_x - (game->first_q_of_line);
 	return (0);
 }

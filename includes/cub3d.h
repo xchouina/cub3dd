@@ -1,11 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:46:50 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 13:47:27 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
 # define WIN_W		1980
 # define WIN_H		1080
 # define TILE_SIZE	25
-# define FOV		60		// Field of view
-# define NUM_RAYS	2400	// Number of rays to cast
+# define FOV		60
+# define NUM_RAYS	2400
+# define MOV_SP 1
+# define ROT_SP 2
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -204,6 +218,8 @@ void		w_press(t_game *game);
 void		s_press(t_game *game);
 void		d_press(t_game *game);
 void		a_press(t_game *game);
+void		left_press(t_game *game);
+void		right_press(t_game *game);
 
 //print_test
 void		print_player_pos(t_game *game);
@@ -229,33 +245,29 @@ void		render(t_game *game);
 char		*ft_double_2_singlearray(char **da);
 int			rgb_to_int(int r, int g, int b);
 
-
-
-
 // CHECKS.C
-int		check(t_game *game, t_rays *ray, float x, float y);
-int		check_l(t_game *game, t_rays *ray, float x, float y);
-void	loop_check_h(t_game *game, t_rays *ray, float theta);
-void	loop_check_v(t_game *game, t_rays *ray, float theta);
+int			check(t_game *game, t_rays *ray, float x, float y);
+int			check_l(t_game *game, t_rays *ray, float x, float y);
+void		loop_check_h(t_game *game, t_rays *ray, float theta);
+void		loop_check_v(t_game *game, t_rays *ray, float theta);
 
 //  CHECKS_2.C
-void	first_check_h(t_game *game, t_rays *ray, float theta);
-void	first_check_v(t_game *game, t_rays *ray, float theta);
-void	check_horizontal(t_game *game, t_rays *ray);
-void	check_vertical(t_game *game, t_rays *ray);
+void		first_check_h(t_game *game, t_rays *ray, float theta);
+void		first_check_v(t_game *game, t_rays *ray, float theta);
+void		check_horizontal(t_game *game, t_rays *ray);
+void		check_vertical(t_game *game, t_rays *ray);
 
 // PRINTING_WALLS.C
-int		horiz_wall(t_game *game, t_rays *ray);
-void	fix_fisheye(t_game *game, t_rays *ray);
-int 	get_color(t_text *text, int y, int x);
-void	draw_wall_texture(t_game *game, int x, int i, float texture_offset);
-// void    draw_wall_texture(t_game *game, int x, float y_start, float y_end, int i, float texture_offset, float tex_step);
-void    print_wall(t_game *game, t_rays *ray, int x, int i);
+int			horiz_wall(t_game *game, t_rays *ray);
+void		fix_fisheye(t_game *game, t_rays *ray);
+int			get_color(t_text *text, int y, int x);
+void		draw_wall_texture(t_game *game, int x, int i, float texture_offset);
+void		print_wall(t_game *game, t_rays *ray, int x, int i);
 
 // CASTING.C
-void	create_rays(t_game *game);
-void	fix_sign(t_rays *ray);
-int		ret_zero(t_rays *ray);
-void    cast_rays(t_game *game);
+void		create_rays(t_game *game);
+void		fix_sign(t_rays *ray);
+int			ret_zero(t_rays *ray);
+void		cast_rays(t_game *game);
 
 #endif

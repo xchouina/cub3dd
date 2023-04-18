@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_map.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 12:51:57 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 12:53:31 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	check_map(t_game *game)
@@ -30,7 +42,7 @@ void	check_symbol_and_doublon(t_game *game)
 			}
 			else
 			{
-				dprintf(2, "%c = symbol error\n", game->map[i][j]);
+				dprintf(2, "Error: Invalid symbol. (%c)\n", game->map[i][j]);
 				ft_quit(game);
 			}
 		}
@@ -52,7 +64,7 @@ void	check_end_line(t_game *game, int i, int j)
 		game->player.player_mm.position_y = i;
 		if (game->doublons != 0)
 		{
-			dprintf(2, "too many players on map\n");
+			dprintf(2, "Error: Invalid ammount of players on the map.\n");
 			ft_quit(game);
 		}
 		else
@@ -62,7 +74,7 @@ void	check_end_line(t_game *game, int i, int j)
 
 void	outside_map(t_game *game)
 {
-	dprintf(2, "you are outside of the map\n");
+	dprintf(2, "Failsafe: Player out of map's perimeters\n");
 	ft_quit(game);
 }
 
@@ -70,7 +82,7 @@ void	floodfill(int x, int y, t_game *game)
 {
 	if (game->map[x][y] < 37)
 	{
-		dprintf(2, "map not closed\n");
+		dprintf(2, "Error: Invalid map.\n");
 		ft_quit(game);
 	}
 	if (game->map[x][y] == '0' || game->map[x][y] == 'N' || \
@@ -85,23 +97,8 @@ void	floodfill(int x, int y, t_game *game)
 	}
 	else
 		return ;
-	//print_floodfill(game);
 	floodfill(x - 1, y, game);
 	floodfill(x, y + 1, game);
 	floodfill(x + 1, y, game);
 	floodfill(x, y - 1, game);
-}
-
-void	print_floodfill(t_game *game)
-{
-	int	i;
-
-	i = 0;
-	usleep(100000);
-	printf("\e[1;1H\e[2J");
-	while (game->map[i])
-	{
-		printf("%s\n", game->map[i]);
-		i++;
-	}
 }

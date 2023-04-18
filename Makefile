@@ -10,11 +10,9 @@ CFILES =	cub3d.c 					\
 			init_values.c				\
 			get_texture_path_1.c 		\
 			get_texture_path_2.c 		\
-			key_hook.c					\
 			square_map.c 				\
 			max_map.c					\
 			textures_parsing.c			\
-			colors_tab.c				\
 			raycasting/engine.c			\
 			raycasting/minimap.c		\
 			raycasting/toolbox.c		\
@@ -23,6 +21,7 @@ CFILES =	cub3d.c 					\
 			raycasting/casting.c 		\
 			raycasting/printing_walls.c	\
 			raycasting/movements.c		\
+			raycasting/key_hook.c		\
 
 NAME = cub3d
 

@@ -1,0 +1,13 @@
+NO		textures/pink_wall.xpm42
+SO		textures/pink_wall.xpm42
+WE		textures/pink_wall.xpm42
+EA 		textures/pink_wall.xpm42
+
+F 200,200,200
+C 255,255,255
+
+11111111111
+10000000001
+10000W00001
+10000000001
+11111111111

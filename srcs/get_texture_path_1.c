@@ -1,9 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_texture_path_1.c                               :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:01:34 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/18 13:01:35 by xchouina         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	fill_text_path_in_order(t_game *game, int start, int len, int i)
 {
 	if (ft_strncmp("NO", game->tab_fd[i], 2) == 0)
-		game->text[0].textures_path = ft_substr(game->tab_fd[i], start, len);		
+		game->text[0].textures_path = ft_substr(game->tab_fd[i], start, len);
 	else if (ft_strncmp("SO", game->tab_fd[i], 2) == 0)
 		game->text[1].textures_path = ft_substr(game->tab_fd[i], start, len);
 	else if (ft_strncmp("WE", game->tab_fd[i], 2) == 0)
@@ -41,7 +53,6 @@ void	get_text_p(t_game *game, int i, char *str_space, char *str_tab)
 	fill_text_path_in_order(game, start, len, i);
 }
 
-
 int	parsing_path(t_game *game)
 {
 	int	i;
@@ -65,7 +76,5 @@ int	parsing_path(t_game *game)
 		i++;
 	}
 	split_colors(game);
-	// if (game->checker == 1)
-	// 	return (1);
 	return (0);
 }

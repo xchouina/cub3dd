@@ -6,7 +6,7 @@
 /*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:56:25 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/18 10:56:28 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/18 11:24:08 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	sky_n_ground(t_game *game)
 		x = -1;
 		y++;
 	}
-	mlx_image_to_window(game->mlx, game->img, 0, 0);
 }
 
 void	find_starting_angle(t_game *game)
@@ -63,6 +62,7 @@ void	init_assets(t_game	*game)
 {
 	game->mlx = mlx_init(WIN_W, WIN_H, "Cub3d", true);
 	game->img = mlx_new_image(game->mlx, WIN_W, WIN_H);
+	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->ang_incr = (float)FOV / (float)NUM_RAYS;
 	game->map_x = game->max_line;
