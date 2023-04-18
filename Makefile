@@ -11,7 +11,6 @@ CFILES =	cub3d.c 					\
 			get_texture_path_1.c 		\
 			get_texture_path_2.c 		\
 			key_hook.c					\
-			move_mini_player.c			\
 			square_map.c 				\
 			max_map.c					\
 			textures_parsing.c			\
@@ -23,6 +22,7 @@ CFILES =	cub3d.c 					\
 			raycasting/checks_2.c		\
 			raycasting/casting.c 		\
 			raycasting/printing_walls.c	\
+			raycasting/movements.c		\
 
 NAME = cub3d
 
@@ -41,8 +41,8 @@ GNL_HEADER = ./Get_next_line/get_next_line.h
 GNL_PATH = ./Get_next_line/
 GNL_SRCS = $(addprefix $(GNL_PATH), $(GET_NEXT_LINE))
 GNL_OBJS = ${GNL_SRCS:.c=.o}
-MLX                = MLX42/libmlx42.a 
-MLX_FLAG        = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
+MLX = MLX42/libmlx42.a 
+MLX_FLAG = -lglfw -L /Users/$(USER)/.brew/opt/glfw/lib
 
 all: $(NAME)
 
