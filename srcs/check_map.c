@@ -6,11 +6,32 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:51:57 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:50:12 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:28:58 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	check_map_last(t_game *game)
+{
+	int	i;
+	int	j;
+
+	i = game->map_start - 1;
+	while (game->tab_fd[++i])
+	{
+		j = 0;
+		while (game->tab_fd[i][j] != '\0')
+		{
+			if (game->tab_fd[i][j] > 32)
+			{
+				printf("map not last\n");
+				ft_quit(game);
+			}
+			j++;
+		}
+	}
+}
 
 void	check_map(t_game *game)
 {
@@ -20,6 +41,7 @@ void	check_map(t_game *game)
 		dprintf(2, "No player on map\n");
 		ft_quit(game);
 	}
+	check_map_last(game);
 	floodfill(game->player.player_mm.position_y, \
 	game->player.player_mm.position_x, game);
 }
