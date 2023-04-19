@@ -6,7 +6,7 @@
 /*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:00:19 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 13:02:15 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:08:29 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,12 @@ void	fill_tab_fd(t_game *game)
 		i++;
 	}
 	return ;
+}
+
+void	outside_map(t_game *game)
+{
+	dprintf(2, "Failsafe: Player out of map's perimeters\n");
+	ft_quit(game);
 }
 
 void	fd_create_tab_fd(t_game *game, char *argv)
