@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:01:34 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:54:07 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:26:24 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	fill_text_path_in_order(t_game *game, int start, int len, int i)
 {
 	if (ft_strncmp("NO", game->tab_fd[i], 2) == 0)
 	{
-		game->text[0].textures_path = ft_substr(game->tab_fd[i], start, len);		
+		game->text[0].textures_path = ft_substr(game->tab_fd[i], start, len);
 		if (open(game->text[0].textures_path, O_RDONLY) == -1)
 			texture_error("NO", game);
 	}

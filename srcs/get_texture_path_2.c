@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_path_2.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:02:05 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/18 13:02:06 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:26:50 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,13 @@ void	check_char(char **f)
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (f[i])
+	while (i < 3)
 	{
+		j = 0;
 		while (f[i][j] != '\0')
 		{
-			if ((f[i][j] >= 33 && f[i][j] <= 47) || (f[i][j] >= 58 && f[i][j] <= 126))
+			if ((f[i][j] >= 33 && f[i][j] <= 47) || (f[i][j]
+				>= 58 && f[i][j] <= 126))
 			{
 				printf("rgb not number\n");
 				exit(1);

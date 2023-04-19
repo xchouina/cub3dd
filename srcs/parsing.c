@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:07:39 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:55:44 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:33:23 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_if_map_last(t_game *game, int i)
 			j++;
 		if (game->tab_fd[i][j] == '1' || game->tab_fd[i][j] == '0')
 		{
-			dprintf(2, "map_not_last or direction problem\n");
+			dprintf(2, "map_not_last or direction problem/colors\n");
 			ft_quit(game);
 		}
 		j++;
@@ -101,6 +101,6 @@ int	parsing(t_game *game, char *argv)
 	game->map_height--;
 	square_map(game);
 	game->player.player_mm.position_x
-		= game->player.player_mm.position_x - (game->first_q_of_line);
+		= game->player.player_mm.position_x - (game->first_q);
 	return (0);
 }

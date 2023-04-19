@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_values.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:48:06 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/18 12:48:08 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:35:12 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,13 @@ void	init_value(t_game *game)
 	game->image = 0;
 	game->a_is_press = 0;
 	game->d_is_press = 0;
-	game->max_line = 0;
+	game->max = 0;
 	game->check_last_q = 0;
 	game->check_first_q = 0;
-	game->first_q_of_line = 0;
+	game->first_q = 0;
 	game->top_pixel = 0;
 	game->bot_pixel = 0;
 	game->tex_step = 0;
 	game->checking = 0;
+	game->text_doublons = 0;
 }

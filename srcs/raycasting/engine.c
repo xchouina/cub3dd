@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:56:25 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 10:29:09 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:35:58 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	init_assets(t_game	*game)
 	mlx_image_to_window(game->mlx, game->img, 0, 0);
 	game->mini_map_img = mlx_new_image(game->mlx, WIN_W, WIN_H);
 	game->ang_incr = (float)FOV / (float)NUM_RAYS;
-	game->map_x = game->max_line;
+	game->map_x = game->max;
 	game->map_y = game->height_q + 1;
 	game->delta_x = cos(deg2rad(90));
 	game->delta_y = -sin(deg2rad(90));

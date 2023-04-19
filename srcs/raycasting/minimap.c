@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minimap.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
+/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 10:56:22 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/18 10:56:24 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:36:02 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	print_minimap(t_game *game)
 	while (y <= game->height_q)
 	{
 		x = 0;
-		while (x < game->max_line)
+		while (x < game->max)
 		{
 			if (game->square_map[y][x] == '1')
 				put_cube(game, x, y, rgb_to_int(100, 103, 100));
