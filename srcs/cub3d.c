@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:57:05 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:50:34 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:10:24 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,10 @@ int	main(int argc, char **argv)
 	(void)player;
 	game.fd = 0;
 	if (argc != 2)
+	{
+		printf("arg error");
 		exit(1);
+	}
 	if (parsing(&game, argv[1]) == 1)
 		return (1);
 	if (parsing_path(&game) == 1)
