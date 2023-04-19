@@ -6,9 +6,9 @@ void	check_char(char **f)
 	int	j;
 
 	i = 0;
-	j = 0;
-	while (f[i])
+	while (i < 3)
 	{
+		j = 0;
 		while (f[i][j] != '\0')
 		{
 			if ((f[i][j] >= 33 && f[i][j] <= 47) || (f[i][j] >= 58 && f[i][j] <= 126))
