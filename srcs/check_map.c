@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:51:57 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 12:28:58 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:04:56 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map_last(t_game *game)
 		{
 			if (game->tab_fd[i][j] > 32)
 			{
-				printf("map not last\n");
+				printf("Error: Invalid map (Map must be last in file).\n");
 				ft_quit(game);
 			}
 			j++;
@@ -38,7 +38,7 @@ void	check_map(t_game *game)
 	check_symbol_and_doublon(game);
 	if (game->doublons == 0)
 	{
-		dprintf(2, "No player on map\n");
+		dprintf(2, "Error: Invalid number of players on the map.\n");
 		ft_quit(game);
 	}
 	check_map_last(game);
@@ -76,7 +76,7 @@ void	check_end_line(t_game *game, int i, int j)
 {
 	if (game->map[i][j] == '\n' && ft_strlen(game->map[i]) == 1)
 	{
-		dprintf(2, "Backslash_n needs to be at the end of the line\n");
+		dprintf(2, "Error: \\n needs to be at the end of the line\n");
 		ft_quit(game);
 	}
 	if (game->map[i][j] == 'W' || game->map[i][j] == 'E' \
@@ -92,12 +92,6 @@ void	check_end_line(t_game *game, int i, int j)
 		else
 			game->doublons = 1;
 	}
-}
-
-void	outside_map(t_game *game)
-{
-	dprintf(2, "Failsafe: Player out of map's perimeters\n");
-	ft_quit(game);
 }
 
 void	floodfill(int x, int y, t_game *game)

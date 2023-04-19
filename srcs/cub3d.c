@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:57:05 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 12:10:24 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:54:26 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char **argv)
 	game.fd = 0;
 	if (argc != 2)
 	{
-		printf("arg error");
+		printf("Error: Invalid ammount of arguments.\n");
 		exit(1);
 	}
 	if (parsing(&game, argv[1]) == 1)
