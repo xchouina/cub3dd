@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_texture_path_1.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:01:34 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 11:26:24 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:48:15 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	texture_error(char *path, t_game *game)
 {
-	dprintf(2, "texture %s error\n", path);
+	dprintf(2, "Error: Texture \"%s\" is invalid.\n", path);
 	ft_quit(game);
 }
 

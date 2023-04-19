@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:07:39 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 11:33:23 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 11:54:12 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	check_if_map_last(t_game *game, int i)
 			j++;
 		if (game->tab_fd[i][j] == '1' || game->tab_fd[i][j] == '0')
 		{
-			dprintf(2, "map_not_last or direction problem/colors\n");
+			dprintf(2, "Error: map_not_last or direction problem/colors\n");
 			ft_quit(game);
 		}
 		j++;
