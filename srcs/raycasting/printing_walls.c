@@ -72,8 +72,8 @@ void	print_wall(t_game *game, t_rays *ray, int x, int i)
 	else
 		texture_offset = (int)ray->wall[1]
 			- ((int)ray->wall[1] / TILE_SIZE) * TILE_SIZE;
-	if (ray->dist <= 0.0001f)
-		ray->dist = 0.0001f;
+	if (ray->dist <= 1.0f)
+		ray->dist = 1.0f;
 	wall_height = (5 / ray->dist) * WIN_H;
 	game->top_pixel = ((float)WIN_H - wall_height) / 2.0f;
 	game->bot_pixel = game->top_pixel + wall_height;
