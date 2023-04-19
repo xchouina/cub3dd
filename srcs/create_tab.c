@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   create_tab.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:00:19 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:50:23 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:02:15 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,12 +17,12 @@ void	open_fd(char *argv, t_game *game)
 	game->fd = open(argv, O_RDONLY);
 	if (game->fd == -1)
 	{
-		dprintf(2, "fd error\n");
+		dprintf(2, "Error: Invalid file descriptor.\n");
 		exit(1);
 	}
 	if (!ft_strendcmp(argv, ".cub"))
 	{
-		dprintf(2, ".cub error\n");
+		dprintf(2, "Error: Map's file must be a \".cub\"\n");
 		exit(1);
 	}
 	return ;

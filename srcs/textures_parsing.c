@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   textures_parsing.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:39:39 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 09:59:06 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:04:00 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	parsing_textures(t_game *game)
 		game->fd = open(game->text[i].textures_path, O_RDONLY);
 		if (game->fd == -1)
 		{
-			printf("%s error", game->text[i].textures_path);
+			printf("Error: Invalid fd. (%s)\n", game->text[i].textures_path);
 			ft_quit(game);
 		}
 		close(game->fd);

@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:02:05 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 12:59:08 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:09:31 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	check_char(char **f)
 			if ((f[i][j] >= 33 && f[i][j] <= 47) || (f[i][j]
 				>= 58 && f[i][j] <= 126))
 			{
-				printf("rgb not number\n");
+				printf("Error: RGB value must be a number.\n");
 				exit(1);
 			}
 			j++;
@@ -61,13 +61,13 @@ void	split_colors(t_game *game)
 	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \
 	|| (ft_atoi(g[0]) > 255) || (ft_atoi(g[1]) > 255) || (ft_atoi(g[2]) > 255))
 	{
-		dprintf(2, "rgb more than 255\n");
+		dprintf(2, "Error: Invalid RGB value.\n");
 		ft_quit(game);
 	}
 	else if ((ft_atoi(f[0]) < 0) || (ft_atoi(f[1]) < 0) || (ft_atoi(f[2]) < 0) \
 	|| (ft_atoi(g[0]) < 0) || (ft_atoi(g[1]) < 0) || (ft_atoi(g[2]) < 0))
 	{
-		dprintf(2, "rgb less than 255\n");
+		dprintf(2, "Error: Invalid RGB value.\n");
 		ft_quit(game);
 	}
 	game->textures.couleur_floor = rgbtab_to_int(f);
@@ -90,7 +90,7 @@ void	get_floor_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		dprintf(2, "texture F error\n");
+		dprintf(2, "Error: Invalid values for \'F\'\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)
@@ -118,7 +118,7 @@ void	get_roof_color(t_game *game, int i)
 		j = 2;
 	else
 	{
-		dprintf(2, "texture C error\n");
+		dprintf(2, "Error: Invalid values for \'C\'\n");
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) == true)

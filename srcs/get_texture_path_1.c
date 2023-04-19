@@ -6,7 +6,7 @@
 /*   By: xchouina <xchouina@student.42quebec.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:01:34 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 11:48:15 by xchouina         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:44:36 by xchouina         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ void	get_text_p(t_game *game, int i, char *str_space, char *str_tab)
 		j = 3;
 	else
 	{
-		dprintf(2, "texture %serror\n", str_space);
+		dprintf(2, "Error: Texture \"%s\" is invalid.\n", str_space);
 		ft_quit(game);
 	}
 	while (ft_iswhitespace(game->tab_fd[i][j]) \
