@@ -6,18 +6,42 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:48:06 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 13:05:56 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 14:03:24 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	split_space(char *f, t_game *game)
+void	split_space(char **f)
 {
-	f[0] = ft_split(f[0], ' ');
-	f[1] = ft_split(f[1], ' ');
-	f[2] = ft_split(f[2], ' ');
-	
+	int		i;
+	int		j;
+	int		end;
+	char	*tmp;
+
+	i = 0;
+	while (i < 3)
+	{
+		end = 0;
+		j = 0;
+		while ((f[i][j] <= 47) || (f[i][j] >= 58))
+			j++;
+		while (ft_isdigit(f[i][j]) == 1)
+		{
+			end++;
+			j++;
+		}
+		tmp = ft_substr(f[i], j - end, end);
+		free(f[i]);
+		f[i] = tmp;
+		i++;
+	}
+}
+
+void    outside_map(t_game *game)
+{
+    dprintf(2, "Failsafe: Player out of map's perimeters\n");
+    ft_quit(game);
 }
 
 void	init_value(t_game *game)

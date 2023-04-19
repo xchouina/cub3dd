@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:46:50 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 13:05:21 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:43:21 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -195,8 +195,8 @@ void		parsing_colors_ea(t_game *game);
 void		parsing_colors_so(t_game *game);
 void		print_colors_tab(t_game *game, int i);
 void		print_colors_mlx42(t_game *game, int i);
-void		check_textures_doublons(t_game *game);
-void		split_space(char *f, t_game *game);
+void		split_space(char **f);
+void    	outside_map(t_game *game);
 
 int			parsing_path(t_game *game);
 void		get_text_p(t_game *game, int i, char *str_space, char *str_tab);
