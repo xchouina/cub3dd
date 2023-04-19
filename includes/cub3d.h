@@ -1,11 +1,25 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d.h                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:46:50 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/19 09:50:03 by tberube-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef CUB3D_H
 # define CUB3D_H
 
 # define WIN_W		1980
 # define WIN_H		1080
 # define TILE_SIZE	25
-# define FOV		60		// Field of view
-# define NUM_RAYS	2400	// Number of rays to cast
+# define FOV		60
+# define NUM_RAYS	2400
+# define MOV_SP 1
+# define ROT_SP 2
 
 # include <stdio.h>
 # include <fcntl.h>
@@ -203,6 +217,8 @@ void		w_press(t_game *game);
 void		s_press(t_game *game);
 void		d_press(t_game *game);
 void		a_press(t_game *game);
+void		left_press(t_game *game);
+void		right_press(t_game *game);
 
 //print_test
 void		print_player_pos(t_game *game);
@@ -243,10 +259,9 @@ void		check_vertical(t_game *game, t_rays *ray);
 // PRINTING_WALLS.C
 int			horiz_wall(t_game *game, t_rays *ray);
 void		fix_fisheye(t_game *game, t_rays *ray);
-int 		get_color(t_text *text, int y, int x);
+int			get_color(t_text *text, int y, int x);
 void		draw_wall_texture(t_game *game, int x, int i, float texture_offset);
-// void    draw_wall_texture(t_game *game, int x, float y_start, float y_end, int i, float texture_offset, float tex_step);
-void    	print_wall(t_game *game, t_rays *ray, int x, int i);
+void		print_wall(t_game *game, t_rays *ray, int x, int i);
 
 // CASTING.C
 void		create_rays(t_game *game);

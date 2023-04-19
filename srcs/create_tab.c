@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   create_tab.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/04/18 13:00:19 by xchouina          #+#    #+#             */
+/*   Updated: 2023/04/19 09:50:23 by tberube-         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "cub3d.h"
 
 void	open_fd(char *argv, t_game *game)
@@ -21,10 +33,12 @@ void	fd_create_tab_map(t_game *game)
 	int	i;
 	int	j;
 
-	i = 0;
-	j = 0;
-	while (i < game->height_fd)
+	i = -1;
+	game->map_height = 1;
+	game->map_start = 0;
+	while (++i < game->height_fd)
 	{
+		j = 0;
 		while (game->tab_fd[i][j] != '\0')
 		{
 			if (ft_strchr("NOSWEA", game->tab_fd[i][j]) != NULL)
@@ -40,8 +54,6 @@ void	fd_create_tab_map(t_game *game)
 			}
 			j++;
 		}
-		j = 0;
-		i++;
 	}
 }
 
