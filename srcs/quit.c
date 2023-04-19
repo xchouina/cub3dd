@@ -25,6 +25,6 @@ void	ft_quit(t_game *game)
 		ft_free2d(game->map);
 	if (game->square_map != NULL)
 		ft_free2d(game->square_map);
-	ft_quit_2(game);
+	//ft_quit_2(game);
 	exit(1);
 }

@@ -31,12 +31,20 @@ void	fill_text_tab_colors(t_game *game, int i, uint32_t y, uint32_t x)
 	}
 }
 
-void parsing_textures(t_game *game)
+void	parsing_textures(t_game *game)
 {
 	int	i;
+
 	i = 0;
 	while (i < 4)
 	{
+		game->fd = open(game->text[i].textures_path, O_RDONLY);
+		if (game->fd == -1)
+		{
+			printf("%s error", game->text[i].textures_path);
+			ft_quit(game);
+		}
+		close(game->fd);
 		game->text[i].xpm = mlx_load_xpm42(game->text[i].textures_path);
 		i++;
 	}
