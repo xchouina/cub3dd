@@ -6,7 +6,7 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 13:02:05 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 11:26:50 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 12:59:08 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	split_colors(t_game *game)
 
 	f = ft_split(game->ground_colors, ',');
 	g = ft_split(game->ceiling_colors, ',');
-	check_comma(game);
+	split_space(game);
 	check_char(f);
 	check_char(g);
 	if ((ft_atoi(f[0]) > 255) || (ft_atoi(f[1]) > 255) || (ft_atoi(f[2]) > 255) \

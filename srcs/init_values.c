@@ -6,11 +6,19 @@
 /*   By: tberube- <tberube-@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/18 12:48:06 by xchouina          #+#    #+#             */
-/*   Updated: 2023/04/19 11:35:12 by tberube-         ###   ########.fr       */
+/*   Updated: 2023/04/19 13:05:56 by tberube-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
+
+void	split_space(char *f, t_game *game)
+{
+	f[0] = ft_split(f[0], ' ');
+	f[1] = ft_split(f[1], ' ');
+	f[2] = ft_split(f[2], ' ');
+	
+}
 
 void	init_value(t_game *game)
 {
